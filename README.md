@@ -19,6 +19,8 @@
 - [SVM实测结果与图](docs/svm_results.md)
 - [CNN/ResNet、设备与噪声使用说明](docs/deep_models.md)
 - [深度模型实现验收与边界](docs/deep_acceptance.md)
+- [测试侧数据审计](docs/test_similarity_audit.md)
+- [正式实验登记协议](docs/experiment_protocol.md)
 - [近重复诊断结果](results/similarity/train_validation_v1/report.md)
 
 原始论文、译文和GPT旧计划在本地 `reference/` 保留，不上传代码仓库。数据从 [MDDECT官方发布页](https://www.kaggle.com/datasets/mchikyt3/mddect) 下载，将两个NPY放在 `data/raw/`，文件身份见审计报告。论文参考：[arXiv:2104.02472](https://arxiv.org/abs/2104.02472)。数据官方许可为CC BY 4.0，使用时引用数据发布者和论文。人员分工由用户另行处理。
@@ -82,7 +84,7 @@ uv pip install --python .venv/bin/python -r requirements-models.txt
 
 每组只用train/validation各每类10条、两epoch，验证Clean/30/20/10dB与CPU权重重载；不同全量SVM比较性能。权重.pt本地保留，公开代码/配置/验收记录。复跑选择新output目录。
 
-截止2026-10-25；用户资源RTX5070Ti 16GB。训练支持auto/cpu/cuda；当前环境CPU通过验收，CUDA真实路径待有可用环境时验收。
+截止2026-10-25；RTX5070Ti 16GB。训练支持auto/cpu/cuda，CPU与真实CUDA训练/重载均通过验收；受限执行沙箱内CUDA不可见，普通GPU可访问上下文使用同一模型代码。正式登记命令见docs/experiment_protocol.md，test分类仍封存。
 
 ## 代码管理
 

@@ -1,5 +1,14 @@
 # 推进日志
 
+## 2026-10-01：测试侧审计与真实CUDA验收
+
+- 用户要求继续，提供nvidia-smi显示RTX5070Ti可用。同一.venv/PyTorch2.9.1+cu128做内外对照：沙箱内is_available=false且张量报无驱动；经允许的沙箱外执行is_available=true，真实CUDA张量平方和=5，识别RTX5070Ti。确认先前不可用是执行隔离，非用户显卡/安装故障。
+- 创建feat/protocol-gpu-audit分支，实施单元见docs/plans/2026-10-01-protocol-gpu-audit.md；模型代码不因沙箱结果改回退策略，不再做资源评估。主线GPU验收/登记，数据审计CLI并行扩展，数学算法和阈值冻结不变。
+- 真实GPU执行11设备+11模型测试均通过，三组200/200两epochCUDA训练完成；独立核对2400GPU验证预测和CPU迁移，最大logits差8.94e-8、类别差0，源CPU记录不覆盖。
+- CLI九项新增测试先失败后扩展，21项全部通过；src/ect/similarity.py字节与d4fa333完全相同。test→train115.2M和test→validation15.36M两距离候选0；独立直接差值全穷举109.34/13.69秒，4800最近索引/距离/候选全匹配，误差0，记录包含完整验证脚本及SHA。
+- 登记工具初两项测试因缺失实现失败；完整审计artifact/summary/CLI身份五例回归先未拒绝再修复。独立审查发现SVM漏失/损坏/失败marker及清理失败混合成功，回归四例先失败后修复；首次编辑测试误置一行导致缩进错误，修正后观察实质失败。第二轮五项复查全部通过，无新阻塞。
+- 真实数据formal_v1九项配置登记完成，状态frozen_training_registration、test分类false；全量深度尚未开始时记录绑定SHA和时间，下一步使用登记CNN clean seed0完整训练配置。
+
 ## 2026-10-01：CNN/ResNet与噪声实现开始
 
 - 用户明确直接推进设备可切换CNN、ResNet及噪声，不再评估计算资源。创建feat/deep-noise分支，先固定结构/选择/随机身份口径于实施计划与D011。

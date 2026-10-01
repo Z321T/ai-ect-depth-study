@@ -15,7 +15,7 @@ uv pip install --python .venv/bin/python torch==2.9.1 --index-url https://downlo
 uv pip install --python .venv/bin/python -r requirements-deep.txt
 ```
 
-CPU/CUDA构建安装命令来自[PyTorch官方版本页](https://pytorch.org/get-started/previous-versions/)。不需要torchvision/torchaudio，不在项目内安装或修改系统驱动。此环境安装2.9.1+cu128，但CUDA不可用；CPU已验证，真实GPU尚未验收。
+CPU/CUDA构建安装命令来自[PyTorch官方版本页](https://pytorch.org/get-started/previous-versions/)。不需要torchvision/torchaudio，不在项目内安装或修改系统驱动。此环境安装2.9.1+cu128，RTX5070Ti已在允许GPU访问的上下文通过真实梯度、训练和权重重载；受限沙箱CUDA不可见。证据见results/deep/acceptance_cuda_v1.json，原CPU验收保留。
 
 `--device auto`按torch.cuda.is_available选择；`cpu`明确使用CPU；`cuda`不可用时明确报错，不静默回退。安装了CUDA包并不等于硬件路径可用。CPU可以训练、计算指标和加载权重；不做卡型号分支或CPU/GPU预算评估。
 
@@ -51,7 +51,7 @@ SHA256编码(namespace,seed,wave_sha256,条件)生成PCG64种子，同一身份/
 
 输出目录原子占用，拒绝覆盖；复跑选新--output。report最后发布，失败保存failure.json并清理成功标记/权重。记录配置、代码、原输入/清单/缓存SHA、选中epoch、各条件/组指标、逐epoch损失与增强数量、预测及抽样行索引。读取器完整性检查仍哈希并映射三集合缓存文件，但训练、统计评价和分类仅访问train/validation；这里封存的是test分类/选参，不是禁止test文件身份检查。
 
-model.pt包含CPU state_dict、结构和冻结标准化，不提交Git；普通克隆后复跑生成权重。用[PyTorch推荐的state_dict与map_location](https://docs.pytorch.org/tutorials/beginner/saving_loading_models.html)做可移植加载，weights_only=True；先检查产物、配置摘要、选中epoch/指标记录与LF规范化源码SHA，再核对checkpoint元数据并加载模型。同训练设备的重载预测须一致；CPU迁移另记logits最大误差、rtol=1e-4/atol=1e-5范围判断、argmax差异数量和CPU指标。跨设备微小数值差导致边界类别变化不删除有效权重；本环境只有CPU真实验收，GPU→CPU差异尚无实测。
+model.pt包含CPU state_dict、结构和冻结标准化，不提交Git；普通克隆后复跑生成权重。用[PyTorch推荐的state_dict与map_location](https://docs.pytorch.org/tutorials/beginner/saving_loading_models.html)做可移植加载，weights_only=True；先检查产物、配置摘要、选中epoch/指标记录与LF规范化源码SHA，再核对checkpoint元数据并加载模型。同训练设备重载预测须一致；CPU迁移另记logits误差、rtol=1e-4/atol=1e-5判断、argmax差异和CPU指标。三组GPU小规模验收中GPU→CPU最大差8.94e-8、类别差0，其他权重/设备不保证逐位一致。
 
 ```python
 from src.ect.deep import load_deep_model, predict_raw

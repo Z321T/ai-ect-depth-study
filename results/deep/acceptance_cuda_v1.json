@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-01T10:52:34.138386+00:00",
+  "execution_context": "GPU-visible execution outside restricted sandbox",
+  "sandbox_comparison": {
+    "restricted_cuda_available": false,
+    "unrestricted_cuda_available": true,
+    "same_python_environment": true,
+    "unrestricted_tensor_square_sum": 5.0
+  },
+  "scope": "real CUDA train/validation smoke; same GPU reload and CPU transfer; no test classification",
+  "runs": {
+    "cnn": {
+      "report_sha256": "7619249b4124968014a9d5627873aed5b40b8451758e49cf25549c22180b9e0e",
+      "device": "NVIDIA GeForce RTX 5070 Ti",
+      "verified_predictions": 800,
+      "same_rows_as_cpu_smoke": true,
+      "cpu_transfer": {
+        "clean": {
+          "max_abs_error": 5.960464477539063e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        },
+        "30": {
+          "max_abs_error": 6.332993507385254e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        },
+        "20": {
+          "max_abs_error": 5.21540641784668e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        },
+        "10": {
+          "max_abs_error": 6.705522537231445e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        }
+      },
+      "gradient_parameter_update_l2": 0.348140705570061
+    },
+    "resnet": {
+      "report_sha256": "92547f07feea9720f0e2ac683a890c6b0ab41180195c983025feae6a30181d09",
+      "device": "NVIDIA GeForce RTX 5070 Ti",
+      "verified_predictions": 800,
+      "same_rows_as_cpu_smoke": true,
+      "cpu_transfer": {
+        "clean": {
+          "max_abs_error": 8.940696716308594e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        },
+        "30": {
+          "max_abs_error": 7.450580596923828e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        },
+        "20": {
+          "max_abs_error": 7.450580596923828e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        },
+        "10": {
+          "max_abs_error": 5.960464477539063e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        }
+      },
+      "gradient_parameter_update_l2": 0.7481344727180752
+    },
+    "resnet_aug": {
+      "report_sha256": "729fc7567091375a66dc68a5ad18febd70fac4c7b70d3a61b326580237a2233b",
+      "device": "NVIDIA GeForce RTX 5070 Ti",
+      "verified_predictions": 800,
+      "same_rows_as_cpu_smoke": true,
+      "cpu_transfer": {
+        "clean": {
+          "max_abs_error": 6.332993507385254e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        },
+        "30": {
+          "max_abs_error": 5.960464477539063e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        },
+        "20": {
+          "max_abs_error": 5.960464477539063e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        },
+        "10": {
+          "max_abs_error": 7.450580596923828e-08,
+          "within_tolerance": true,
+          "rtol": 0.0001,
+          "atol": 1e-05,
+          "argmax_difference_count": 0
+        }
+      },
+      "gradient_parameter_update_l2": 0.7482024145947225
+    }
+  },
+  "test_classification_evaluated": false
+}

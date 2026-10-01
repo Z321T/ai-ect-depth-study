@@ -20,4 +20,4 @@
 
 独立核对记录见[acceptance_v1.json](../results/deep/acceptance_v1.json)，绑定三个report SHA；各报告进一步绑定配置、源码、清单、数据缓存与权重/预测/行索引。代码使用固定训练标准化，扰动在原单位加入。测试文件身份校验仍执行，测试分类/统计评价/选参未执行。
 
-真实GPU训练与原生Windows端到端验收尚未运行；已有明确设备选择/错误分支和CPU交接路径。下一单元沿用冻结距离完成测试侧数据近重复审计，再登记正式训练与噪声重复。类别映射未确认，语义指标继续等待证据。
+上表是CPU实现验收的历史记录。后续真实GPU验收已完成：受限沙箱CUDA不可见，允许GPU访问的上下文识别RTX5070Ti；三组相同200/200两epoch训练/重载与2400GPU预测复核通过，GPU→CPU最大logits差8.94e-8、类别差0，见[GPU记录](../results/deep/acceptance_cuda_v1.json)。原生Windows仍未端到端验收。测试侧两项审计和正式配置登记见docs/experiment_protocol.md，类别语义继续等待证据。

@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "protocol": "formal_v1",
+  "registered_utc": "2026-10-01T10:59:14.616618+00:00",
+  "status": "frozen_training_registration",
+  "test_classification_evaluated": false,
+  "test_signals_used_for_data_audit": true,
+  "plan": {
+    "schema_version": 1,
+    "protocol": "formal_v1",
+    "template_config": "config/deep_v1.json",
+    "data_protocol": "grouped_v1",
+    "training_seeds": [
+      0,
+      1,
+      2
+    ],
+    "families": [
+      {
+        "id": "cnn_clean",
+        "model": "cnn",
+        "augmentation": false
+      },
+      {
+        "id": "resnet_clean",
+        "model": "resnet",
+        "augmentation": false
+      },
+      {
+        "id": "resnet_aug",
+        "model": "resnet",
+        "augmentation": true
+      }
+    ],
+    "validation_noise_seeds": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "test_noise_seeds": [
+      100,
+      101,
+      102,
+      103,
+      104
+    ],
+    "noise_snr_db": [
+      30,
+      20,
+      10
+    ],
+    "baseline_report": "results/baselines/svm_full_v1/report.json",
+    "audit_reports": [
+      "results/similarity/train_test_v1/summary.json",
+      "results/similarity/validation_test_v1/summary.json"
+    ]
+  },
+  "plan_file_sha256": "b297b665faabdf2deca831fbb2e8122861255f3c60b6a2746c58c49d6b9955dd",
+  "template_file_sha256": "7d03f76090444fa3a83e7605432d413e4fba79fda76666103727cff9728a0188",
+  "data_protocol": "grouped_v1",
+  "sample_counts": {
+    "train": 24000,
+    "validation": 3200,
+    "test": 4800
+  },
+  "manifest_sha256": {
+    "train.jsonl": "9890d665bc5da045a14766efc34c08e079e752551a11c19535ed6b5ef8d07b36",
+    "validation.jsonl": "97f6201ba4250c8044c19dd01c4807bf310d95472bf9d2d4b252661e960cde3c",
+    "test.jsonl": "413990beea1c949cb0d99654a75c2d35f6a37cc9476d8b26e1be3a5cb2946b2e"
+  },
+  "cache_metadata_sha256": "8c3bace8e81730d1b37bf17cc991cdc63471015d7850a1d74c0e096cf5c6b2ab",
+  "raw_input_sha256": {
+    "train": "f50bc6cb3d08f9972679f3876a41025aec2a4e2672147e24a6b58db007c71ac7",
+    "test": "865f972445ce0b9ad562336e7b6258b48d6b1d70d8d7254ff4fca77fdb951b58"
+  },
+  "audit_reports_sha256": {
+    "results/similarity/train_test_v1/summary.json": "e68856e296a353806ca4ef71a55682f7a9d3fa6791c12b99b2b3c2b5802fb128",
+    "results/similarity/validation_test_v1/summary.json": "d1ca4de5875690b2f9d8ed33c55a867fe834f6877f453639450fe82004d70e17"
+  },
+  "baseline_report_sha256": "f9f6b811c11c49a9e3b61b0d4a90597bfae2fd7fdbc679acc5d115615df2997b",
+  "class_mapping_file_sha256": "f4a2d39845a78ba17589358c094283e8fbe2b88e002d4fb2b23aebf8b86bdf54",
+  "class_mapping_status": "unverified",
+  "code_sha256": {
+    "src/ect/deep.py": "e4544c9ecaafccbd2ac0c34ac4a7615406352de1946842ad24d4f0b15b6b3745",
+    "src/ect/models.py": "d87ab91ccde55c1d295cb7cc23408b721505788cb7296bb4313a7f9e56c573ea",
+    "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "src/ect/noise.py": "354b483b1edfb91f1fa63d2d94e3fed977597b0b8cd907a05c56f682c6cb94f4",
+    "src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+    "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+    "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+    "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+    "src/ect/similarity.py": "54c560569597c0e4dacb00d78f3808d9569b7d00914b97cb6c2095c51801aabe",
+    "src/ect/features.py": "d110ffdcc27f9b099753819f1401465093f7a3c6a14a2583712008b31c45099c",
+    "scripts/register_experiments.py": "ef25bde60c2195938373a853603b2fd9bef24049f829a32e183fef91d9dd0c49",
+    "scripts/diagnose_similarity.py": "72ed62ab862039383c1da212ef2f64ed372a056e893f41421d152eaef34201b4",
+    "scripts/train_deep.py": "486b629fc36fcfe1c37cf6c675e268a942b603f8b2c950addc86ec661e555e72"
+  },
+  "runs": [
+    {
+      "run_id": "cnn_clean_s0",
+      "family": "cnn_clean",
+      "seed": 0,
+      "config_path": "results/experiments/formal_v1/configs/cnn_clean_s0.json",
+      "config_file_sha256": "7d03f76090444fa3a83e7605432d413e4fba79fda76666103727cff9728a0188",
+      "resolved_config_sha256": "8b368f41e3eca6574aa2d18abdc31dce28914e76a95b72f4bc5b312a3e7ba1e6",
+      "output_dir": "results/experiments/formal_v1/cnn_clean_s0",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "cnn_clean_s1",
+      "family": "cnn_clean",
+      "seed": 1,
+      "config_path": "results/experiments/formal_v1/configs/cnn_clean_s1.json",
+      "config_file_sha256": "8acb7eb07e47e509527fe6811c2fd2f686e6a8200887574d2ce1bb8810557a37",
+      "resolved_config_sha256": "29392bb56d62196efb52b289807dd5d00fa0aad95d55174a3b7ef8a2a8fad720",
+      "output_dir": "results/experiments/formal_v1/cnn_clean_s1",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "cnn_clean_s2",
+      "family": "cnn_clean",
+      "seed": 2,
+      "config_path": "results/experiments/formal_v1/configs/cnn_clean_s2.json",
+      "config_file_sha256": "954b2690d186005420404af45a0d56d5c90d6f4f3f731b4a2f0280425f773c2f",
+      "resolved_config_sha256": "ba36890a5b7c8bb2b9a400bfce10968bf98784233b3d40d873f6f3b204044a67",
+      "output_dir": "results/experiments/formal_v1/cnn_clean_s2",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "resnet_clean_s0",
+      "family": "resnet_clean",
+      "seed": 0,
+      "config_path": "results/experiments/formal_v1/configs/resnet_clean_s0.json",
+      "config_file_sha256": "7e16d393d4f6da1c2af2d808e21c65cc7aeae946f9d71d977875aa3271447d60",
+      "resolved_config_sha256": "2c0e07c423213b631e01c48ac6e5fdbb9d01d8d7fb0e098786f0f50ce20e6720",
+      "output_dir": "results/experiments/formal_v1/resnet_clean_s0",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "resnet_clean_s1",
+      "family": "resnet_clean",
+      "seed": 1,
+      "config_path": "results/experiments/formal_v1/configs/resnet_clean_s1.json",
+      "config_file_sha256": "9d0d0dddf1ec49a3fe74f09eed3bfd110755457661d77bbbecd2b6504bf875f5",
+      "resolved_config_sha256": "3a7983d5221ee852260012e94b7b8398929973bf37cb3d0785f0ac066185ff4b",
+      "output_dir": "results/experiments/formal_v1/resnet_clean_s1",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "resnet_clean_s2",
+      "family": "resnet_clean",
+      "seed": 2,
+      "config_path": "results/experiments/formal_v1/configs/resnet_clean_s2.json",
+      "config_file_sha256": "04ca60ff7dc75e6c33a63c8a77795f1c6d095192b48d9fa84b1b346536493bd5",
+      "resolved_config_sha256": "d01d88087adb7068ae0fc2c134675af06f18d09590a7b41b022deb5816430c87",
+      "output_dir": "results/experiments/formal_v1/resnet_clean_s2",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "resnet_aug_s0",
+      "family": "resnet_aug",
+      "seed": 0,
+      "config_path": "results/experiments/formal_v1/configs/resnet_aug_s0.json",
+      "config_file_sha256": "e2c2d979448f8528552dfa3c6f2c55b4fd64073c5c6b9ca362f768b928238da9",
+      "resolved_config_sha256": "a818cbb702aa15358c56b272ed7411cb2eb2ae0a2651149d61346bd4fb1ad904",
+      "output_dir": "results/experiments/formal_v1/resnet_aug_s0",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "resnet_aug_s1",
+      "family": "resnet_aug",
+      "seed": 1,
+      "config_path": "results/experiments/formal_v1/configs/resnet_aug_s1.json",
+      "config_file_sha256": "d6d8e76e9bbfd1c92773162aabc4e3791a5fccf57132ff05062de9cf831e81be",
+      "resolved_config_sha256": "0c105f5486179de792f2a6fa60819177575894fdc5c5a3588c03c6334244ae05",
+      "output_dir": "results/experiments/formal_v1/resnet_aug_s1",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "resnet_aug_s2",
+      "family": "resnet_aug",
+      "seed": 2,
+      "config_path": "results/experiments/formal_v1/configs/resnet_aug_s2.json",
+      "config_file_sha256": "eacd6d0b5851eed0c714432a401fb2fdae3d64aebc218e5bdde260958e29d91a",
+      "resolved_config_sha256": "94f78b41ab9c0e1dc0c94a04fd16a11b9fcc2a6109f2806aa29d892c7405a5fc",
+      "output_dir": "results/experiments/formal_v1/resnet_aug_s2",
+      "status_at_registration": "registered"
+    }
+  ],
+  "epoch_selection": {
+    "clean": "clean validation macro_f1 then accuracy then earlier epoch",
+    "augmented": "equal clean/30/20/10 dB validation macro_f1 then accuracy then earlier epoch",
+    "validation_noise_seed": 10,
+    "validation_namespace": "validation"
+  },
+  "repeated_evaluation": {
+    "validation_noise_seeds": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "test_noise_seeds": [
+      100,
+      101,
+      102,
+      103,
+      104
+    ],
+    "namespace_by_split": {
+      "validation": "validation",
+      "test": "test"
+    },
+    "conditions": [
+      "clean",
+      30,
+      20,
+      10
+    ]
+  },
+  "interpretation": [
+    "No evidence of source independence beyond the stated hashes/groups/distance tests.",
+    "Augmented versus clean ResNet differs in training augmentation AND epoch selection objective.",
+    "Training seeds are replicates on a fixed split, not a population confidence interval.",
+    "SVM reused from fixed nine-candidate selection; deterministic repeats are not independent training."
+  ],
+  "test_release_gate": "All nine full-data runs verified; protocol frozen; no tuning based on test classifications."
+}

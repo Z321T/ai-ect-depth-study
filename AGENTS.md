@@ -2,7 +2,7 @@
 
 本项目是AI+自动化涡流检测课程研究。继续工作前读取 `task_plan.md`、`findings.md`、`progress.md`，再读取当前阶段设计。每次推进更新这些记录；研究协议改变记入 `docs/decisions.md`。
 
-用户不要求处理人员分工。截止2026-10-25，目标GPU RTX5070Ti 16GB，训练须支持auto/cpu/cuda。当前环境GPU访问受限，不把目标GPU当作已验证可用。
+用户不要求处理人员分工。截止2026-10-25，GPU RTX5070Ti 16GB，训练支持auto/cpu/cuda。受限沙箱GPU不可见；同一.venv在允许GPU访问的执行上下文已真实CUDA运算/训练/重载验收。GPU训练与真实CUDA测试使用可访问GPU的执行方式，不为沙箱修改模型或驱动。
 
 原始NPY位于data/raw/，PDF/译文/旧计划位于reference/，不改写也不纳入代码仓库。数据来源和SHA256见 `docs/data_audit_report.md`。原发布train/test重叠，必须使用新清单，不重新混入原划分。类别语义未确认，状态见 `config/class_mapping.json`；不能凭幅值猜测或计算未经确认的深度指标。
 

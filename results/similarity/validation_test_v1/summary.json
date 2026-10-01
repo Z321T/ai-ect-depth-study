@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-01T10:50:13.774844+00:00",
+  "query_split": "test",
+  "reference_split": "validation",
+  "signal_splits_read": [
+    "validation",
+    "test"
+  ],
+  "query_count": 4800,
+  "reference_count": 3200,
+  "exhaustive_pair_count": 15360000,
+  "thresholds": {
+    "raw": 0.001,
+    "shape": 0.01
+  },
+  "distances": {
+    "raw": "||q-r||_2 / ||q-mean_t(q)||_2, raw input units, direct differences",
+    "shape": "per-channel stable float64 time centering, joint unit L2, direct candidate differences"
+  },
+  "allowed_invariances": {
+    "shape": [
+      "per-channel DC offset",
+      "joint positive scale"
+    ],
+    "raw": []
+  },
+  "zero_ac_policy": "Zero-AC queries: both metrics not applicable, row -1 and empty CSV distance; zero-AC references excluded only from shape",
+  "tie_policy": "Smallest zero-based original reference row for exact computed distance ties",
+  "candidate_count_definition": "All pairs at distance <= threshold; query counts count at least one such reference. CSV class agreement is for the nearest pair only, computed after label-free search.",
+  "blocks": {
+    "query": 256,
+    "reference": 2048
+  },
+  "raw": {
+    "applicable_query_count": 4800,
+    "not_applicable_query_count": 0,
+    "nearest_distance_quantiles": {
+      "0": 0.02387297057673223,
+      "0.01": 0.15626941535921104,
+      "0.05": 0.3020179903995407,
+      "0.25": 0.4961064807348942,
+      "0.5": 0.6500603120755515,
+      "0.75": 0.8174608952240267,
+      "0.95": 1.1471727566514303,
+      "0.99": 1.5677005431010063,
+      "1": 4.762981815848298
+    },
+    "candidate_query_count": 0,
+    "candidate_pair_count": 0,
+    "nearest_candidate_same_class_count": 0
+  },
+  "shape": {
+    "applicable_query_count": 4800,
+    "not_applicable_query_count": 0,
+    "nearest_distance_quantiles": {
+      "0": 0.01686235705319051,
+      "0.01": 0.08189675601366152,
+      "0.05": 0.17609108820207853,
+      "0.25": 0.28201606418184694,
+      "0.5": 0.3799551991567287,
+      "0.75": 0.5017553911089269,
+      "0.95": 0.6853853994361168,
+      "0.99": 0.8166621115642404,
+      "1": 1.0132551991622427
+    },
+    "candidate_query_count": 0,
+    "candidate_pair_count": 0,
+    "nearest_candidate_same_class_count": 0
+  },
+  "zero_ac_reference_count": 0,
+  "cache": "/home/lucky/devdir/rgzndl/data/processed/grouped_v1",
+  "cache_metadata_sha256": "8c3bace8e81730d1b37bf17cc991cdc63471015d7850a1d74c0e096cf5c6b2ab",
+  "cache_files_sha256": {
+    "validation_x.npy": "127c788ce05184c71810db2acd124cc6a215f0dcb30c6bffb3ef89e95fa4df28",
+    "validation_y.npy": "4b7a598c467e4549a5ed3fb092c72f24e3774e1c0ee21892c9dcfd9a4023631b",
+    "test_x.npy": "dc83068b788a14b310b842244c7a45dcf9427125fbbc1e57f6cdfb946353c8f9",
+    "test_y.npy": "1469efe104e6996af97a6fa6d56b5385fe03838ac9f147c6f826915d63732e0d"
+  },
+  "summary_sha256": "2b66bafcb97dbef19fdd6106ef6956be0a20767043d35f743e12e7489f3b2bbb",
+  "manifest_sha256": {
+    "validation.jsonl": "97f6201ba4250c8044c19dd01c4807bf310d95472bf9d2d4b252661e960cde3c",
+    "test.jsonl": "413990beea1c949cb0d99654a75c2d35f6a37cc9476d8b26e1be3a5cb2946b2e"
+  },
+  "raw_inputs_declared_by_cache": {
+    "train": {
+      "path": "data/raw/MDDECT_v1_train.npy",
+      "size_bytes": 432000128,
+      "sha256": "f50bc6cb3d08f9972679f3876a41025aec2a4e2672147e24a6b58db007c71ac7"
+    },
+    "test": {
+      "path": "data/raw/MDDECT_v1_test.npy",
+      "size_bytes": 48000128,
+      "sha256": "865f972445ce0b9ad562336e7b6258b48d6b1d70d8d7254ff4fca77fdb951b58"
+    }
+  },
+  "class_mapping_status": "unverified",
+  "integrity_scope": "Verified summary, validation/test manifests and cache x/y bytes and label ordering. Complete prepared-cache checksum table required. No train signal or raw input file read. Raw source hashes inherited from bound prepare metadata.",
+  "code_sha256": {
+    "src/ect/similarity.py": "54c560569597c0e4dacb00d78f3808d9569b7d00914b97cb6c2095c51801aabe",
+    "scripts/diagnose_similarity.py": "72ed62ab862039383c1da212ef2f64ed372a056e893f41421d152eaef34201b4",
+    "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "cpu_count": 20,
+    "device": "cpu",
+    "requested_threads": 1,
+    "threadpools": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "filepath": "/home/lucky/devdir/rgzndl/.venv/lib/python3.12/site-packages/numpy.libs/libscipy_openblas64_-f48b354e.so",
+        "version": "0.3.34.106.0",
+        "threading_layer": "pthreads",
+        "architecture": "Haswell"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "filepath": "/home/lucky/devdir/rgzndl/.venv/lib/python3.12/site-packages/scipy.libs/libscipy_openblas-5f890258.so",
+        "version": "0.3.31.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Haswell"
+      }
+    ]
+  },
+  "timing_seconds": {
+    "integrity_and_load": 0.045335782000620384,
+    "search": 2.269406193001487,
+    "total": 2.4456238790007774
+  },
+  "artifacts_sha256": {
+    "nearest.csv": "24f79bb92497ad40bdeaf7d49acfabd30853f70dcbee4e48f5504ad43a3d1971"
+  },
+  "figure_created": false,
+  "interpretation": "test-to-validation data similarity audit only. Shape proximity is a candidate, not a leakage determination. No split changes, class semantics, test classification metrics or source-independence claims."
+}

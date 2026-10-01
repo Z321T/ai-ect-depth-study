@@ -1,4 +1,4 @@
-"""Diagnose validation-to-train near-duplicate candidates in raw-unit cache."""
+"""Diagnose selected split near-duplicate candidates in raw-unit cache."""
 import argparse
 from contextlib import contextmanager, ExitStack
 import csv
@@ -22,12 +22,12 @@ from src.ect.similarity import center_iq, nearest_neighbors
 
 
 def _json(path, value):
-    path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(value, indent=2, allow_nan=False) + "\n", encoding="utf-8", newline="\n")
 
 
 @contextmanager
-def _cache(root, folder):
-    """PreparedDataset-compatible scoped reader; never open/hash test signals.
+def _cache(root, folder, query_split="validation", reference_split="train"):
+    """PreparedDataset-compatible reader; only open/hash selected split signals.
 
     Verify the frozen summary, selected manifests and selected cache x/y bytes.
     Raw source identities are inherited from prepare metadata, not re-read here.
@@ -50,7 +50,7 @@ def _cache(root, folder):
         raise ValueError("Raw-unit [250,2] prepared cache required")
     records, arrays = {}, {}
     with ExitStack() as stack:
-        for split in ("train", "validation"):
+        for split in (reference_split, query_split):
             manifest = summary_path.parent / f"{split}.jsonl"
             if file_sha256(manifest) != meta["manifest_sha256"][manifest.name]:
                 raise ValueError("Manifest checksum mismatch")
@@ -91,16 +91,17 @@ def _statistics(distances, indices, counts, labels, reference_labels):
     }
 
 
-def _write_csv(path, result, records, meta):
-    base = ["query_row", "query_manifest_sha256", "query_wave_sha256", "query_class_index", "query_representative", "query_origins", "query_ac_norm"]
-    suffixes = ["reference_row", "distance", "applicable", "candidate", "candidate_pair_count", "reference_manifest_sha256", "reference_wave_sha256", "reference_class_index", "same_class", "reference_representative", "reference_origins"]
+def _write_csv(path, result, records, meta, query_split="validation", reference_split="train"):
+    base = ["query_split", "reference_split", "query_row", "query_manifest_sha256", "query_wave_sha256", "query_class_index", "query_representative", "query_origins", "query_ac_norm"]
+    suffixes = ["reference_split", "reference_row", "distance", "applicable", "candidate", "candidate_pair_count", "reference_manifest_sha256", "reference_wave_sha256", "reference_class_index", "same_class", "reference_representative", "reference_origins"]
     fields = base + [f"{kind}_{name}" for kind in ("raw", "shape") for name in suffixes]
     compact = lambda obj: json.dumps(obj, separators=(",", ":"), ensure_ascii=False)
     with path.open("w", newline="", encoding="utf-8") as handle:
         writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
-        for i, query in enumerate(records["validation"]):
-            row = dict(query_row=i, query_manifest_sha256=meta["manifest_sha256"]["validation.jsonl"],
+        for i, query in enumerate(records[query_split]):
+            row = dict(query_split=query_split, reference_split=reference_split,
+                       query_row=i, query_manifest_sha256=meta["manifest_sha256"][f"{query_split}.jsonl"],
                        query_wave_sha256=query["wave_sha256"], query_class_index=query["class_index"],
                        query_representative=compact(query["representative"]), query_origins=compact(query["origins"]),
                        query_ac_norm=float(result.query_ac_norm[i]))
@@ -108,11 +109,11 @@ def _write_csv(path, result, records, meta):
                 index = int(getattr(result, f"{kind}_index")[i])
                 distance = getattr(result, f"{kind}_distance")[i]
                 count = int(getattr(result, f"{kind}_candidate_count")[i])
-                details = dict(reference_row=index, distance=float(distance) if index >= 0 else "",
+                details = dict(reference_split=reference_split, reference_row=index, distance=float(distance) if index >= 0 else "",
                                applicable=index >= 0, candidate=count > 0, candidate_pair_count=count,
-                               reference_manifest_sha256=meta["manifest_sha256"]["train.jsonl"])
+                               reference_manifest_sha256=meta["manifest_sha256"][f"{reference_split}.jsonl"])
                 if index >= 0:
-                    reference = records["train"][index]
+                    reference = records[reference_split][index]
                     details.update(reference_wave_sha256=reference["wave_sha256"],
                                    reference_class_index=reference["class_index"],
                                    same_class=query["class_index"] == reference["class_index"],
@@ -122,7 +123,7 @@ def _write_csv(path, result, records, meta):
             writer.writerow(row)
 
 
-def _plot(path, result, queries, references):
+def _plot(path, result, queries, references, query_split="validation", reference_split="train"):
     if not (np.any(result.raw_candidate_count) or np.any(result.shape_candidate_count)):
         return False
     # Keep matplotlib's incidental configuration files outside the project.
@@ -143,7 +144,7 @@ def _plot(path, result, queries, references):
                 axis.hist(positive, bins=bins, color="#386c82")
                 axis.set_xscale("log")
             axis.axvline(threshold, color="#b74731", linestyle="--", label=f"candidate <= {threshold:g}")
-            axis.set_title(f"{kind}: validation nearest distance (zeros: {np.count_nonzero(finite == 0)})")
+            axis.set_title(f"{kind}: {query_split} nearest {reference_split} distance (zeros: {np.count_nonzero(finite == 0)})")
             axis.set_ylabel("Queries")
             axis.legend(fontsize=8)
             candidate_rows = np.flatnonzero(getattr(result, f"{kind}_candidate_count") > 0)
@@ -160,13 +161,13 @@ def _plot(path, result, queries, references):
                 q /= result.query_ac_norm[qi]
                 r /= result.reference_ac_norm[ri]
             for channel, color in enumerate(("#386c82", "#b74731")):
-                axis.plot(q[:, channel], color=color, label=f"validation ch{channel}")
-                axis.plot(r[:, channel], color=color, linestyle="--", alpha=.7, label=f"train ch{channel}")
-            axis.set_title(f"{kind} candidate: val row {qi} / train row {ri}; d={distances[qi]:.6g}")
+                axis.plot(q[:, channel], color=color, label=f"{query_split} ch{channel}")
+                axis.plot(r[:, channel], color=color, linestyle="--", alpha=.7, label=f"{reference_split} ch{channel}")
+            axis.set_title(f"{kind} candidate: {query_split} row {qi} / {reference_split} row {ri}; d={distances[qi]:.6g}")
             axis.set_xlabel("Time index (no alignment)")
             axis.set_ylabel("Joint unit AC" if kind == "shape" else "AC, raw units (display only)")
             axis.legend(fontsize=8)
-        fig.suptitle("Train / validation candidates: similarity alone does not establish leakage")
+        fig.suptitle(f"{reference_split} / {query_split} candidates: similarity alone does not establish leakage")
         fig.savefig(path, dpi=160)
         plt.close(fig)
     return True
@@ -176,14 +177,24 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project-root", type=Path, default=PROJECT_ROOT)
     parser.add_argument("--cache", type=Path, default=Path("data/processed/grouped_v1"))
-    parser.add_argument("--output", type=Path, default=Path("results/similarity/train_validation_v1"))
+    parser.add_argument("--query-split", choices=("validation", "test"), default="validation",
+                        help="Query split (default: validation)")
+    parser.add_argument("--reference-split", choices=("train", "validation"), default="train",
+                        help="Reference split (default: train); validation requires test queries")
+    parser.add_argument("--output", type=Path,
+                        help="Output directory (default: results/similarity/{reference}_{query}_v1)")
     parser.add_argument("--query-block", type=int, default=256)
     parser.add_argument("--reference-block", type=int, default=2048)
     parser.add_argument("--threads", type=int, default=1)
     args = parser.parse_args()
+    if (args.query_split, args.reference_split) not in (("validation", "train"), ("test", "train"), ("test", "validation")):
+        parser.error("Allowed query/reference split pairs: validation/train, test/train, test/validation")
+    selected_splits = (args.reference_split, args.query_split)
+    unread_split = next(split for split in ("train", "validation", "test") if split not in selected_splits)
     root = args.project_root.resolve()
     folder = (root / args.cache).resolve()
-    output = (root / args.output).resolve()
+    output_path = args.output if args.output is not None else Path(f"results/similarity/{args.reference_split}_{args.query_split}_v1")
+    output = (root / output_path).resolve()
     if not output.is_relative_to(root / "results/similarity"):
         parser.error("Output must be within project results/similarity/")
     if min(args.query_block, args.reference_block, args.threads) < 1:
@@ -192,20 +203,20 @@ def main():
     output.mkdir(exist_ok=False)
     started = time.perf_counter()
     try:
-        with _cache(root, folder) as (meta, records, arrays), threadpool_limits(limits=args.threads):
+        with _cache(root, folder, args.query_split, args.reference_split) as (meta, records, arrays), threadpool_limits(limits=args.threads):
             verified = time.perf_counter() - started
-            queries, qlabels = arrays["validation"]
-            references, rlabels = arrays["train"]
+            queries, qlabels = arrays[args.query_split]
+            references, rlabels = arrays[args.reference_split]
             def progress(done, total, seconds):
                 print(f"Nearest neighbors {done}/{total}; search {seconds:.2f}s", file=sys.stderr, flush=True)
             result = nearest_neighbors(queries, references, query_block=args.query_block,
                                        reference_block=args.reference_block, progress=progress)
-            _write_csv(output / "nearest.csv", result, records, meta)
-            plotted = _plot(output / "candidates.png", result, queries, references)
+            _write_csv(output / "nearest.csv", result, records, meta, args.query_split, args.reference_split)
+            plotted = _plot(output / "candidates.png", result, queries, references, args.query_split, args.reference_split)
             report = {
                 "schema_version": 1, "created_utc": datetime.now(timezone.utc).isoformat(),
-                "query_split": "validation", "reference_split": "train",
-                "signal_splits_read": ["train", "validation"],
+                "query_split": args.query_split, "reference_split": args.reference_split,
+                "signal_splits_read": list(selected_splits),
                 "query_count": len(queries), "reference_count": len(references),
                 "exhaustive_pair_count": len(queries) * len(references),
                 "thresholds": {"raw": .001, "shape": .01},
@@ -220,11 +231,11 @@ def main():
                 "shape": _statistics(result.shape_distance, result.shape_index, result.shape_candidate_count, qlabels, rlabels),
                 "zero_ac_reference_count": int(np.count_nonzero(result.reference_ac_norm == 0)),
                 "cache": str(folder), "cache_metadata_sha256": file_sha256(folder / "metadata.json"),
-                "cache_files_sha256": {name: meta["files_sha256"][name] for name in ("train_x.npy", "train_y.npy", "validation_x.npy", "validation_y.npy")},
+                "cache_files_sha256": {f"{split}_{kind}.npy": meta["files_sha256"][f"{split}_{kind}.npy"] for split in selected_splits for kind in ("x", "y")},
                 "summary_sha256": meta["summary_sha256"],
-                "manifest_sha256": {name: meta["manifest_sha256"][name] for name in ("train.jsonl", "validation.jsonl")},
+                "manifest_sha256": {f"{split}.jsonl": meta["manifest_sha256"][f"{split}.jsonl"] for split in selected_splits},
                 "raw_inputs_declared_by_cache": meta["inputs"], "class_mapping_status": meta["class_mapping_status"],
-                "integrity_scope": "Verified summary, train/validation manifests and cache x/y bytes and label ordering. No test signal or raw input file read. Raw source hashes inherited from bound prepare metadata.",
+                "integrity_scope": f"Verified summary, {args.reference_split}/{args.query_split} manifests and cache x/y bytes and label ordering. Complete prepared-cache checksum table required. No {unread_split} signal or raw input file read. Raw source hashes inherited from bound prepare metadata.",
                 "code_sha256": {name: file_sha256(PROJECT_ROOT / name) for name in ("src/ect/similarity.py", "scripts/diagnose_similarity.py", "src/ect/integrity.py")},
                 "environment": {"python": platform.python_version(), "numpy": np.__version__, "scipy": scipy.__version__,
                                 "platform": platform.platform(), "cpu_count": os.cpu_count(), "device": "cpu",
@@ -233,7 +244,7 @@ def main():
                                    "total": time.perf_counter() - started},
                 "artifacts_sha256": {path.name: file_sha256(path) for path in (output / "nearest.csv", output / "candidates.png") if path.exists()},
                 "figure_created": plotted,
-                "interpretation": "Shape proximity is a candidate, not a leakage determination. No split changes, class semantics, test classification metrics or source-independence claims.",
+                "interpretation": f"{args.query_split}-to-{args.reference_split} data similarity audit only. Shape proximity is a candidate, not a leakage determination. No split changes, class semantics, test classification metrics or source-independence claims.",
             }
             _json(output / "summary.json", report)
         print(json.dumps({"output": str(output), "raw": report["raw"], "shape": report["shape"], "timing_seconds": report["timing_seconds"]}, indent=2))

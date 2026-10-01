@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "protocol": "formal_v1",
+  "template_config": "config/deep_v1.json",
+  "data_protocol": "grouped_v1",
+  "training_seeds": [0, 1, 2],
+  "families": [
+    {"id": "cnn_clean", "model": "cnn", "augmentation": false},
+    {"id": "resnet_clean", "model": "resnet", "augmentation": false},
+    {"id": "resnet_aug", "model": "resnet", "augmentation": true}
+  ],
+  "validation_noise_seeds": [10, 11, 12, 13, 14],
+  "test_noise_seeds": [100, 101, 102, 103, 104],
+  "noise_snr_db": [30, 20, 10],
+  "baseline_report": "results/baselines/svm_full_v1/report.json",
+  "audit_reports": [
+    "results/similarity/train_test_v1/summary.json",
+    "results/similarity/validation_test_v1/summary.json"
+  ]
+}
