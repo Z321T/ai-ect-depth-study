@@ -12,6 +12,10 @@
 .venv/bin/python -m unittest discover -s tests -v
 .venv/bin/python scripts/audit_data.py
 .venv/bin/python scripts/build_splits.py
+.venv/bin/python scripts/prepare_data.py
+.venv/bin/python scripts/diagnose_data.py
 ```
+
+预处理依赖requirements-data.txt；完整缓存及协议见docs/data_pipeline.md。prepare默认拒绝覆盖已有缓存；复跑用新--output目录及--report路径。ManifestDataset/PreparedDataset使用with或close释放映射，便于Windows交接。
 
 当前托管环境保护根目录 `.git`。本地Git元数据存于 `.project-git`，本地操作使用 `git --git-dir=.project-git --work-tree=.`。从GitHub正常clone的工作目录使用普通git，无需此参数。不要提交虚拟环境、原始大数据、凭据或Git管理目录。

@@ -2,7 +2,7 @@
 
 公开仓库：[Z321T/ai-ect-depth-study](https://github.com/Z321T/ai-ect-depth-study)。
 
-本项目从 MDDECT I/Q 时序信号预测 20 个类别，研究模型比较和噪声增强。数据审计和候选独立划分已完成，下一步是预处理与分类基线；尚无正式模型性能结果。
+本项目从 MDDECT I/Q 时序信号预测 20 个类别，研究模型比较和噪声增强。数据审计、分组划分及预处理链路已实现，下一步是分类基线；尚无正式模型性能结果。
 
 ## 文档入口
 
@@ -13,6 +13,8 @@
 - [决策记录](docs/decisions.md)
 - [数据阶段实施计划](docs/plans/2026-10-01-data-integrity.md)
 - [数据审计报告](docs/data_audit_report.md)
+- [数据加载与预处理](docs/data_pipeline.md)
+- [类别映射核查](docs/class_mapping_evidence.md)
 
 原始论文、译文和GPT旧计划在本地 `reference/` 保留，不上传代码仓库。数据从 [MDDECT官方发布页](https://www.kaggle.com/datasets/mchikyt3/mddect) 下载，将两个NPY放在 `data/raw/`，文件身份见审计报告。论文参考：[arXiv:2104.02472](https://arxiv.org/abs/2104.02472)。数据官方许可为CC BY 4.0，使用时引用数据发布者和论文。人员分工由用户另行处理。
 
@@ -32,6 +34,16 @@ uv pip install --python .venv/bin/python -r requirements-audit.txt
 ```
 
 模型阶段的依赖和命令在实现后补充，不把尚不存在的训练脚本列为可运行功能。
+
+## 全量预处理
+
+```bash
+uv pip install --python .venv/bin/python -r requirements-data.txt
+.venv/bin/python scripts/prepare_data.py
+.venv/bin/python scripts/diagnose_data.py
+```
+
+缓存位于data/processed/grouped_v1/，不上传Git；所有模型共用该缓存及训练标准化参数。默认拒绝覆盖已有缓存，复跑使用新的--output目录。训练信号和滤波图见results/preprocessing/。
 
 ## 审计与划分
 

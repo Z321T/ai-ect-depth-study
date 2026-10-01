@@ -11,3 +11,5 @@ AI_ECT_Course_Project_Plan.md
 .aws/
 .codex/
 results/provenance/paper_images/
+data/processed/
+.matplotlib/

@@ -31,3 +31,13 @@
 用户明确授权以当前gh登录Z321T创建公开仓库，并整理reference目录。仓库为 https://github.com/Z321T/ai-ect-depth-study 。受保护.git保持原样，本地在.project-git持久化Git元数据，普通clone不需要这种调整。
 
 原始论文、译文和旧计划移至reference/；两份仍用于实验的NPY移至data/raw/。只移动路径，不改变内容；脚本与审计输入路径同步更新。公开仓库包含代码、设计、审计证据和划分索引，排除原始NPY/PDF/译文/旧计划、环境和凭据。
+
+## D008（2026-10-01）固定预处理和共享缓存
+
+采用101系数Kaiser FIR（beta=5，250Hz半幅点），resample_poly(1,5)及line边界延拓；内部float64，缓存250×2 float32原单位波形。保留直流/幅值，标准化参数只由干净训练缓存拟合（逐通道总体标准差ddof=0），所有模型共享。输入/清单/缓存/代码SHA与依赖版本记录在metadata；已有缓存拒绝覆盖。训练信号、AC展示和滤波图仅使用训练数据，不据图形推断类别语义。
+
+全量训练总功率/AC功率中位比约81.12dB；噪声参考采用研究设计中的AC功率，避免按直流主导的总功率控制SNR。每样本去均值只用于计算功率和诊断展示，不改变模型输入。
+
+## D009（2026-10-01）类别语义证据边界
+
+核查论文、arXiv源文件、Kaggle发布说明及作者公开代码，尚无class_index到深度/特殊类别的直接映射。图5/图8显示顺序不同，不能作为NPY顺序证据。保留config/class_mapping.json未验证状态；可继续20类索引分类、Accuracy/Macro-F1，但不计算深度误差/容差或具名Normal/Lift-off指标。核查范围与未访问成功的资源详见docs/class_mapping_evidence.md。

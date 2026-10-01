@@ -6,4 +6,4 @@
 
 原文件的train/test名称代表发布来源，不是本项目正式划分。实际集合使用根目录 `manifests/grouped_v1/`；审计和原始来源索引位于 `results/data_audit/`。每条波形由source和五轴索引读取，原始1250×2数据不可直接覆盖为250点。
 
-预处理衍生数据的目录在实现阶段明确，目前没有预处理缓存。
+预处理衍生数据位于 `processed/grouped_v1/`，由scripts/prepare_data.py生成，不上传Git。含三集合250×2 float32原单位波形、int64类别、仅训练集标准化参数及处理元数据。运行和复跑方式见[数据协议](../docs/data_pipeline.md)。

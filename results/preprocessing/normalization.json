@@ -1,0 +1,15 @@
+{
+  "count_per_channel": 6000000,
+  "mean": [
+    1.0615897864667576,
+    1.0580107471322517
+  ],
+  "std": [
+    0.020049083862616855,
+    0.04463188974041968
+  ],
+  "ddof": 0,
+  "fitted_split": "train",
+  "train_cache_sha256": "6f19db1832dc47ed276cc938cffd5dcdfdadfdc30e739ca8248621f07e436edb",
+  "train_manifest_sha256": "9890d665bc5da045a14766efc34c08e079e752551a11c19535ed6b5ef8d07b36"
+}
