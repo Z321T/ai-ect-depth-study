@@ -29,7 +29,7 @@ SVM特征从原单位缓存提取，不先做训练通道z分数：每通道10�
 - [x] T2：src/ect/features.py、tests/test_features.py；验证统计/几何已知值、常量有限、offset/scale行为、输入不变/批次一致。先失败后实现25维接口。
 - [x] T3：src/ect/baseline.py、scripts/train_svm.py、tests/test_baseline.py、config/svm_v1.json、requirements-models.txt；测试训练拟合Scaler、索引抽样可复现、只访问训练/验证、重载一致、既有目录拒绝、失败记录。先失败后实现训练→选择→保存完整链路。
 - [x] T4：执行pilot、评估预算并执行可行的全量搜索；检查重载、运行身份及无测试指标。独立代码审查，修复实质问题并重跑受影响产物。
-- [ ] T5：更新三个根记录、设计/决策、README和诊断/基线报告；验收后合入main并推送授权仓库。
+- [x] T5：更新三个根记录、设计/决策、README和诊断/基线报告；验收后合入main并推送授权仓库。
 
 下一单元：按诊断结果明确正式协议边界；CPU/GPU可切换CNN/ResNet和噪声函数，多种子正式测试另行冻结。
 
