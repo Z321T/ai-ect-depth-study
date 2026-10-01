@@ -1,0 +1,2 @@
+-r requirements-models.txt
+torch==2.9.1

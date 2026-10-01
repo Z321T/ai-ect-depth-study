@@ -14,3 +14,4 @@ results/provenance/paper_images/
 data/processed/
 .matplotlib/
 *.joblib
+*.pt

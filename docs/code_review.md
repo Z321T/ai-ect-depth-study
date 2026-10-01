@@ -44,3 +44,13 @@
 初次真实运行还发现scikit-learn1.9.1显式probability=False的弃用警告；核对官方说明/安装签名后省略参数，保持不进行概率校准。回归检查无fit警告且predict_proba不可用。受影响真实运行保留本地忽略目录，最终运行按修复代码重跑，不追改旧记录。
 
 JSON追加修复独立复查通过，11项SVM相关测试通过。最终全项目59项测试通过；pilot/full九项均收敛且无警告，当前代码/缓存SHA绑定及/tmp下重载预测逐条复核成功，绘图追溯匹配。最终full 73.00秒，验证Accuracy0.6090625、Macro-F1 0.608642842；不含任何最终测试分类指标。
+
+## P3深度模型与噪声审查
+
+范围：deep.py、noise.py、models.py、devices.py、CLI、新测试及D011。独立审查确认真实同目录竞争、部分发布失败清理、较早best参数与BN buffers的CPU clone、AC/DC/零功率与身份随机流隔离。提出三项检查：
+
+1. PreparedDataset初始化哈希并映射test文件。复核设计后撤回阻塞判定：三集合身份校验是既定范围，test分类/统计评价/选参继续封存；禁止任何test文件I/O是更严格的可选建议，不是本轮协议。
+2. 跨设备强制argmax一致会因正常数值漂移清理有效checkpoint。独立CPU后端反例logits最大差1.49e-8仍可翻转边界类别（非CUDA实测）。修复为同训练设备严格核对重载预测，CPU迁移单列logits误差、容差判断、argmax差异与CPU指标。
+3. loader未核对report selected_epoch/config_sha256。仅改报告epoch为999及摘要为0即可被接受。新增回归复现，再补schema/配置摘要/连续epoch、冻结规则重选及指标、checkpoint模型/类别/epoch一致性校验。
+
+主线另修CLI --help百分号被argparse格式化导致失败，回归先失败后转义；常量验证样本的SNR N/A在报告/CSV明确标记。第二轮限定复查8项deep测试通过，未发现新阻塞。全项目107项中105通过、2真实CUDA检查因不可用跳过；不将代码分支/CPU后端反例当GPU验收。审查前运行完整归档，最终运行按修复源码重新生成。

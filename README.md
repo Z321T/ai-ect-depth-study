@@ -2,7 +2,7 @@
 
 公开仓库：[Z321T/ai-ect-depth-study](https://github.com/Z321T/ai-ect-depth-study)。
 
-本项目从 MDDECT I/Q 时序信号预测 20 个类别，研究模型比较和噪声增强。数据审计、分组划分、预处理、train/validation近重复诊断与SVM开发验证链路已实现；最终测试分类指标尚未计算。
+本项目从MDDECT I/Q时序信号预测20个类别，研究模型比较和噪声增强。数据审计、分组划分、预处理、近重复诊断与SVM开发验证已实现；CNN/ResNet、设备切换和统一噪声已通过CPU最小训练验收。最终测试分类指标尚未计算。
 
 ## 文档入口
 
@@ -17,6 +17,8 @@
 - [类别映射核查](docs/class_mapping_evidence.md)
 - [SVM开发验证](docs/svm_baseline.md)
 - [SVM实测结果与图](docs/svm_results.md)
+- [CNN/ResNet、设备与噪声使用说明](docs/deep_models.md)
+- [深度模型实现验收与边界](docs/deep_acceptance.md)
 - [近重复诊断结果](results/similarity/train_validation_v1/report.md)
 
 原始论文、译文和GPT旧计划在本地 `reference/` 保留，不上传代码仓库。数据从 [MDDECT官方发布页](https://www.kaggle.com/datasets/mchikyt3/mddect) 下载，将两个NPY放在 `data/raw/`，文件身份见审计报告。论文参考：[arXiv:2104.02472](https://arxiv.org/abs/2104.02472)。数据官方许可为CC BY 4.0，使用时引用数据发布者和论文。人员分工由用户另行处理。
@@ -36,7 +38,7 @@ uv venv .venv
 uv pip install --python .venv/bin/python -r requirements-audit.txt
 ```
 
-SVM依赖见requirements-models.txt；CNN/ResNet及设备切换尚未实现。
+SVM依赖见requirements-models.txt；深度模型依赖requirements-deep.txt，CPU/CUDA构建安装方式见docs/deep_models.md。
 
 ## 全量预处理
 
@@ -70,7 +72,17 @@ uv pip install --python .venv/bin/python -r requirements-models.txt
 
 命令从项目根目录执行，输出会覆盖同路径的审计/清单；如需比较协议，使用 `--output` 指定新目录。先冻结输入和划分，再训练。NPY中的class轴直接提供类别索引，无需额外标签文件；正式深度语义尚未核实。
 
-截止2026-10-25；目标训练资源RTX5070Ti 16GB。训练阶段将支持auto/cpu/cuda；当前数据工具仅需CPU。
+## 深度模型最小验收
+
+```bash
+.venv/bin/python scripts/train_deep.py --model cnn --device cpu --smoke --output results/deep/cnn_smoke_v1
+.venv/bin/python scripts/train_deep.py --model resnet --device cpu --smoke --output results/deep/resnet_smoke_v1
+.venv/bin/python scripts/train_deep.py --model resnet --augment --device cpu --smoke --output results/deep/resnet_aug_smoke_v1
+```
+
+每组只用train/validation各每类10条、两epoch，验证Clean/30/20/10dB与CPU权重重载；不同全量SVM比较性能。权重.pt本地保留，公开代码/配置/验收记录。复跑选择新output目录。
+
+截止2026-10-25；用户资源RTX5070Ti 16GB。训练支持auto/cpu/cuda；当前环境CPU通过验收，CUDA真实路径待有可用环境时验收。
 
 ## 代码管理
 

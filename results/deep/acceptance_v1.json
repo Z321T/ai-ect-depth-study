@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-01T09:35:54.908859+00:00",
+  "scope": "manual independent CPU checkpoint/CSV/noise verification; validation only",
+  "heldout_test_classification_evaluated": false,
+  "runs": {
+    "cnn_smoke_v1": {
+      "report_sha256": "63d085636363bc08d0109097adb6a0b9d24e2f2803d69775f7faf58c0ac2123c",
+      "parameter_count": 54548,
+      "verified_predictions": 800,
+      "metric_confusion_recomputed": true,
+      "checkpoint_on_cpu": true,
+      "noise_checks": {
+        "30": {
+          "max_snr_error_db": 1.6704859717719955e-11,
+          "max_channel_dc_error": 1.0658141036401503e-17,
+          "batch_partition_identical": true
+        },
+        "20": {
+          "max_snr_error_db": 2.9309887850104133e-12,
+          "max_channel_dc_error": 1.1546319456101627e-17,
+          "batch_partition_identical": true
+        },
+        "10": {
+          "max_snr_error_db": 1.071143174158351e-12,
+          "max_channel_dc_error": 1.5987211554602253e-17,
+          "batch_partition_identical": true
+        }
+      }
+    },
+    "resnet_smoke_v1": {
+      "report_sha256": "d1babe70253734b7d8290931bc1a3e5c7755560f4f9981f159575c197da8d899",
+      "parameter_count": 242836,
+      "verified_predictions": 800,
+      "metric_confusion_recomputed": true,
+      "checkpoint_on_cpu": true,
+      "noise_checks": {
+        "30": {
+          "max_snr_error_db": 1.6704859717719955e-11,
+          "max_channel_dc_error": 1.0658141036401503e-17,
+          "batch_partition_identical": true
+        },
+        "20": {
+          "max_snr_error_db": 2.9309887850104133e-12,
+          "max_channel_dc_error": 1.1546319456101627e-17,
+          "batch_partition_identical": true
+        },
+        "10": {
+          "max_snr_error_db": 1.071143174158351e-12,
+          "max_channel_dc_error": 1.5987211554602253e-17,
+          "batch_partition_identical": true
+        }
+      }
+    },
+    "resnet_aug_smoke_v1": {
+      "report_sha256": "b29c47ed97e06ce28f8edc082aed386bfda59d4b994adedf94bd5e1e9f23900f",
+      "parameter_count": 242836,
+      "verified_predictions": 800,
+      "metric_confusion_recomputed": true,
+      "checkpoint_on_cpu": true,
+      "noise_checks": {
+        "30": {
+          "max_snr_error_db": 1.6704859717719955e-11,
+          "max_channel_dc_error": 1.0658141036401503e-17,
+          "batch_partition_identical": true
+        },
+        "20": {
+          "max_snr_error_db": 2.9309887850104133e-12,
+          "max_channel_dc_error": 1.1546319456101627e-17,
+          "batch_partition_identical": true
+        },
+        "10": {
+          "max_snr_error_db": 1.071143174158351e-12,
+          "max_channel_dc_error": 1.5987211554602253e-17,
+          "batch_partition_identical": true
+        }
+      }
+    }
+  },
+  "same_sample_rows_across_models": true
+}

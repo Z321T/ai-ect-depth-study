@@ -1,6 +1,6 @@
 # 结果与数据来源
 
-本目录的数据审计、划分相关记录、近重复距离、SVM验证预测和统计图均由公开的[MDDECT v1](https://www.kaggle.com/datasets/mchikyt3/mddect)计算。发布者mchikyt3，许可为[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)，参考论文[arXiv:2104.02472](https://arxiv.org/abs/2104.02472)。许可字段原始证据见provenance/kaggle_view.json。
+本目录的数据审计、划分相关记录、近重复距离、SVM及CNN/ResNet验证预测、噪声验收和统计图均由公开的[MDDECT v1](https://www.kaggle.com/datasets/mchikyt3/mddect)计算。发布者mchikyt3，许可为[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)，参考论文[arXiv:2104.02472](https://arxiv.org/abs/2104.02472)。许可字段原始证据见provenance/kaggle_view.json。
 
 用户提供的两份NPY与官方公开v1逐文件SHA256相同，比较证据见provenance/official_file_comparison.json。本项目变更包括完整重复诊断、整组去重划分、固定FIR下采样、近重复距离及训练/验证分类分析；不代表原作者训练过程或为其结果背书。
 
