@@ -44,3 +44,4 @@
 - 诊断输出训练原单位/AC显示/复平面及滤波频响图。训练总功率/AC功率中位比81.12dB；AC去均值仅用于计算与显示，模型输入保持直流。已同步README、数据协议、决策和任务计划。
 - P2验收完成；下一单元是近重复诊断与SVM分类基线，随后实现CPU/GPU可切换的CNN/ResNet最小训练。正式测试性能尚未读取，类别语义指标仍未开放。
 - 当前处理代码校验与缓存metadata一致；prepare_run为同一metadata，verification绑定metadata及诊断脚本；从/tmp运行读取器也成功。远端main与本地基线一致，准备合入并发布预处理提交。
+- 发布检查点：预处理提交c763b5dc9d84a21864e089b373abbc97939dd66b已fast-forward合入main并推送；GitHub API返回的远端main SHA与本地一致。合入后32项测试再次通过，Git空白检查通过；发布时工作区干净。原始资料及所有NPY/缓存未入仓库。
