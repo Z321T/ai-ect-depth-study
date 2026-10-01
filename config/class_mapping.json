@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "verified": false,
+  "class_count": 20,
+  "mapping": null,
+  "reason": "Official public metadata does not specify NPY class-axis order. Do not infer depths or special classes from waveform appearance."
+}

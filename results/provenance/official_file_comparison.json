@@ -1,0 +1,20 @@
+{
+  "url": "https://www.kaggle.com/api/v1/datasets/download/mchikyt3/mddect?datasetVersionNumber=1",
+  "archive_bytes": 79457869,
+  "files": [
+    {
+      "name": "MDDECT_v1_test.npy",
+      "size_bytes": 48000128,
+      "official_sha256": "865f972445ce0b9ad562336e7b6258b48d6b1d70d8d7254ff4fca77fdb951b58",
+      "local_sha256": "865f972445ce0b9ad562336e7b6258b48d6b1d70d8d7254ff4fca77fdb951b58",
+      "match": true
+    },
+    {
+      "name": "MDDECT_v1_train.npy",
+      "size_bytes": 432000128,
+      "official_sha256": "f50bc6cb3d08f9972679f3876a41025aec2a4e2672147e24a6b58db007c71ac7",
+      "local_sha256": "f50bc6cb3d08f9972679f3876a41025aec2a4e2672147e24a6b58db007c71ac7",
+      "match": true
+    }
+  ]
+}

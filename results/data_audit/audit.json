@@ -1,0 +1,438 @@
+{
+  "schema_version": 2,
+  "hash_definition": "SHA256(shape:dtype: + full C-order scan bytes)",
+  "datasets": {
+    "train": {
+      "shape": [
+        27,
+        8,
+        2,
+        5,
+        20,
+        1250,
+        2
+      ],
+      "dtype": "float32",
+      "sample_count": 43200,
+      "samples_per_class": 2160,
+      "unique_waveforms": 30264,
+      "duplicate_excess": 12936,
+      "nonfinite_values": 0,
+      "zero_samples": 0,
+      "constant_samples": 0,
+      "channel_mean_finite": [
+        1.0615896612725235,
+        1.058009810642654
+      ],
+      "channel_std_finite": [
+        0.020049222704786335,
+        0.0446333253877991
+      ],
+      "channel_min_finite": [
+        1.0291025638580322,
+        0.991509199142456
+      ],
+      "channel_max_finite": [
+        1.0766452550888062,
+        1.091817021369934
+      ]
+    },
+    "test": {
+      "shape": [
+        3,
+        8,
+        2,
+        5,
+        20,
+        1250,
+        2
+      ],
+      "dtype": "float32",
+      "sample_count": 4800,
+      "samples_per_class": 240,
+      "unique_waveforms": 4664,
+      "duplicate_excess": 136,
+      "nonfinite_values": 0,
+      "zero_samples": 0,
+      "constant_samples": 0,
+      "channel_mean_finite": [
+        1.0615866776717702,
+        1.0579951570637325
+      ],
+      "channel_std_finite": [
+        0.020052745145428017,
+        0.04465050191255415
+      ],
+      "channel_min_finite": [
+        1.0292714834213257,
+        0.991715669631958
+      ],
+      "channel_max_finite": [
+        1.0766452550888062,
+        1.0918066501617432
+      ]
+    }
+  },
+  "total_unique_waveforms": 32000,
+  "cross_class_duplicate_groups": 0,
+  "cross_person_duplicate_groups": 14393,
+  "overlap": {
+    "unique_waveforms": 2928,
+    "train_samples": 2928,
+    "test_samples": 2928
+  },
+  "person_components": [
+    [
+      "test:0"
+    ],
+    [
+      "test:1",
+      "train:10",
+      "train:11",
+      "train:12",
+      "train:13",
+      "train:14",
+      "train:15",
+      "train:16",
+      "train:17",
+      "train:9"
+    ],
+    [
+      "test:2",
+      "train:18",
+      "train:19",
+      "train:20",
+      "train:21",
+      "train:22",
+      "train:23",
+      "train:24",
+      "train:25",
+      "train:26"
+    ],
+    [
+      "train:0"
+    ],
+    [
+      "train:1"
+    ],
+    [
+      "train:2"
+    ],
+    [
+      "train:3"
+    ],
+    [
+      "train:4"
+    ],
+    [
+      "train:5"
+    ],
+    [
+      "train:6"
+    ],
+    [
+      "train:7"
+    ],
+    [
+      "train:8"
+    ]
+  ],
+  "duplicate_examples": [
+    {
+      "wave_sha256": "3c723024751f98b061f9ed80004309741bd818d8e7f4536dce4bb4397501a039",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 0,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "3c723024751f98b061f9ed80004309741bd818d8e7f4536dce4bb4397501a039",
+          "multiplicity": 2
+        },
+        {
+          "person": 11,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 4,
+          "class_index": 0,
+          "source": "train",
+          "person_id": "train:11",
+          "wave_sha256": "3c723024751f98b061f9ed80004309741bd818d8e7f4536dce4bb4397501a039",
+          "multiplicity": 2
+        }
+      ]
+    },
+    {
+      "wave_sha256": "c5b634425258b0ee8288801c8e3ba62ae2de61382698debb77ef1c7d0fd79c22",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 1,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "c5b634425258b0ee8288801c8e3ba62ae2de61382698debb77ef1c7d0fd79c22",
+          "multiplicity": 2
+        },
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 2,
+          "class_index": 1,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "c5b634425258b0ee8288801c8e3ba62ae2de61382698debb77ef1c7d0fd79c22",
+          "multiplicity": 2
+        }
+      ]
+    },
+    {
+      "wave_sha256": "50cbb20b49704f342fd6d201ba3bba0a6bed4cd4f2432470fd0e46039c849f01",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 2,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "50cbb20b49704f342fd6d201ba3bba0a6bed4cd4f2432470fd0e46039c849f01",
+          "multiplicity": 2
+        },
+        {
+          "person": 16,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 1,
+          "class_index": 2,
+          "source": "train",
+          "person_id": "train:16",
+          "wave_sha256": "50cbb20b49704f342fd6d201ba3bba0a6bed4cd4f2432470fd0e46039c849f01",
+          "multiplicity": 2
+        }
+      ]
+    },
+    {
+      "wave_sha256": "bce8858e6deabc7dac574d3a0b2ced97bb8692270892bcf2b7c584c9f97a9150",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 3,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "bce8858e6deabc7dac574d3a0b2ced97bb8692270892bcf2b7c584c9f97a9150",
+          "multiplicity": 2
+        },
+        {
+          "person": 14,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 3,
+          "class_index": 3,
+          "source": "train",
+          "person_id": "train:14",
+          "wave_sha256": "bce8858e6deabc7dac574d3a0b2ced97bb8692270892bcf2b7c584c9f97a9150",
+          "multiplicity": 2
+        }
+      ]
+    },
+    {
+      "wave_sha256": "a3de43b5b88fd6d5bb9e04162980f0d16c6038206316fa7f7c0f459601d6e37e",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 4,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "a3de43b5b88fd6d5bb9e04162980f0d16c6038206316fa7f7c0f459601d6e37e",
+          "multiplicity": 2
+        },
+        {
+          "person": 11,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 4,
+          "class_index": 4,
+          "source": "train",
+          "person_id": "train:11",
+          "wave_sha256": "a3de43b5b88fd6d5bb9e04162980f0d16c6038206316fa7f7c0f459601d6e37e",
+          "multiplicity": 2
+        }
+      ]
+    },
+    {
+      "wave_sha256": "473148d0f114a31e68442bb20985b81876d3a6dc591aee9017e4c792bb4b664f",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 5,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "473148d0f114a31e68442bb20985b81876d3a6dc591aee9017e4c792bb4b664f",
+          "multiplicity": 2
+        },
+        {
+          "person": 14,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 0,
+          "class_index": 5,
+          "source": "train",
+          "person_id": "train:14",
+          "wave_sha256": "473148d0f114a31e68442bb20985b81876d3a6dc591aee9017e4c792bb4b664f",
+          "multiplicity": 2
+        }
+      ]
+    },
+    {
+      "wave_sha256": "7b28e5403fd328c112fc123f82e026d340826e5b2f2b0c51323ca6baa5a53f40",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 6,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "7b28e5403fd328c112fc123f82e026d340826e5b2f2b0c51323ca6baa5a53f40",
+          "multiplicity": 2
+        },
+        {
+          "person": 11,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 1,
+          "class_index": 6,
+          "source": "train",
+          "person_id": "train:11",
+          "wave_sha256": "7b28e5403fd328c112fc123f82e026d340826e5b2f2b0c51323ca6baa5a53f40",
+          "multiplicity": 2
+        }
+      ]
+    },
+    {
+      "wave_sha256": "4b995a8954e2decafb920a179661f12691756b31257477ef10ba8eaceaea6927",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 7,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "4b995a8954e2decafb920a179661f12691756b31257477ef10ba8eaceaea6927",
+          "multiplicity": 2
+        },
+        {
+          "person": 1,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 0,
+          "class_index": 7,
+          "source": "test",
+          "person_id": "test:1",
+          "wave_sha256": "4b995a8954e2decafb920a179661f12691756b31257477ef10ba8eaceaea6927",
+          "multiplicity": 2
+        }
+      ]
+    },
+    {
+      "wave_sha256": "8c57d963ce816b749c0135652879e27fe31faa84c3377c758cafedbf2f8e5143",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 8,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "8c57d963ce816b749c0135652879e27fe31faa84c3377c758cafedbf2f8e5143",
+          "multiplicity": 2
+        },
+        {
+          "person": 1,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 0,
+          "class_index": 8,
+          "source": "test",
+          "person_id": "test:1",
+          "wave_sha256": "8c57d963ce816b749c0135652879e27fe31faa84c3377c758cafedbf2f8e5143",
+          "multiplicity": 2
+        }
+      ]
+    },
+    {
+      "wave_sha256": "d37f44218e021211765815aacc5e775849124ae4d12da5a80a0c945ed0b85414",
+      "occurrences": [
+        {
+          "person": 9,
+          "angle": 0,
+          "direction": 0,
+          "repeat": 0,
+          "class_index": 9,
+          "source": "train",
+          "person_id": "train:9",
+          "wave_sha256": "d37f44218e021211765815aacc5e775849124ae4d12da5a80a0c945ed0b85414",
+          "multiplicity": 2
+        },
+        {
+          "person": 17,
+          "angle": 0,
+          "direction": 1,
+          "repeat": 4,
+          "class_index": 9,
+          "source": "train",
+          "person_id": "train:17",
+          "wave_sha256": "d37f44218e021211765815aacc5e775849124ae4d12da5a80a0c945ed0b85414",
+          "multiplicity": 2
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact byte identity only; near duplicates and collection provenance not established.",
+    "Class indices have no verified semantic mapping in this audit."
+  ],
+  "created_utc": "2026-10-01T07:41:00.508429+00:00",
+  "environment": {
+    "python": "3.12.10",
+    "numpy": "2.5.3"
+  },
+  "inputs": {
+    "train": {
+      "path": "data/raw/MDDECT_v1_train.npy",
+      "size_bytes": 432000128,
+      "sha256": "f50bc6cb3d08f9972679f3876a41025aec2a4e2672147e24a6b58db007c71ac7"
+    },
+    "test": {
+      "path": "data/raw/MDDECT_v1_test.npy",
+      "size_bytes": 48000128,
+      "sha256": "865f972445ce0b9ad562336e7b6258b48d6b1d70d8d7254ff4fca77fdb951b58"
+    }
+  },
+  "code_sha256": {
+    "scripts/audit_data.py": "f5533032e32f59fde7cd1a84fa4bbc22884c7f36cfd64f2d79dc3334b578be1e",
+    "src/ect/audit.py": "fe61e01c3b006c1544cd45906fa7a43bcd300bd7a6b3b776f9c712b50ce53e9b"
+  },
+  "samples_sha256": "3a9754ecb707406bcfcee5361657a7d57ef84daa13fd61af3a15fc9520485524"
+}

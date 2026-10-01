@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+checkpoints/
+.project-git/
+*.npy
+archive.pdf
+Depth_Evaluation_ECT_Chinese_Translation.md
+AI_ECT_Course_Project_Plan.md
+.agents/
+.aws/
+.codex/
+results/provenance/paper_images/

@@ -1,0 +1,222 @@
+{
+  "sample_counts": {
+    "train": 24000,
+    "validation": 3200,
+    "test": 4800
+  },
+  "class_counts": {
+    "train": {
+      "0": 1200,
+      "1": 1200,
+      "2": 1200,
+      "3": 1200,
+      "4": 1200,
+      "5": 1200,
+      "6": 1200,
+      "7": 1200,
+      "8": 1200,
+      "9": 1200,
+      "10": 1200,
+      "11": 1200,
+      "12": 1200,
+      "13": 1200,
+      "14": 1200,
+      "15": 1200,
+      "16": 1200,
+      "17": 1200,
+      "18": 1200,
+      "19": 1200
+    },
+    "validation": {
+      "0": 160,
+      "1": 160,
+      "2": 160,
+      "3": 160,
+      "4": 160,
+      "5": 160,
+      "6": 160,
+      "7": 160,
+      "8": 160,
+      "9": 160,
+      "10": 160,
+      "11": 160,
+      "12": 160,
+      "13": 160,
+      "14": 160,
+      "15": 160,
+      "16": 160,
+      "17": 160,
+      "18": 160,
+      "19": 160
+    },
+    "test": {
+      "0": 240,
+      "1": 240,
+      "2": 240,
+      "3": 240,
+      "4": 240,
+      "5": 240,
+      "6": 240,
+      "7": 240,
+      "8": 240,
+      "9": 240,
+      "10": 240,
+      "11": 240,
+      "12": 240,
+      "13": 240,
+      "14": 240,
+      "15": 240,
+      "16": 240,
+      "17": 240,
+      "18": 240,
+      "19": 240
+    }
+  },
+  "groups": {
+    "train": [
+      1,
+      2,
+      5,
+      6,
+      7,
+      8,
+      10
+    ],
+    "validation": [
+      3,
+      11
+    ],
+    "test": [
+      0,
+      4,
+      9
+    ]
+  },
+  "people": {
+    "train": [
+      "test:1",
+      "test:2",
+      "train:10",
+      "train:11",
+      "train:12",
+      "train:13",
+      "train:14",
+      "train:15",
+      "train:16",
+      "train:17",
+      "train:18",
+      "train:19",
+      "train:2",
+      "train:20",
+      "train:21",
+      "train:22",
+      "train:23",
+      "train:24",
+      "train:25",
+      "train:26",
+      "train:3",
+      "train:4",
+      "train:5",
+      "train:7",
+      "train:9"
+    ],
+    "validation": [
+      "train:0",
+      "train:8"
+    ],
+    "test": [
+      "test:0",
+      "train:1",
+      "train:6"
+    ]
+  },
+  "exact_waveform_overlap": 0,
+  "person_overlap": 0,
+  "schema_version": 1,
+  "protocol": "grouped_v1",
+  "seed": 20261001,
+  "class_mapping_status": "unverified",
+  "inputs": {
+    "train": {
+      "path": "data/raw/MDDECT_v1_train.npy",
+      "size_bytes": 432000128,
+      "sha256": "f50bc6cb3d08f9972679f3876a41025aec2a4e2672147e24a6b58db007c71ac7"
+    },
+    "test": {
+      "path": "data/raw/MDDECT_v1_test.npy",
+      "size_bytes": 48000128,
+      "sha256": "865f972445ce0b9ad562336e7b6258b48d6b1d70d8d7254ff4fca77fdb951b58"
+    }
+  },
+  "audit_sha256": "c6ab472b24fba7ab06f6475ffc8278d1fa214294064ec5c900c5a6c0bf1fe664",
+  "samples_sha256": "3a9754ecb707406bcfcee5361657a7d57ef84daa13fd61af3a15fc9520485524",
+  "manifest_sha256": {
+    "train.jsonl": "9890d665bc5da045a14766efc34c08e079e752551a11c19535ed6b5ef8d07b36",
+    "validation.jsonl": "97f6201ba4250c8044c19dd01c4807bf310d95472bf9d2d4b252661e960cde3c",
+    "test.jsonl": "413990beea1c949cb0d99654a75c2d35f6a37cc9476d8b26e1be3a5cb2946b2e"
+  },
+  "components": [
+    [
+      "test:0"
+    ],
+    [
+      "test:1",
+      "train:10",
+      "train:11",
+      "train:12",
+      "train:13",
+      "train:14",
+      "train:15",
+      "train:16",
+      "train:17",
+      "train:9"
+    ],
+    [
+      "test:2",
+      "train:18",
+      "train:19",
+      "train:20",
+      "train:21",
+      "train:22",
+      "train:23",
+      "train:24",
+      "train:25",
+      "train:26"
+    ],
+    [
+      "train:0"
+    ],
+    [
+      "train:1"
+    ],
+    [
+      "train:2"
+    ],
+    [
+      "train:3"
+    ],
+    [
+      "train:4"
+    ],
+    [
+      "train:5"
+    ],
+    [
+      "train:6"
+    ],
+    [
+      "train:7"
+    ],
+    [
+      "train:8"
+    ]
+  ],
+  "code_sha256": {
+    "scripts/build_splits.py": "ccc03942db12032a04159e74e4daf33a2210ba48805199894fb8d88ad3efa4a2",
+    "src/ect/splits.py": "efea5ab255822de479192fdde002034f922cfb3681e3cc7d4c091bcf0cea9cec"
+  },
+  "limitations": [
+    "Exact waveform and nominal person component isolation only.",
+    "No claim of independence of specimens, near duplicates or actual acquisition sources."
+  ]
+}
