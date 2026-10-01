@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "protocol": "svm_features_v1",
+  "purpose": "development_validation_only",
+  "seed": 20261001,
+  "threads": 1,
+  "train_per_class": 100,
+  "candidates": [
+    {"kernel": "linear", "C": 0.1},
+    {"kernel": "linear", "C": 1.0},
+    {"kernel": "linear", "C": 10.0},
+    {"kernel": "rbf", "C": 1.0, "gamma": "scale"},
+    {"kernel": "rbf", "C": 1.0, "gamma": 0.01},
+    {"kernel": "rbf", "C": 1.0, "gamma": 0.1},
+    {"kernel": "rbf", "C": 10.0, "gamma": "scale"},
+    {"kernel": "rbf", "C": 10.0, "gamma": 0.01},
+    {"kernel": "rbf", "C": 10.0, "gamma": 0.1}
+  ]
+}

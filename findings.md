@@ -81,3 +81,23 @@
 加载/预处理/缓存实现后32项测试通过；独立审查发现并复查三项问题已修复。修复后全量CPU生成1.63秒、约62MiB；处理后32000波形唯一，三集合完整波形交集0。训练每通道600万点的固定标准化使均值约0/标准差约1，标签逐条与冻结清单一致。
 
 训练缓存总功率/AC功率中位比81.12dB，说明直流主导，支持研究设计使用AC参考功率做附加噪声实验。AC展示只为看清微小波形，不改变训练缓存。图形不作为索引语义或来源独立性的证据。
+
+## P3资料核验（2026-10-01）
+
+scikit-learn官方文档核对：LinearSVC在样本多于特征时可用dual=False；此求解方式random_state不影响结果，不能把重复种子当作独立随机训练。StandardScaler只由训练样本计算均值/方差。距离平方的范数/点积公式可能数值消减，近重复候选需直接差值复算。
+
+资料：[LinearSVC](https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html)、[StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)、[euclidean_distances](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.euclidean_distances.html)、[SVC](https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html)。本轮诊断距离和阈值为项目选择，详见新实施计划，不能称为通用泄漏判定标准。
+
+首次运行发现scikit-learn1.9.1的SVC显式probability=False也产生弃用警告；官方文档标记1.9弃用，安装签名默认为'deprecated'。改为省略该参数，保持默认不校准概率；夹具验证无训练警告且predict_proba不可用，未引入概率训练。此修复不改变网格或选择规则，产物将按新代码重跑。
+
+## Train/validation近重复实测
+
+全部3200条validation查询24000条train，共76,800,000对；CPU单线程搜索10.995秒/总11.213秒。原单位相对L2阈值0.001及形状unit L2阈值0.01的候选查询/候选对均为0，最小距离0.023379692/0.015377562，中位0.57725815/0.33373137。独立逐差值穷举验证全部最近索引/计数一致；阈值在观察之前固定，不因结果扩大。
+
+没有候选不证明来源独立，时间移位/裁剪/符号/单通道缩放未排查。测试信号未读取，测试侧固定算法数据审计仍待完成。图形只在有候选时生成，本次无需候选图。完整来源/距离在results/similarity/train_validation_v1/。
+
+## SVM开发验证实测
+
+最终pilot2000/3200耗时3.83秒；full24000/3200耗时73.00秒（当前WSL2单线程CPU）。九项均收敛且无警告，二者选中RBF C10 gamma0.1，验证Accuracy/Macro-F1分别0.375625/0.375229及0.609063/0.608643；未计算test分类指标。全量两个验证连接组Macro-F1为0.617135/0.600031。不同训练规模只用于开发预算与链路，不能作为同条件正式比较。
+
+已验收59项测试、独立两部分审查、当前代码/缓存/图SHA和从/tmp重载预测逐条一致。完整表/边界见docs/svm_results.md，模型二进制留本地。没有为得分增加网格或特征，不从邻近索引混淆推断未经确认的深度映射。

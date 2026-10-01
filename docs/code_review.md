@@ -28,3 +28,19 @@
 复查结论：32项测试全部通过，七个校验项逐一缺失均被拒绝，注入train_y创建失败后train_x关闭、未发布输出且临时目录清除；两种读取器的构造失败清理、context退出和重复close有效；恒定float64按不同批次拆分正确拒绝。未发现这些修复的残留实质问题。Windows原生环境未实测，句柄关闭在当前环境验证。
 
 修复后全量缓存重建：24000/3200/4800，250×2，全部有限；20类计数和逐条标签顺序与manifest一致；下采样后唯一数32000，三对集合完整波形交集为0；训练标准化均值接近0/标准差接近1。证据保存在results/preprocessing/。
+
+## P3近重复模块审查
+
+范围：similarity.py、diagnose_similarity.py、12项测试及全量结果。独立复查不运行正式CLI，直接逐差值穷举每种距离76,800,000对，3200条查询的最近索引、候选计数全部一致，距离误差<8e-16。代码、缓存、清单、CSV SHA匹配；12项测试通过。未发现实质缺陷。
+
+结论限定于train/validation和固定阈值；未读test信号、未重新校验原始NPY，原始来源身份继承已绑定的prepare元数据。零候选不证明来源独立。具体距离/分位数/完整性校验范围见results/similarity/train_validation_v1/。
+
+## P3 SVM模块审查
+
+范围：features.py、baseline.py、train_svm.py、plot_svm.py、配置和测试。第一轮指出同名并发的检查/rename竞争，以及源码LF/CRLF转换拒绝等价重载。两项回归复现后修复为训练前原子mkdir占目录、report最后发布/失败清理；额外保留LF规范化的特征源码SHA，原字节SHA继续追溯，真实代码改动仍拒绝。混合success/failure状态拒绝读取，发布中途失败只留下failure.json。
+
+第二轮在当前WSL2范围确认上述修复通过。追加模拟原生Windows默认JSON换行与Git LF转换的回归，复现训练索引SHA失配后，SVM所有JSON及绘图provenance显式写入LF。.gitattributes同时固定仓库文本LF。当前环境本来为WSL2，未发生实际Windows换行故障；模拟兼容检查不代替原生Windows端到端验收。
+
+初次真实运行还发现scikit-learn1.9.1显式probability=False的弃用警告；核对官方说明/安装签名后省略参数，保持不进行概率校准。回归检查无fit警告且predict_proba不可用。受影响真实运行保留本地忽略目录，最终运行按修复代码重跑，不追改旧记录。
+
+JSON追加修复独立复查通过，11项SVM相关测试通过。最终全项目59项测试通过；pilot/full九项均收敛且无警告，当前代码/缓存SHA绑定及/tmp下重载预测逐条复核成功，绘图追溯匹配。最终full 73.00秒，验证Accuracy0.6090625、Macro-F1 0.608642842；不含任何最终测试分类指标。

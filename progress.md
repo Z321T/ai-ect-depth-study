@@ -45,3 +45,19 @@
 - P2验收完成；下一单元是近重复诊断与SVM分类基线，随后实现CPU/GPU可切换的CNN/ResNet最小训练。正式测试性能尚未读取，类别语义指标仍未开放。
 - 当前处理代码校验与缓存metadata一致；prepare_run为同一metadata，verification绑定metadata及诊断脚本；从/tmp运行读取器也成功。远端main与本地基线一致，准备合入并发布预处理提交。
 - 发布检查点：预处理提交c763b5dc9d84a21864e089b373abbc97939dd66b已fast-forward合入main并推送；GitHub API返回的远端main SHA与本地一致。合入后32项测试再次通过，Git空白检查通过；发布时工作区干净。原始资料及所有NPY/缓存未入仓库。
+
+## 2026-10-01：近重复与SVM开发验证
+
+- 读取长期记录与数据接口，32项基线测试通过；创建feat/svm-diagnostics分支。
+- 固定train/validation近重复指标、候选阈值和25维SVM特征，九项参数搜索与训练抽样pilot写入docs/plans/2026-10-01-svm-diagnostics.md。测试分类性能保持封存，不依据模型结果调整距离阈值。
+- 特征4项测试和基线5项测试先因接口缺失失败，实现后通过；测试验证训练Scaler、禁止访问test、抽样复现、模型重载、篡改拒绝和失败记录。测试读取CSV发现未关闭句柄警告，已改为with处理。
+- 安装并固定scikit-learn1.9.1、joblib1.6.0、threadpoolctl3.7.0。pilot九项全部收敛，2000训练/3200验证CPU共4.02秒；模型重载一致。按成本推进同一网格全量训练，开发验证数据仍不包含测试分类结果。
+- 全测试在近重复代理TDD中间状态运行曾因CLI尚未创建失败；未干预其文件，等待完成后统一验收。SVM独立只读审查并行进行。
+- 首次全量九项共74.44秒，均收敛。发现SVC显式probability=False在1.9.1弃用；按systematic-debugging核对官方说明和安装签名，回归测试复现后省略参数，保留默认不校准概率。会重跑产物以绑定修复代码。临时pilot汇总命令曾有括号语法错误，修正后成功，不影响训练产物。
+- SVM首轮审查复现同名并发目录竞争和跨平台源码CRLF校验兼容问题。两项回归先失败后修复：训练前原子占目录、report最后发布/失败清理；保留源码字节SHA并增加LF规范化特征源码SHA用于重载，实际变更仍拒绝；.gitattributes固定文本LF。用户询问当前WSL环境，已明确CRLF为模拟交接场景而非当前故障，Windows原生尚未验收。
+- 近重复独立模块和全量诊断完成，独立审查额外直接穷举每种76,800,000对，3200最近邻/候选计数全部一致，数值误差<8e-16，SHA绑定有效。两阈值候选0，仅排查指定指标；不证明来源独立。
+- 并发/源码两项修复独立复查通过；另追加模拟Windows写JSON再经Git规范化的回归，复现索引SHA失配后显式LF写入SVM JSON与图provenance。已补部分发布失败清理、混合状态拒绝测试；现基线11项测试通过。修改前运行归档至data/processed/svm_runs_before_review/（忽略Git），最终pilot重跑3.83秒、九项无警告且均收敛；最终full正在运行。
+- 当前uname确认6.18.33.2-microsoft-standard-WSL2；本仓库core.autocrlf未显式设置。跨平台模拟不作为原生Windows验收。文档批量patch曾因未匹配整行失败，确认未部分修改后按实际全文修正。
+- JSON追加修复独立复查通过。最终pilot3.83秒/full73.00秒，九项均收敛且无警告，最佳RBF C10 gamma0.1；full validation Accuracy0.6090625/Macro-F1 0.608642842。测试分类封存，没有据得分扩展网格。
+- 最终59项测试通过；生成并目视检查候选/时间图与验证混淆矩阵，输出docs/svm_results.md。两模型从/tmp读取、核对当前代码/缓存SHA、重载预测/标签逐条与CSV一致；图片provenance绑定报告/脚本/图片通过。
+- 本轮数据诊断和SVM开发验收完成；当前准备合入main及推送已授权仓库。P3仍进行中，CNN/ResNet、设备切换、噪声实现及测试侧数据诊断待后续推进。

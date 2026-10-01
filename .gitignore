@@ -13,3 +13,4 @@ AI_ECT_Course_Project_Plan.md
 results/provenance/paper_images/
 data/processed/
 .matplotlib/
+*.joblib

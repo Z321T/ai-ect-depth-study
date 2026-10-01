@@ -2,7 +2,7 @@
 
 公开仓库：[Z321T/ai-ect-depth-study](https://github.com/Z321T/ai-ect-depth-study)。
 
-本项目从 MDDECT I/Q 时序信号预测 20 个类别，研究模型比较和噪声增强。数据审计、分组划分及预处理链路已实现，下一步是分类基线；尚无正式模型性能结果。
+本项目从 MDDECT I/Q 时序信号预测 20 个类别，研究模型比较和噪声增强。数据审计、分组划分、预处理、train/validation近重复诊断与SVM开发验证链路已实现；最终测试分类指标尚未计算。
 
 ## 文档入口
 
@@ -15,6 +15,9 @@
 - [数据审计报告](docs/data_audit_report.md)
 - [数据加载与预处理](docs/data_pipeline.md)
 - [类别映射核查](docs/class_mapping_evidence.md)
+- [SVM开发验证](docs/svm_baseline.md)
+- [SVM实测结果与图](docs/svm_results.md)
+- [近重复诊断结果](results/similarity/train_validation_v1/report.md)
 
 原始论文、译文和GPT旧计划在本地 `reference/` 保留，不上传代码仓库。数据从 [MDDECT官方发布页](https://www.kaggle.com/datasets/mchikyt3/mddect) 下载，将两个NPY放在 `data/raw/`，文件身份见审计报告。论文参考：[arXiv:2104.02472](https://arxiv.org/abs/2104.02472)。数据官方许可为CC BY 4.0，使用时引用数据发布者和论文。人员分工由用户另行处理。
 
@@ -33,7 +36,7 @@ uv venv .venv
 uv pip install --python .venv/bin/python -r requirements-audit.txt
 ```
 
-模型阶段的依赖和命令在实现后补充，不把尚不存在的训练脚本列为可运行功能。
+SVM依赖见requirements-models.txt；CNN/ResNet及设备切换尚未实现。
 
 ## 全量预处理
 
@@ -44,6 +47,18 @@ uv pip install --python .venv/bin/python -r requirements-data.txt
 ```
 
 缓存位于data/processed/grouped_v1/，不上传Git；所有模型共用该缓存及训练标准化参数。默认拒绝覆盖已有缓存，复跑使用新的--output目录。训练信号和滤波图见results/preprocessing/。
+
+## 近重复与SVM开发验证
+
+```bash
+uv pip install --python .venv/bin/python -r requirements-models.txt
+.venv/bin/python scripts/diagnose_similarity.py
+.venv/bin/python scripts/train_svm.py
+.venv/bin/python scripts/train_svm.py --full-train --output results/baselines/svm_full_v1
+.venv/bin/python scripts/plot_svm.py
+```
+
+诊断查询完整validation对train，两种冻结距离下无阈值内候选；不证明其他形式泄漏都已排除。所有模型仅用训练拟合、验证选参；输出拒绝覆盖，复跑使用新--output目录。模型joblib留在本地，公开仓库保留配置/结果/预测/图；克隆后复跑生成权重。SVM默认CPU单线程，训练读取器仍执行三集合缓存完整性检查，但不提取test特征或计算test分类指标。
 
 ## 审计与划分
 
