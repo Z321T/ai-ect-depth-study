@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-01T11:07:28.096582+00:00",
+  "registry_sha256": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
+  "run_id": "cnn_clean_s0",
+  "report_sha256": "8c19f475761ce26f27ae71955baa4fb6b5067ae4e42d458629b0ccbfc62497f7",
+  "registered_before_training": true,
+  "all_train_and_validation_rows_verified": true,
+  "gpu_reloaded_predictions_verified": 12800,
+  "metrics_directly_recomputed_from_predictions": true,
+  "test_classification_evaluated": false
+}

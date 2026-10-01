@@ -1,0 +1,493 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-01T11:16:32.649853+00:00",
+  "registry_sha256": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
+  "status": "passed",
+  "test_classification_evaluated": false,
+  "scope": "Full file identity checks; inference only on all 3200 validation rows. Epoch-selection noise seed10 only; repeats10..14 not evaluated here.",
+  "verifier_script_sha256": "463de57d09637705e8bbcf6423831d0f4d99a882a1be126690e08485daf621af",
+  "verifier_script": "\"\"\"One-off, replayable verification of the frozen nine validation-only runs.\"\"\"\nimport csv\nfrom datetime import datetime, timezone\nimport hashlib\nimport json\nfrom pathlib import Path\nimport sys\n\nROOT = Path('/home/lucky/devdir/rgzndl')\nsys.path.insert(0, str(ROOT / 'src'))\nimport numpy as np\nimport torch\nfrom ect.deep import CONDITIONS, compare_logits, load_deep_model, predict_logits\nfrom ect.devices import seed_everything\nfrom ect.prepare import PreparedDataset\n\n\ndef sha(path):\n    return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\n\ndef direct_metrics(y, p):\n    cm = np.zeros((20, 20), dtype=np.int64)\n    np.add.at(cm, (y, p), 1)\n    tp = np.diag(cm).astype(float)\n    support, predicted = cm.sum(1), cm.sum(0)\n    precision = np.divide(tp, predicted, out=np.zeros(20), where=predicted != 0)\n    recall = np.divide(tp, support, out=np.zeros(20), where=support != 0)\n    f1 = np.divide(2 * tp, support + predicted, out=np.zeros(20), where=support + predicted != 0)\n    return dict(accuracy=float(tp.sum() / len(y)), macro_f1=float(f1.mean()),\n                confusion_matrix=cm.tolist(),\n                per_class={str(k): {'precision': float(precision[k]), 'recall': float(recall[k]),\n                    'f1-score': float(f1[k]), 'support': float(support[k])} for k in range(20)})\n\n\ndef check_metrics(actual, expected):\n    assert actual['confusion_matrix'] == expected['confusion_matrix']\n    for metric in ('accuracy', 'macro_f1'):\n        assert abs(actual[metric] - expected[metric]) < 1e-12\n    for k in actual['per_class']:\n        for metric, value in actual['per_class'][k].items():\n            assert abs(value - expected['per_class'][k][metric]) < 1e-12\n\n\ndef main():\n    folder = ROOT / 'results/experiments/formal_v1'\n    registry_path = folder / 'registry.json'\n    registry = json.loads(registry_path.read_text())\n    result = dict(schema_version=1, created_utc=datetime.now(timezone.utc).isoformat(),\n        registry_sha256=sha(registry_path), status='running',\n        test_classification_evaluated=False,\n        scope='Full file identity checks; inference only on all 3200 validation rows. '\n              'Epoch-selection noise seed10 only; repeats10..14 not evaluated here.',\n        verifier_script_sha256=sha(__file__), verifier_script=Path(__file__).read_text(), runs=[])\n    seed_everything(0, 1)\n    assert torch.cuda.is_available()\n    result['gpu_name'] = torch.cuda.get_device_name(0)\n    with PreparedDataset(ROOT) as store:\n        assert sha(store.folder / 'metadata.json') == registry['cache_metadata_sha256']\n        assert store.metadata['manifest_sha256'] == registry['manifest_sha256']\n        raw, labels = store.arrays['validation']\n        records = [json.loads(s) for s in (ROOT / 'manifests/grouped_v1/validation.jsonl').read_text().splitlines()]\n        ids = [r['wave_sha256'] for r in records]\n        groups = np.array([r['group_id'] for r in records])\n        assert len(raw) == len(records) == 3200\n        assert np.array_equal(labels, [r['class_index'] for r in records])\n        for run in registry['runs']:\n            run_dir = ROOT / run['output_dir']\n            assert sha(ROOT / run['config_path']) == run['config_file_sha256']\n            bundle = load_deep_model(run_dir, device='cuda')\n            report = bundle['report']\n            assert report['config_sha256'] == run['resolved_config_sha256']\n            assert report['cache_metadata_sha256'] == registry['cache_metadata_sha256']\n            assert report['manifest_sha256'] == registry['manifest_sha256']\n            assert report['raw_input_sha256'] == registry['raw_input_sha256']\n            assert report['normalization'] == store.stats\n            assert report['sample_counts'] == {'train': 24000, 'validation': 3200}\n            assert report['heldout_test_evaluated'] is False\n            assert report['environment']['device'] == 'cuda'\n            assert report['checkpoint_tensors_saved_on_cpu'] is True\n            assert datetime.fromisoformat(registry['registered_utc']) < datetime.fromisoformat(report['created_utc'])\n            for split, count in (('train', 24000), ('validation', 3200)):\n                assert json.loads((run_dir / f'{split}_rows.json').read_text()) == list(range(count))\n            with (run_dir / 'validation_predictions.csv').open(newline='') as handle:\n                rows = list(csv.DictReader(handle))\n            assert len(rows) == 12800\n            entry = dict(run_id=run['run_id'], report_sha256=sha(run_dir / 'report.json'),\n                         registered_before_training=True, full_rows_verified=True,\n                         selected_epoch=report['selected_epoch'], conditions={})\n            for condition, snr in CONDITIONS.items():\n                selected = [r for r in rows if r['condition'] == condition]\n                assert len(selected) == 3200\n                for i, r in enumerate(selected):\n                    assert int(r['row_index']) == i\n                    assert r['wave_sha256'] == ids[i] and int(r['group_id']) == groups[i]\n                    assert int(r['class_index']) == labels[i]\n                    assert r['noise_seed'] == ('' if snr is None else '10')\n                    assert r['snr_applicable'] == ('' if snr is None else 'True')\n                saved = np.array([int(r['predicted_class_index']) for r in selected])\n                gpu_logits = predict_logits(bundle, raw, ids, snr_db=snr, seed=10,\n                    namespace='validation', batch_size=128)\n                assert np.array_equal(gpu_logits.argmax(1), saved)\n                metrics = direct_metrics(labels, saved)\n                check_metrics(metrics, report['validation_metrics'][condition])\n                for group in np.unique(groups):\n                    mask = groups == group\n                    check_metrics(direct_metrics(labels[mask], saved[mask]),\n                                  report['validation_group_metrics'][str(group)][condition])\n                bundle['model'].cpu()\n                cpu_logits = predict_logits(bundle, raw, ids, snr_db=snr, seed=10,\n                    namespace='validation', batch_size=128)\n                drift = compare_logits(gpu_logits, cpu_logits)\n                original = report['cpu_transfer_comparison'][condition]\n                assert drift['argmax_difference_count'] == original['argmax_difference_count']\n                assert drift['within_tolerance'] == original['within_tolerance']\n                assert abs(drift['max_abs_error'] - original['max_abs_error']) < 1e-12\n                check_metrics(direct_metrics(labels, cpu_logits.argmax(1)), original['cpu_metrics'])\n                bundle['model'].cuda()\n                entry['conditions'][condition] = dict(gpu_predictions_verified=3200,\n                    csv_metrics_and_group_metrics_verified=True, cpu_transfer=drift)\n            result['runs'].append(entry)\n            print(json.dumps({'run_id': run['run_id'], 'event': 'verified'}), flush=True)\n        assert len(result['runs']) == 9\n    result.update(status='passed', gpu_predictions_verified=115200,\n                  cpu_predictions_verified=115200, completed_utc=datetime.now(timezone.utc).isoformat())\n    target = folder / 'training_verification.json'\n    assert not target.exists()\n    target.write_text(json.dumps(result, indent=2, allow_nan=False) + '\\n', newline='\\n')\n\n\nif __name__ == '__main__':\n    main()\n",
+  "runs": [
+    {
+      "run_id": "cnn_clean_s0",
+      "report_sha256": "8c19f475761ce26f27ae71955baa4fb6b5067ae4e42d458629b0ccbfc62497f7",
+      "registered_before_training": true,
+      "full_rows_verified": true,
+      "selected_epoch": 23,
+      "conditions": {
+        "clean": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 4.0531158447265625e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 4.029273986816406e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 4.0531158447265625e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 5.340576171875e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "cnn_clean_s1",
+      "report_sha256": "d5fd2f7e12e44ec336dcc4f5fd806e37f775be4c3e00582f8dbb8381bfaa027a",
+      "registered_before_training": true,
+      "full_rows_verified": true,
+      "selected_epoch": 24,
+      "conditions": {
+        "clean": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 7.62939453125e-06,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 1.1444091796875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 1.33514404296875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 1.1444091796875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "cnn_clean_s2",
+      "report_sha256": "0d1cb13c0b5a80c120378fda95cfe9e9d40ddcbb602d0c602e123862633480d6",
+      "registered_before_training": true,
+      "full_rows_verified": true,
+      "selected_epoch": 27,
+      "conditions": {
+        "clean": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 2.6702880859375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 3.0517578125e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 4.9591064453125e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 5.340576171875e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_clean_s0",
+      "report_sha256": "598cc26917b479a0beb020e5790ab0536824bb0d8d0aa2d3c0772e1f8d39c4e9",
+      "registered_before_training": true,
+      "full_rows_verified": true,
+      "selected_epoch": 7,
+      "conditions": {
+        "clean": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 0.0001010894775390625,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 0.00010061264038085938,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 0.00010776519775390625,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 8.308887481689453e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_clean_s1",
+      "report_sha256": "f891caf6379bf855bfd269c6567e2fb7d5fe7b9bbda0804570ed7cfb8adda865",
+      "registered_before_training": true,
+      "full_rows_verified": true,
+      "selected_epoch": 0,
+      "conditions": {
+        "clean": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 1.1444091796875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 6.67572021484375e-06,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 1.1444091796875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 9.5367431640625e-06,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_clean_s2",
+      "report_sha256": "4d6c0b9dabf3d055f2c9c3ca469e1ecce3257dcd9928e385c816345a902c9cf0",
+      "registered_before_training": true,
+      "full_rows_verified": true,
+      "selected_epoch": 4,
+      "conditions": {
+        "clean": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 8.20159912109375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 8.7738037109375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 8.392333984375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 9.1552734375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_aug_s0",
+      "report_sha256": "70f0e6aef84a87903a1a303d00a98e81c90ae7375970c9fcf042419dc20f900f",
+      "registered_before_training": true,
+      "full_rows_verified": true,
+      "selected_epoch": 0,
+      "conditions": {
+        "clean": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 4.1365623474121094e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 4.00543212890625e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 4.100799560546875e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 4.0531158447265625e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_aug_s1",
+      "report_sha256": "b63b05082a26b04a2ec392ee063c89d6911dba4aebee93abf9c5ede3603e7b7b",
+      "registered_before_training": true,
+      "full_rows_verified": true,
+      "selected_epoch": 1,
+      "conditions": {
+        "clean": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 1.609325408935547e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 1.6033649444580078e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 1.7523765563964844e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 1.5795230865478516e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_aug_s2",
+      "report_sha256": "9a608529f2b6c008b240dcffc05890b54d1c3910d495d1e2dd59618aa31abe95",
+      "registered_before_training": true,
+      "full_rows_verified": true,
+      "selected_epoch": 12,
+      "conditions": {
+        "clean": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 0.00014495849609375,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 0.00013399124145507812,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 0.00013637542724609375,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "gpu_predictions_verified": 3200,
+          "csv_metrics_and_group_metrics_verified": true,
+          "cpu_transfer": {
+            "max_abs_error": 0.0001735687255859375,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    }
+  ],
+  "gpu_name": "NVIDIA GeForce RTX 5070 Ti",
+  "gpu_predictions_verified": 115200,
+  "cpu_predictions_verified": 115200,
+  "completed_utc": "2026-10-01T11:17:27.766046+00:00"
+}

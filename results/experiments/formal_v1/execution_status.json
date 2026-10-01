@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "updated_utc": "2026-10-01T11:19:21.577711+00:00",
+  "registry_sha256": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
+  "completed_runs": 9,
+  "registered_runs_pending": 0,
+  "validation_noise_repeats_10_to_14": "pending; epoch selection reports seed10",
+  "test_classification_evaluated": false,
+  "runs": [
+    {
+      "run_id": "cnn_clean_s0",
+      "output_dir": "results/experiments/formal_v1/cnn_clean_s0",
+      "status": "complete_verified"
+    },
+    {
+      "run_id": "cnn_clean_s1",
+      "output_dir": "results/experiments/formal_v1/cnn_clean_s1",
+      "status": "complete_verified"
+    },
+    {
+      "run_id": "cnn_clean_s2",
+      "output_dir": "results/experiments/formal_v1/cnn_clean_s2",
+      "status": "complete_verified"
+    },
+    {
+      "run_id": "resnet_clean_s0",
+      "output_dir": "results/experiments/formal_v1/resnet_clean_s0",
+      "status": "complete_verified"
+    },
+    {
+      "run_id": "resnet_clean_s1",
+      "output_dir": "results/experiments/formal_v1/resnet_clean_s1",
+      "status": "complete_verified"
+    },
+    {
+      "run_id": "resnet_clean_s2",
+      "output_dir": "results/experiments/formal_v1/resnet_clean_s2",
+      "status": "complete_verified"
+    },
+    {
+      "run_id": "resnet_aug_s0",
+      "output_dir": "results/experiments/formal_v1/resnet_aug_s0",
+      "status": "complete_verified"
+    },
+    {
+      "run_id": "resnet_aug_s1",
+      "output_dir": "results/experiments/formal_v1/resnet_aug_s1",
+      "status": "complete_verified"
+    },
+    {
+      "run_id": "resnet_aug_s2",
+      "output_dir": "results/experiments/formal_v1/resnet_aug_s2",
+      "status": "complete_verified"
+    }
+  ],
+  "independently_verified_runs": 9,
+  "training_verification_sha256": "50eec5cb272651f94b90a44dbb47c2e023bf23a5b4ca899e5014e5e0ec5f674d"
+}

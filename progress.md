@@ -8,6 +8,15 @@
 - CLI九项新增测试先失败后扩展，21项全部通过；src/ect/similarity.py字节与d4fa333完全相同。test→train115.2M和test→validation15.36M两距离候选0；独立直接差值全穷举109.34/13.69秒，4800最近索引/距离/候选全匹配，误差0，记录包含完整验证脚本及SHA。
 - 登记工具初两项测试因缺失实现失败；完整审计artifact/summary/CLI身份五例回归先未拒绝再修复。独立审查发现SVM漏失/损坏/失败marker及清理失败混合成功，回归四例先失败后修复；首次编辑测试误置一行导致缩进错误，修正后观察实质失败。第二轮五项复查全部通过，无新阻塞。
 - 真实数据formal_v1九项配置登记完成，状态frozen_training_registration、test分类false；全量深度尚未开始时记录绑定SHA和时间，下一步使用登记CNN clean seed0完整训练配置。
+- 全项目121项在真实GPU可访问上下文全部通过，无CUDA跳过；登记/审计提交801af02先于完整深度训练，配置和阈值不随后续分数变化。
+- CNN clean seed0已完整30epoch24000/3200训练，选epoch23；clean验证Accuracy0.2453125/Macro-F1 0.206975007，10dB 0.2196875/0.183442346。GPU重载12800条预测及CSV直算指标匹配、登记时间早于训练；CPU迁移最大logit差5.34e-5、既定逐元素容差标志false但四条件argmax差0，如实保留，不因此废弃有效权重。
+- 首个链路验证后继续同登记剩余八项全量训练，未调整配置；execution_status.json逐项记录完成/待独立核验/未启动，最终test和noise10–14重复仍未执行。
+- 九项完整训练全部结束；CNN均30epoch，普通ResNet16/9/13、增强ResNet9/10/21按既定patience停止，保留较差seed及完整选择记录。Clean三seed均值：CNN Accuracy25.33%/Macro-F1 0.2182、ResNet22.84%/0.2036、增强ResNet15.18%/0.1258；SVM60.91%/0.6086仍为当前最佳验证结果。
+- 独立GPU重载及CPU迁移各115200预测核验通过，全部配置/数据/行序/身份/CSV直接混淆矩阵和每类/组指标匹配；最大跨设备logits差0.0001735687、分类差0，保留逐元素容差false。证据包含验证脚本全文/SHA于training_verification.json，execution_status九项均complete_verified，registry未改写。
+- 汇总脚本首次误用SVM候选键validation_metrics报KeyError，读实际report结构确认应为metrics后修正，仅临时汇总脚本修改；源训练报告不变。生成JSON/CSV和PNG/SVG对比/学习曲线，目视验收清楚；当前噪声只seed10，未声称10–14完成。docs/full_training_results.md及研究设计/根记录已同步。
+- 发布前全项目121项再次在真实GPU环境通过（16.98秒、无跳过），Git空白检查通过；下一单元固定噪声重复评价计划已建立，独立结果/SHA/统计复核进行中。
+- 独立结果复核完成：115200行CSV、36份总体/72份组指标最大误差0；48000原始来源重哈希及全部登记代码/数据/权重元数据绑定通过，三个家族均值/样本SD与汇总一致。GPU验收脚本的登记代码直接比对缺项由独立复核及发布前SHA检查补齐，保留明确边界；28/36逐元素容差false但分类差0。复核脚本全文及记录保存independent_review.json，再次复制前核对其全部文件SHA匹配。
+- 暂存新SVG后空白检查发现Matplotlib路径末尾空格，归档初版图/汇总至忽略的data/processed/formal_summary_before_svg_lf，再由记录脚本规范化SVG行末并重生成；同时去掉SVM零长度误差帽，避免暗示其有训练seed方差。CSV与所有指标/源SHA完全不变，SVG XML解析、图/脚本SHA和公开文件排除检查通过。原排除检查把reference/README.md误当原始资料，已限定允许说明README。
 
 ## 2026-10-01：CNN/ResNet与噪声实现开始
 

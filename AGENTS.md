@@ -21,8 +21,10 @@
 
 预处理依赖requirements-data.txt；完整缓存及协议见docs/data_pipeline.md。prepare默认拒绝覆盖已有缓存；复跑用新--output目录及--report路径。ManifestDataset/PreparedDataset使用with或close释放映射，便于Windows交接。
 
-SVM/近重复依赖requirements-models.txt，协议见docs/svm_baseline.md和docs/plans/2026-10-01-svm-diagnostics.md。所有开发运行只计算validation指标，test分类保持封存。诊断CLI只打开train/validation缓存，校验范围明确写入summary。SVM按manifest标签顺序核对、训练拟合Scaler，不增加基于验证表现的新网格。model.joblib不提交Git；失败记录保留，复跑新目录。
+SVM/近重复依赖requirements-models.txt，协议见docs/svm_baseline.md和docs/plans/2026-10-01-svm-diagnostics.md。所有开发运行只计算validation指标，test分类保持封存。近重复CLI只打开所选两集合，允许validation→train、test→train、test→validation；summary写明校验范围，test数据审计不计算分类成绩。SVM按manifest标签顺序核对、训练拟合Scaler，不增加基于验证表现的新网格。model.joblib不提交Git；失败记录保留，复跑新目录。
 
 当前托管环境保护根目录 `.git`。本地Git元数据存于 `.project-git`，本地操作使用 `git --git-dir=.project-git --work-tree=.`。从GitHub正常clone的工作目录使用普通git，无需此参数。不要提交虚拟环境、原始大数据、凭据或Git管理目录。
 
 深度模型/噪声协议见docs/deep_models.md、D011和config/deep_v1.json；依赖requirements-deep.txt，按文档选择CPU/CUDA构建。用户要求直接推进、不再评估计算资源。训练只做train/validation，输入保留DC；附加噪声先原单位AC功率校准再标准化。每epoch验证noise seed10，训练噪声按身份/epoch固定；formal test仍封存。.pt不提交Git；load_deep_model核验完整产物及源码SHA。最小验收不是正式模型比较，CUDA跳过不算真实GPU验收。
+
+formal_v1登记及九项完整训练均完成，结果见docs/full_training_results.md。registry与九份配置保持不可变；execution_status为可更新运行状态。下一单元按docs/plans/2026-10-01-repeated-evaluation.md实施noise10–14验证重复及100–104正式test评价，先验收评价实现再释放test分类。现有noise结果仅seed10，不冒充固定重复；新探索性模型/参数另立协议和目录，不覆盖本轮。独立推理先按seed_everything配置确定性/TF32开关，再load_deep_model。

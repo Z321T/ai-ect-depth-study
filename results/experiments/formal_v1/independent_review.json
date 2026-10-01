@@ -1,0 +1,1237 @@
+{
+  "status": "passed",
+  "created_utc": "2026-10-01T11:23:53.900742+00:00",
+  "script_sha256": "b6fe43c98340632252aedb7d71d910c3dad9ba723f7f43801106beb573a9dd55",
+  "registry_sha256": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
+  "source_metrics": "NumPy bincount only; no ect.deep._metrics/sklearn",
+  "scope": "read-only records/identity and CPU checkpoint metadata; zero inference; full source origins identity only including test",
+  "checks": {
+    "plan_hash": 1,
+    "plan_content": 1,
+    "template_hash": 1,
+    "mapping_hash": 1,
+    "mapping_status": 1,
+    "registry_code": 14,
+    "registry_test_sealed": 1,
+    "full_counts": 1,
+    "metadata_hash": 1,
+    "metadata_manifests": 1,
+    "metadata_counts": 1,
+    "metadata_code": 4,
+    "frozen_code": 178,
+    "split_summary_hash": 1,
+    "summary_manifests": 1,
+    "summary_raw": 1,
+    "split_code": 2,
+    "upstream_audit_hash": 2,
+    "raw_hash": 2,
+    "raw_frozen": 2,
+    "raw_size": 2,
+    "cache_hash": 7,
+    "normalization_cache": 1,
+    "normalization_manifest": 1,
+    "normalization_training_only": 1,
+    "manifest_hash": 3,
+    "manifest_count": 3,
+    "identity_uniqueness": 3,
+    "manifest_split": 3,
+    "cache_label_order": 3,
+    "split_identity_isolation": 3,
+    "split_group_isolation": 3,
+    "representative_origin": 32000,
+    "origin_identity": 48000,
+    "registered_audit_hash": 2,
+    "audit_code": 6,
+    "audit_metadata": 2,
+    "audit_summary": 2,
+    "audit_raw": 2,
+    "audit_manifest": 4,
+    "audit_cache": 8,
+    "audit_artifact": 2,
+    "audit_scope": 2,
+    "audit_pair_count": 2,
+    "baseline_report_hash": 1,
+    "baseline_complete": 1,
+    "baseline_code": 6,
+    "baseline_artifact": 3,
+    "baseline_data_binding": 1,
+    "registered_run_count": 1,
+    "registered_run_coverage": 1,
+    "registered_config_hash": 9,
+    "expected_family_config": 9,
+    "resolved_config_hash": 9,
+    "run_complete": 9,
+    "report_config": 9,
+    "source_table_coverage": 9,
+    "run_code": 81,
+    "run_code_lf": 81,
+    "report_data": 27,
+    "report_normalization": 9,
+    "run_test_sealed": 9,
+    "run_full_counts": 9,
+    "registration_precedes_start": 9,
+    "report_class_order": 9,
+    "report_mapping": 9,
+    "reported_device": 9,
+    "reported_roundtrip": 9,
+    "noise_protocol": 9,
+    "artifact_coverage": 9,
+    "run_artifact_hash": 36,
+    "checkpoint_schema": 9,
+    "checkpoint_config_and_stats": 9,
+    "checkpoint_model": 9,
+    "checkpoint_epoch": 9,
+    "checkpoint_finite_cpu_read": 9,
+    "reported_parameter_count": 9,
+    "selection_rule_label": 9,
+    "run_full_rows": 18,
+    "epoch_sequence": 9,
+    "cm_shape": 780,
+    "epoch_support": 672,
+    "cm_match": 816,
+    "class_set": 816,
+    "metric_match": 66912,
+    "selection_score": 168,
+    "train_loss_finite": 168,
+    "augmentation_record": 168,
+    "selected_epoch_and_metrics": 9,
+    "stopping_rule": 9,
+    "csv_coverage": 9,
+    "group_coverage": 9,
+    "csv_condition_count": 36,
+    "csv_identity": 115200,
+    "csv_noise_seed": 115200,
+    "class_bounds": 108,
+    "reported_cpu_argmax": 36,
+    "mainline_acceptance_registry": 1,
+    "mainline_acceptance_scope": 1,
+    "mainline_verifier_script_hash": 1,
+    "mainline_verifier_script_content": 1,
+    "mainline_acceptance_run_set": 1,
+    "mainline_report_binding": 9,
+    "mainline_verified_count": 36,
+    "mainline_transfer_match": 36,
+    "mainline_prediction_totals": 1,
+    "execution_status_binding": 1,
+    "stable_snapshot": 101
+  },
+  "issues": [],
+  "all_manifest_origins_rehashed": 48000,
+  "validation_csv_rows_verified": 115200,
+  "metric_max_abs_error": 0.0,
+  "runs": [
+    {
+      "run_id": "cnn_clean_s0",
+      "family": "cnn_clean",
+      "seed": 0,
+      "selected_epoch": 23,
+      "epochs_completed": 30,
+      "report_sha256": "8c19f475761ce26f27ae71955baa4fb6b5067ae4e42d458629b0ccbfc62497f7",
+      "conditions": {
+        "clean": {
+          "accuracy": 0.2453125,
+          "macro_f1": 0.20697500694639698,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.24625,
+              "macro_f1": 0.2092621733225632
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.244375,
+              "macro_f1": 0.20458329499307132
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 4.0531158447265625e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "accuracy": 0.2440625,
+          "macro_f1": 0.20544660178040858,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.244375,
+              "macro_f1": 0.20779767274756863
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.24375,
+              "macro_f1": 0.20304862110407393
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 4.029273986816406e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "accuracy": 0.2428125,
+          "macro_f1": 0.20592118569443904,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.244375,
+              "macro_f1": 0.20807258322619093
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.24125,
+              "macro_f1": 0.2035366650457465
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 4.0531158447265625e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "accuracy": 0.2196875,
+          "macro_f1": 0.18344234584101768,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.215625,
+              "macro_f1": 0.17728444178720557
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.22375,
+              "macro_f1": 0.18938815844454665
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 5.340576171875e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "cnn_clean_s1",
+      "family": "cnn_clean",
+      "seed": 1,
+      "selected_epoch": 24,
+      "epochs_completed": 30,
+      "report_sha256": "d5fd2f7e12e44ec336dcc4f5fd806e37f775be4c3e00582f8dbb8381bfaa027a",
+      "conditions": {
+        "clean": {
+          "accuracy": 0.2384375,
+          "macro_f1": 0.19648059456217268,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.239375,
+              "macro_f1": 0.19766827397165804
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.2375,
+              "macro_f1": 0.1954626898614158
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 7.62939453125e-06,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "accuracy": 0.23875,
+          "macro_f1": 0.19688201806839284,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.240625,
+              "macro_f1": 0.19859053641459729
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.236875,
+              "macro_f1": 0.19525338261693395
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 1.1444091796875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "accuracy": 0.2365625,
+          "macro_f1": 0.1950860690628974,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.239375,
+              "macro_f1": 0.19800087147103101
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.23375,
+              "macro_f1": 0.19229218011440047
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 1.33514404296875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "accuracy": 0.2309375,
+          "macro_f1": 0.188172230048229,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.233125,
+              "macro_f1": 0.18814472886031366
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.22875,
+              "macro_f1": 0.1879878772132739
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 1.1444091796875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "cnn_clean_s2",
+      "family": "cnn_clean",
+      "seed": 2,
+      "selected_epoch": 27,
+      "epochs_completed": 30,
+      "report_sha256": "0d1cb13c0b5a80c120378fda95cfe9e9d40ddcbb602d0c602e123862633480d6",
+      "conditions": {
+        "clean": {
+          "accuracy": 0.27625,
+          "macro_f1": 0.25120019234263763,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.265,
+              "macro_f1": 0.24187106670551128
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.2875,
+              "macro_f1": 0.2604353770151202
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 2.6702880859375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "accuracy": 0.2771875,
+          "macro_f1": 0.2519493721493574,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.265625,
+              "macro_f1": 0.24262903344101697
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.28875,
+              "macro_f1": 0.2611889591843167
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 3.0517578125e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "accuracy": 0.2775,
+          "macro_f1": 0.2539289544556685,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.268125,
+              "macro_f1": 0.24774261740912076
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.286875,
+              "macro_f1": 0.25991625623467085
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 4.9591064453125e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "accuracy": 0.2659375,
+          "macro_f1": 0.23945245139955262,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.259375,
+              "macro_f1": 0.23391956118441254
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.2725,
+              "macro_f1": 0.24452311032995402
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 5.340576171875e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_clean_s0",
+      "family": "resnet_clean",
+      "seed": 0,
+      "selected_epoch": 7,
+      "epochs_completed": 16,
+      "report_sha256": "598cc26917b479a0beb020e5790ab0536824bb0d8d0aa2d3c0772e1f8d39c4e9",
+      "conditions": {
+        "clean": {
+          "accuracy": 0.2846875,
+          "macro_f1": 0.2677767500796323,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.293125,
+              "macro_f1": 0.27843672080506326
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.27625,
+              "macro_f1": 0.25633999828679505
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 0.0001010894775390625,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "accuracy": 0.2834375,
+          "macro_f1": 0.26726063106779313,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.29,
+              "macro_f1": 0.2762347189215446
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.276875,
+              "macro_f1": 0.2575924889706613
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 0.00010061264038085938,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "accuracy": 0.27625,
+          "macro_f1": 0.26036745860232624,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.28,
+              "macro_f1": 0.2664834078116001
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.2725,
+              "macro_f1": 0.25366527892039137
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 0.00010776519775390625,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "accuracy": 0.2303125,
+          "macro_f1": 0.21727757799457414,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.235625,
+              "macro_f1": 0.22250129291472617
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.225,
+              "macro_f1": 0.2117779519503311
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 8.308887481689453e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_clean_s1",
+      "family": "resnet_clean",
+      "seed": 1,
+      "selected_epoch": 0,
+      "epochs_completed": 9,
+      "report_sha256": "f891caf6379bf855bfd269c6567e2fb7d5fe7b9bbda0804570ed7cfb8adda865",
+      "conditions": {
+        "clean": {
+          "accuracy": 0.115625,
+          "macro_f1": 0.08228764926369547,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.11625,
+              "macro_f1": 0.08043561052923989
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.115,
+              "macro_f1": 0.08404299871754697
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 1.1444091796875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "accuracy": 0.1153125,
+          "macro_f1": 0.08175184448677485,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.11625,
+              "macro_f1": 0.08044819577461614
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.114375,
+              "macro_f1": 0.08297962816027057
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 6.67572021484375e-06,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "accuracy": 0.115,
+          "macro_f1": 0.0812671846918385,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.115625,
+              "macro_f1": 0.079303224034203
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.114375,
+              "macro_f1": 0.0831581833954428
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 1.1444091796875e-05,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "accuracy": 0.111875,
+          "macro_f1": 0.07681615141147309,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.11375,
+              "macro_f1": 0.0766048179117121
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.11,
+              "macro_f1": 0.07690221897536152
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 9.5367431640625e-06,
+            "within_tolerance": true,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_clean_s2",
+      "family": "resnet_clean",
+      "seed": 2,
+      "selected_epoch": 4,
+      "epochs_completed": 13,
+      "report_sha256": "4d6c0b9dabf3d055f2c9c3ca469e1ecce3257dcd9928e385c816345a902c9cf0",
+      "conditions": {
+        "clean": {
+          "accuracy": 0.285,
+          "macro_f1": 0.26074672966986795,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.2875,
+              "macro_f1": 0.2622448949941777
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.2825,
+              "macro_f1": 0.2592442443165017
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 8.20159912109375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "accuracy": 0.28625,
+          "macro_f1": 0.2630366247720889,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.285,
+              "macro_f1": 0.2605357649458683
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.2875,
+              "macro_f1": 0.2655590155815941
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 8.7738037109375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "accuracy": 0.2828125,
+          "macro_f1": 0.259524095422314,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.279375,
+              "macro_f1": 0.2562626915926287
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.28625,
+              "macro_f1": 0.2627099048457859
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 8.392333984375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "accuracy": 0.254375,
+          "macro_f1": 0.2396366494793757,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.249375,
+              "macro_f1": 0.23604269763811123
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.259375,
+              "macro_f1": 0.2431441031072794
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 9.1552734375e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_aug_s0",
+      "family": "resnet_aug",
+      "seed": 0,
+      "selected_epoch": 0,
+      "epochs_completed": 9,
+      "report_sha256": "70f0e6aef84a87903a1a303d00a98e81c90ae7375970c9fcf042419dc20f900f",
+      "conditions": {
+        "clean": {
+          "accuracy": 0.1353125,
+          "macro_f1": 0.10523281035587564,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.13875,
+              "macro_f1": 0.10565881755105606
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.131875,
+              "macro_f1": 0.10480048997349542
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 4.1365623474121094e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "accuracy": 0.1353125,
+          "macro_f1": 0.10512611774242545,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.139375,
+              "macro_f1": 0.10644577910737078
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.13125,
+              "macro_f1": 0.10381894007763667
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 4.00543212890625e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "accuracy": 0.135625,
+          "macro_f1": 0.10468462721305441,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.14125,
+              "macro_f1": 0.10796893372975569
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.13,
+              "macro_f1": 0.10149644088250306
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 4.100799560546875e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "accuracy": 0.1375,
+          "macro_f1": 0.10742851058807021,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.14125,
+              "macro_f1": 0.10940166349911593
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.13375,
+              "macro_f1": 0.10554286422508394
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 4.0531158447265625e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_aug_s1",
+      "family": "resnet_aug",
+      "seed": 1,
+      "selected_epoch": 1,
+      "epochs_completed": 10,
+      "report_sha256": "b63b05082a26b04a2ec392ee063c89d6911dba4aebee93abf9c5ede3603e7b7b",
+      "conditions": {
+        "clean": {
+          "accuracy": 0.0846875,
+          "macro_f1": 0.05519384849518481,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.083125,
+              "macro_f1": 0.05441771984784107
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.08625,
+              "macro_f1": 0.05591345613197727
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 1.609325408935547e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "accuracy": 0.0846875,
+          "macro_f1": 0.05519109105273283,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.083125,
+              "macro_f1": 0.054419951114722045
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.08625,
+              "macro_f1": 0.05591345613197727
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 1.6033649444580078e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "accuracy": 0.08375,
+          "macro_f1": 0.05458539602802935,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.08125,
+              "macro_f1": 0.053509618375972415
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.08625,
+              "macro_f1": 0.05563782402459151
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 1.7523765563964844e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "accuracy": 0.081875,
+          "macro_f1": 0.05264815069420736,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.07875,
+              "macro_f1": 0.05097389483847302
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.085,
+              "macro_f1": 0.05428396918058572
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 1.5795230865478516e-05,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    },
+    {
+      "run_id": "resnet_aug_s2",
+      "family": "resnet_aug",
+      "seed": 2,
+      "selected_epoch": 12,
+      "epochs_completed": 21,
+      "report_sha256": "9a608529f2b6c008b240dcffc05890b54d1c3910d495d1e2dd59618aa31abe95",
+      "conditions": {
+        "clean": {
+          "accuracy": 0.2353125,
+          "macro_f1": 0.21684641038945401,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.23,
+              "macro_f1": 0.20939842428705474
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.240625,
+              "macro_f1": 0.22428613874711106
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 0.00014495849609375,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "30": {
+          "accuracy": 0.2365625,
+          "macro_f1": 0.21781567870417168,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.23,
+              "macro_f1": 0.20996375597198885
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.243125,
+              "macro_f1": 0.22579454722566653
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 0.00013399124145507812,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "20": {
+          "accuracy": 0.2315625,
+          "macro_f1": 0.21442328432857943,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.225,
+              "macro_f1": 0.2080776787071054
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.238125,
+              "macro_f1": 0.22081987976140857
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 0.00013637542724609375,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        },
+        "10": {
+          "accuracy": 0.2228125,
+          "macro_f1": 0.20781319964571593,
+          "groups": {
+            "3": {
+              "count": 1600,
+              "accuracy": 0.218125,
+              "macro_f1": 0.2028166181403896
+            },
+            "11": {
+              "count": 1600,
+              "accuracy": 0.2275,
+              "macro_f1": 0.21283867511815227
+            }
+          },
+          "reported_cpu_transfer": {
+            "max_abs_error": 0.0001735687255859375,
+            "within_tolerance": false,
+            "rtol": 0.0001,
+            "atol": 1e-05,
+            "argmax_difference_count": 0
+          }
+        }
+      }
+    }
+  ],
+  "clean_summary": {
+    "cnn_clean": {
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "ddof": 1,
+      "accuracy": {
+        "values": [
+          0.2453125,
+          0.2384375,
+          0.27625
+        ],
+        "mean": 0.25333333333333335,
+        "sample_std": 0.02014191188997046
+      },
+      "macro_f1": {
+        "values": [
+          0.20697500694639698,
+          0.19648059456217268,
+          0.25120019234263763
+        ],
+        "mean": 0.2182185979504024,
+        "sample_std": 0.029040873769791784
+      }
+    },
+    "resnet_clean": {
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "ddof": 1,
+      "accuracy": {
+        "values": [
+          0.2846875,
+          0.115625,
+          0.285
+        ],
+        "mean": 0.2284375,
+        "sample_std": 0.09769861581030714
+      },
+      "macro_f1": {
+        "values": [
+          0.2677767500796323,
+          0.08228764926369547,
+          0.26074672966986795
+        ],
+        "mean": 0.20360370967106522,
+        "sample_std": 0.10512157333922409
+      }
+    },
+    "resnet_aug": {
+      "training_seeds": [
+        0,
+        1,
+        2
+      ],
+      "n": 3,
+      "ddof": 1,
+      "accuracy": {
+        "values": [
+          0.1353125,
+          0.0846875,
+          0.2353125
+        ],
+        "mean": 0.15177083333333333,
+        "sample_std": 0.07664939796458504
+      },
+      "macro_f1": {
+        "values": [
+          0.10523281035587564,
+          0.05519384849518481,
+          0.21684641038945401
+        ],
+        "mean": 0.12575768974683815,
+        "sample_std": 0.08275772288587514
+      }
+    }
+  },
+  "files_sha256": {
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/registry.json": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
+    "/home/lucky/devdir/rgzndl/config/experiment_v1.json": "b297b665faabdf2deca831fbb2e8122861255f3c60b6a2746c58c49d6b9955dd",
+    "/home/lucky/devdir/rgzndl/config/deep_v1.json": "7d03f76090444fa3a83e7605432d413e4fba79fda76666103727cff9728a0188",
+    "/home/lucky/devdir/rgzndl/config/class_mapping.json": "f4a2d39845a78ba17589358c094283e8fbe2b88e002d4fb2b23aebf8b86bdf54",
+    "/home/lucky/devdir/rgzndl/src/ect/deep.py": "e4544c9ecaafccbd2ac0c34ac4a7615406352de1946842ad24d4f0b15b6b3745",
+    "/home/lucky/devdir/rgzndl/src/ect/models.py": "d87ab91ccde55c1d295cb7cc23408b721505788cb7296bb4313a7f9e56c573ea",
+    "/home/lucky/devdir/rgzndl/src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "/home/lucky/devdir/rgzndl/src/ect/noise.py": "354b483b1edfb91f1fa63d2d94e3fed977597b0b8cd907a05c56f682c6cb94f4",
+    "/home/lucky/devdir/rgzndl/src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+    "/home/lucky/devdir/rgzndl/src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "/home/lucky/devdir/rgzndl/src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+    "/home/lucky/devdir/rgzndl/src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+    "/home/lucky/devdir/rgzndl/src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+    "/home/lucky/devdir/rgzndl/src/ect/similarity.py": "54c560569597c0e4dacb00d78f3808d9569b7d00914b97cb6c2095c51801aabe",
+    "/home/lucky/devdir/rgzndl/src/ect/features.py": "d110ffdcc27f9b099753819f1401465093f7a3c6a14a2583712008b31c45099c",
+    "/home/lucky/devdir/rgzndl/scripts/register_experiments.py": "ef25bde60c2195938373a853603b2fd9bef24049f829a32e183fef91d9dd0c49",
+    "/home/lucky/devdir/rgzndl/scripts/diagnose_similarity.py": "72ed62ab862039383c1da212ef2f64ed372a056e893f41421d152eaef34201b4",
+    "/home/lucky/devdir/rgzndl/scripts/train_deep.py": "486b629fc36fcfe1c37cf6c675e268a942b603f8b2c950addc86ec661e555e72",
+    "/home/lucky/devdir/rgzndl/data/processed/grouped_v1/metadata.json": "8c3bace8e81730d1b37bf17cc991cdc63471015d7850a1d74c0e096cf5c6b2ab",
+    "/home/lucky/devdir/rgzndl/manifests/grouped_v1/summary.json": "2b66bafcb97dbef19fdd6106ef6956be0a20767043d35f743e12e7489f3b2bbb",
+    "/home/lucky/devdir/rgzndl/scripts/build_splits.py": "ccc03942db12032a04159e74e4daf33a2210ba48805199894fb8d88ad3efa4a2",
+    "/home/lucky/devdir/rgzndl/src/ect/splits.py": "efea5ab255822de479192fdde002034f922cfb3681e3cc7d4c091bcf0cea9cec",
+    "/home/lucky/devdir/rgzndl/results/data_audit/audit.json": "c6ab472b24fba7ab06f6475ffc8278d1fa214294064ec5c900c5a6c0bf1fe664",
+    "/home/lucky/devdir/rgzndl/results/data_audit/samples.csv": "3a9754ecb707406bcfcee5361657a7d57ef84daa13fd61af3a15fc9520485524",
+    "/home/lucky/devdir/rgzndl/data/raw/MDDECT_v1_train.npy": "f50bc6cb3d08f9972679f3876a41025aec2a4e2672147e24a6b58db007c71ac7",
+    "/home/lucky/devdir/rgzndl/data/raw/MDDECT_v1_test.npy": "865f972445ce0b9ad562336e7b6258b48d6b1d70d8d7254ff4fca77fdb951b58",
+    "/home/lucky/devdir/rgzndl/data/processed/grouped_v1/train_x.npy": "6f19db1832dc47ed276cc938cffd5dcdfdadfdc30e739ca8248621f07e436edb",
+    "/home/lucky/devdir/rgzndl/data/processed/grouped_v1/train_y.npy": "1f9942e0abfb322ae229bc935b6152e40e898b06fda626cc78e1f255419b40a4",
+    "/home/lucky/devdir/rgzndl/data/processed/grouped_v1/validation_x.npy": "127c788ce05184c71810db2acd124cc6a215f0dcb30c6bffb3ef89e95fa4df28",
+    "/home/lucky/devdir/rgzndl/data/processed/grouped_v1/validation_y.npy": "4b7a598c467e4549a5ed3fb092c72f24e3774e1c0ee21892c9dcfd9a4023631b",
+    "/home/lucky/devdir/rgzndl/data/processed/grouped_v1/test_x.npy": "dc83068b788a14b310b842244c7a45dcf9427125fbbc1e57f6cdfb946353c8f9",
+    "/home/lucky/devdir/rgzndl/data/processed/grouped_v1/test_y.npy": "1469efe104e6996af97a6fa6d56b5385fe03838ac9f147c6f826915d63732e0d",
+    "/home/lucky/devdir/rgzndl/data/processed/grouped_v1/normalization.json": "b02c95d647ec55f0aecc196c3c6207bed3d6806e8e2a1ed38fd0deb683871cbf",
+    "/home/lucky/devdir/rgzndl/manifests/grouped_v1/train.jsonl": "9890d665bc5da045a14766efc34c08e079e752551a11c19535ed6b5ef8d07b36",
+    "/home/lucky/devdir/rgzndl/manifests/grouped_v1/validation.jsonl": "97f6201ba4250c8044c19dd01c4807bf310d95472bf9d2d4b252661e960cde3c",
+    "/home/lucky/devdir/rgzndl/manifests/grouped_v1/test.jsonl": "413990beea1c949cb0d99654a75c2d35f6a37cc9476d8b26e1be3a5cb2946b2e",
+    "/home/lucky/devdir/rgzndl/results/similarity/train_test_v1/summary.json": "e68856e296a353806ca4ef71a55682f7a9d3fa6791c12b99b2b3c2b5802fb128",
+    "/home/lucky/devdir/rgzndl/results/similarity/train_test_v1/nearest.csv": "cc3bedce9f67452eaebd1f55c433b065d614562542d78d819505bdaf66230834",
+    "/home/lucky/devdir/rgzndl/results/similarity/validation_test_v1/summary.json": "d1ca4de5875690b2f9d8ed33c55a867fe834f6877f453639450fe82004d70e17",
+    "/home/lucky/devdir/rgzndl/results/similarity/validation_test_v1/nearest.csv": "24f79bb92497ad40bdeaf7d49acfabd30853f70dcbee4e48f5504ad43a3d1971",
+    "/home/lucky/devdir/rgzndl/results/baselines/svm_full_v1/report.json": "f9f6b811c11c49a9e3b61b0d4a90597bfae2fd7fdbc679acc5d115615df2997b",
+    "/home/lucky/devdir/rgzndl/results/baselines/svm_full_v1/model.joblib": "90393f7bc9e19e92d09b5d991af96a72d70e2d7a071dcff734c42180e8a7f8b7",
+    "/home/lucky/devdir/rgzndl/results/baselines/svm_full_v1/train_rows.json": "025c244b9ad151f0e95201737ad34729ff7d39105d46a0bf93b0185c59ee4095",
+    "/home/lucky/devdir/rgzndl/results/baselines/svm_full_v1/validation_predictions.csv": "97437dd93e325b84d54c09fd679e362a4c3038ffe1c2fc0aa24a6bca73b215f1",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/configs/cnn_clean_s0.json": "7d03f76090444fa3a83e7605432d413e4fba79fda76666103727cff9728a0188",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s0/report.json": "8c19f475761ce26f27ae71955baa4fb6b5067ae4e42d458629b0ccbfc62497f7",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s0/model.pt": "27ec475bff458742bcc3c19dea9525812812bb1efa32b662244d375bf8623767",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s0/train_rows.json": "bc6189639a53ec47dff012c57112329f11f8e473f79b1456f02fe3d4b1f97869",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s0/validation_predictions.csv": "c420800dcc587fe3d61e3f45340a4f7ebbbfafdce536dfbfcd2e89ac846ac40c",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s0/validation_rows.json": "2744adeda8df5436eff16c1a75144fc45f94879038d9fbbb171a1dd5eed6bdf2",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/configs/cnn_clean_s1.json": "8acb7eb07e47e509527fe6811c2fd2f686e6a8200887574d2ce1bb8810557a37",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s1/report.json": "d5fd2f7e12e44ec336dcc4f5fd806e37f775be4c3e00582f8dbb8381bfaa027a",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s1/model.pt": "c0917d37d470f78b6111f442f079fe0dbd099ec3229e90e84ba07bf2bd8c3a41",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s1/train_rows.json": "bc6189639a53ec47dff012c57112329f11f8e473f79b1456f02fe3d4b1f97869",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s1/validation_predictions.csv": "49c9719c4adeb976475196a43f59f79d11ce8b51fb2256855ac7b7e1fdc6165b",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s1/validation_rows.json": "2744adeda8df5436eff16c1a75144fc45f94879038d9fbbb171a1dd5eed6bdf2",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/configs/cnn_clean_s2.json": "954b2690d186005420404af45a0d56d5c90d6f4f3f731b4a2f0280425f773c2f",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s2/report.json": "0d1cb13c0b5a80c120378fda95cfe9e9d40ddcbb602d0c602e123862633480d6",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s2/model.pt": "2e848ace437ddcc3585ad024d96bb46edf6dcfe4e6b0805eb89d9ca84481c493",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s2/train_rows.json": "bc6189639a53ec47dff012c57112329f11f8e473f79b1456f02fe3d4b1f97869",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s2/validation_predictions.csv": "940a02192e86f87002f0b2bae99e5cff025ef26d7cc1dd24e3c9748ba8872f82",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/cnn_clean_s2/validation_rows.json": "2744adeda8df5436eff16c1a75144fc45f94879038d9fbbb171a1dd5eed6bdf2",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/configs/resnet_clean_s0.json": "7e16d393d4f6da1c2af2d808e21c65cc7aeae946f9d71d977875aa3271447d60",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s0/report.json": "598cc26917b479a0beb020e5790ab0536824bb0d8d0aa2d3c0772e1f8d39c4e9",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s0/model.pt": "ddbb9284462bada9fc13b8215a1fdf372a1259fdf58a2f2547af841817437320",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s0/train_rows.json": "bc6189639a53ec47dff012c57112329f11f8e473f79b1456f02fe3d4b1f97869",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s0/validation_predictions.csv": "39bbd43649e275ffc06d78749e9598c6728dfd584cf7e3f99b9907ec74c173d0",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s0/validation_rows.json": "2744adeda8df5436eff16c1a75144fc45f94879038d9fbbb171a1dd5eed6bdf2",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/configs/resnet_clean_s1.json": "9d0d0dddf1ec49a3fe74f09eed3bfd110755457661d77bbbecd2b6504bf875f5",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s1/report.json": "f891caf6379bf855bfd269c6567e2fb7d5fe7b9bbda0804570ed7cfb8adda865",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s1/model.pt": "6b87b5c18610084939cf44d7e6e2aaf67b67e859b061c0ca8d554fbd54806253",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s1/train_rows.json": "bc6189639a53ec47dff012c57112329f11f8e473f79b1456f02fe3d4b1f97869",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s1/validation_predictions.csv": "95ac3582548ad1e111638a954ae2b793f8b76807ffe5e93ec1cf53866db9e5db",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s1/validation_rows.json": "2744adeda8df5436eff16c1a75144fc45f94879038d9fbbb171a1dd5eed6bdf2",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/configs/resnet_clean_s2.json": "04ca60ff7dc75e6c33a63c8a77795f1c6d095192b48d9fa84b1b346536493bd5",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s2/report.json": "4d6c0b9dabf3d055f2c9c3ca469e1ecce3257dcd9928e385c816345a902c9cf0",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s2/model.pt": "b541d1bfebdcc872ed5c02e63f36bf09d7a12f0f8f51955f601129cd86f22d86",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s2/train_rows.json": "bc6189639a53ec47dff012c57112329f11f8e473f79b1456f02fe3d4b1f97869",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s2/validation_predictions.csv": "3167132d1a8bd74b4b6c37b17828ec28d4082c2f388f18c87ff2ff77940d52dc",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_clean_s2/validation_rows.json": "2744adeda8df5436eff16c1a75144fc45f94879038d9fbbb171a1dd5eed6bdf2",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/configs/resnet_aug_s0.json": "e2c2d979448f8528552dfa3c6f2c55b4fd64073c5c6b9ca362f768b928238da9",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s0/report.json": "70f0e6aef84a87903a1a303d00a98e81c90ae7375970c9fcf042419dc20f900f",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s0/model.pt": "059143eb515843fb895bd6ffad870d9c2c1b5288aec066d24fc679315bcf381b",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s0/train_rows.json": "bc6189639a53ec47dff012c57112329f11f8e473f79b1456f02fe3d4b1f97869",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s0/validation_predictions.csv": "057fc585f47ccdd1577661433c25d6d668a2cefdfd5394f60572612da6568a37",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s0/validation_rows.json": "2744adeda8df5436eff16c1a75144fc45f94879038d9fbbb171a1dd5eed6bdf2",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/configs/resnet_aug_s1.json": "d6d8e76e9bbfd1c92773162aabc4e3791a5fccf57132ff05062de9cf831e81be",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s1/report.json": "b63b05082a26b04a2ec392ee063c89d6911dba4aebee93abf9c5ede3603e7b7b",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s1/model.pt": "6c6eda0bef738eb1670ff7f144f8a590597de398d79ca4bda2b12d0365dc6757",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s1/train_rows.json": "bc6189639a53ec47dff012c57112329f11f8e473f79b1456f02fe3d4b1f97869",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s1/validation_predictions.csv": "d7afb56aa59b395bfd4cbca8860b41520cf4713822c7e612835702ad359af79f",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s1/validation_rows.json": "2744adeda8df5436eff16c1a75144fc45f94879038d9fbbb171a1dd5eed6bdf2",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/configs/resnet_aug_s2.json": "eacd6d0b5851eed0c714432a401fb2fdae3d64aebc218e5bdde260958e29d91a",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s2/report.json": "9a608529f2b6c008b240dcffc05890b54d1c3910d495d1e2dd59618aa31abe95",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s2/model.pt": "81f2455713228f7199e88805e4801c2609bf199c21f103ee6528bc4b1a6a7083",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s2/train_rows.json": "bc6189639a53ec47dff012c57112329f11f8e473f79b1456f02fe3d4b1f97869",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s2/validation_predictions.csv": "bc8b801d17f6258753afc50b49049c23771998c8733f592d93e037be30d72885",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/resnet_aug_s2/validation_rows.json": "2744adeda8df5436eff16c1a75144fc45f94879038d9fbbb171a1dd5eed6bdf2",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/training_verification.json": "50eec5cb272651f94b90a44dbb47c2e023bf23a5b4ca899e5014e5e0ec5f674d",
+    "/tmp/ect_verify_formal_training_v1.py": "463de57d09637705e8bbcf6423831d0f4d99a882a1be126690e08485daf621af",
+    "/home/lucky/devdir/rgzndl/results/experiments/formal_v1/execution_status.json": "fd93ceb01b4316d262eeef7cc798723eab4e8c3440275685bd04c867e3d4e5c7",
+    "/tmp/ect_independent_formal_results_review.py": "b6fe43c98340632252aedb7d71d910c3dad9ba723f7f43801106beb573a9dd55"
+  },
+  "mainline_gpu_acceptance_read_only": {
+    "status": "passed",
+    "gpu_predictions_verified": 115200,
+    "cpu_predictions_verified": 115200
+  },
+  "repeated_noise_status": "Only noise seed10 present, seeds11-14 absent in all nine training CSVs; not repeated evaluation",
+  "verifier_script": "\"\"\"Read-only formal_v1 identity/records audit. Only output under /tmp; no ect imports or inference.\"\"\"\nimport csv\nfrom collections import Counter\nfrom datetime import datetime, timezone\nimport hashlib\nimport json\nfrom pathlib import Path\nimport numpy as np\nimport torch  # CPU checkpoint metadata only; no model construction or inference.\n\nROOT = Path('/home/lucky/devdir/rgzndl')\nBASE = ROOT / 'results/experiments/formal_v1'\nOUT = Path('/tmp/ect_independent_formal_results_review.json')\nissues, hashes, checks = [], {}, Counter()\nmetric_max_error = 0.0\n\n\ndef check(ok, name, detail=None):\n    checks[name.split(':')[0]] += 1\n    if not bool(ok): issues.append({'check': name, 'detail': detail})\n\n\ndef sha(path):\n    path = Path(path)\n    if not path.is_absolute(): path = ROOT / path\n    h = hashlib.sha256()\n    with path.open('rb') as f:\n        for block in iter(lambda: f.read(4 * 1024 * 1024), b''): h.update(block)\n    result = h.hexdigest()\n    hashes[str(path)] = result\n    return result\n\n\ndef read(path):\n    path = Path(path)\n    if not path.is_absolute(): path = ROOT / path\n    sha(path)\n    return json.loads(path.read_text())\n\n\ndef bound(path, expected, name):\n    actual = sha(path)\n    check(actual == expected, name, {'actual': actual, 'expected': expected})\n\n\ndef canonical(config):\n    return hashlib.sha256(json.dumps(config, sort_keys=True, separators=(',', ':')).encode()).hexdigest()\n\n\ndef code_table(table, name, frozen=None, lf=False):\n    for p, expected in table.items():\n        actual = (hashlib.sha256((ROOT / p).read_bytes().replace(b'\\r\\n', b'\\n')).hexdigest()\n                  if lf else sha(p))\n        check(actual == expected, name + ':' + p)\n        if frozen is not None: check(expected == frozen.get(p), 'frozen_code:' + name + ':' + p)\n\n\ndef from_cm(cm):\n    cm = np.asarray(cm, dtype=np.int64)\n    check(cm.shape == (20, 20) and (cm >= 0).all(), 'cm_shape')\n    tp = np.diag(cm).astype(np.float64)\n    support, predicted = cm.sum(axis=1), cm.sum(axis=0)\n    divide = lambda a, b: np.divide(a, b, out=np.zeros(20), where=b != 0)\n    precision, recall, f1 = divide(tp, predicted), divide(tp, support), divide(2 * tp, support + predicted)\n    return dict(accuracy=float(tp.sum() / cm.sum()), macro_f1=float(f1.mean()),\n        confusion_matrix=cm.tolist(), per_class={str(k): dict(precision=float(precision[k]),\n        recall=float(recall[k]), **{'f1-score': float(f1[k]), 'support': int(support[k])}) for k in range(20)})\n\n\ndef count_metrics(y, p):\n    check(((0 <= y) & (y < 20) & (0 <= p) & (p < 20)).all(), 'class_bounds')\n    cm = np.bincount(20 * y + p, minlength=400).reshape(20, 20)\n    return from_cm(cm)\n\n\ndef compare_metrics(actual, expected, name):\n    global metric_max_error\n    check(actual['confusion_matrix'] == expected['confusion_matrix'], 'cm_match:' + name)\n    check(set(expected['per_class']) == set(actual['per_class']), 'class_set:' + name)\n    pairs = [(k, actual[k], expected[k]) for k in ('accuracy', 'macro_f1')]\n    pairs += [(f'{c}.{k}', v, expected['per_class'][c][k]) for c, vals in actual['per_class'].items() for k, v in vals.items()]\n    for k, a, e in pairs:\n        error = abs(a - e)\n        metric_max_error = max(metric_max_error, error)\n        check(np.isfinite(e) and error < 1e-12, 'metric_match:' + name + ':' + k, error)\n\n\ndef score(metrics, aug):\n    names = ('clean', '30', '20', '10') if aug else ('clean',)\n    return tuple(float(np.mean([metrics[c][k] for c in names])) for k in ('macro_f1', 'accuracy'))\n\n\ndef brief(m): return {k: m[k] for k in ('accuracy', 'macro_f1')}\n\n\nregistry = read(BASE / 'registry.json')\nreg_sha = hashes[str(BASE / 'registry.json')]\nbound('config/experiment_v1.json', registry['plan_file_sha256'], 'plan_hash')\ncheck(read('config/experiment_v1.json') == registry['plan'], 'plan_content')\nplan = registry['plan']\ntemplate = read(plan['template_config'])\nbound(plan['template_config'], registry['template_file_sha256'], 'template_hash')\nbound('config/class_mapping.json', registry['class_mapping_file_sha256'], 'mapping_hash')\ncheck(read('config/class_mapping.json')['verified'] is False and registry['class_mapping_status'] == 'unverified', 'mapping_status')\ncode_table(registry['code_sha256'], 'registry_code')\ncheck(registry['test_classification_evaluated'] is False, 'registry_test_sealed')\ncheck(registry['sample_counts'] == {'train': 24000, 'validation': 3200, 'test': 4800}, 'full_counts')\nmeta = read('data/processed/grouped_v1/metadata.json')\nbound('data/processed/grouped_v1/metadata.json', registry['cache_metadata_sha256'], 'metadata_hash')\ncheck(meta['manifest_sha256'] == registry['manifest_sha256'], 'metadata_manifests')\ncheck(meta['sample_counts'] == registry['sample_counts'], 'metadata_counts')\ncode_table(meta['code_sha256'], 'metadata_code', registry['code_sha256'])\nsummary = read(meta['summary_path'])\nbound(meta['summary_path'], meta['summary_sha256'], 'split_summary_hash')\ncheck(summary['manifest_sha256'] == registry['manifest_sha256'], 'summary_manifests')\ncheck(summary['inputs'] == meta['inputs'], 'summary_raw')\ncode_table(summary['code_sha256'], 'split_code')\nfor p, digest in [('results/data_audit/audit.json', summary['audit_sha256']), ('results/data_audit/samples.csv', summary['samples_sha256'])]:\n    bound(p, digest, 'upstream_audit_hash:' + p)\nfor source, info in meta['inputs'].items():\n    bound(info['path'], info['sha256'], 'raw_hash:' + source)\n    check(info['sha256'] == registry['raw_input_sha256'][source], 'raw_frozen:' + source)\n    check((ROOT / info['path']).stat().st_size == info['size_bytes'], 'raw_size:' + source)\nfor name, digest in meta['files_sha256'].items(): bound('data/processed/grouped_v1/' + name, digest, 'cache_hash:' + name)\nnormalization = read('data/processed/grouped_v1/normalization.json')\ncheck(normalization['train_cache_sha256'] == meta['files_sha256']['train_x.npy'], 'normalization_cache')\ncheck(normalization['train_manifest_sha256'] == registry['manifest_sha256']['train.jsonl'], 'normalization_manifest')\ncheck(normalization['fitted_split'] == 'train' and normalization['count_per_channel'] == 6000000, 'normalization_training_only')\nrecords, group_sets, id_sets = {}, {}, {}\nfor split, count in registry['sample_counts'].items():\n    p = ROOT / f'manifests/grouped_v1/{split}.jsonl'\n    bound(p, registry['manifest_sha256'][p.name], 'manifest_hash:' + split)\n    records[split] = [json.loads(s) for s in p.read_text().splitlines()]\n    check(len(records[split]) == count, 'manifest_count:' + split)\n    ids = [r['wave_sha256'] for r in records[split]]\n    id_sets[split] = set(ids)\n    group_sets[split] = {r['group_id'] for r in records[split]}\n    check(len(set(ids)) == count, 'identity_uniqueness:' + split)\n    check(all(r['split'] == split for r in records[split]), 'manifest_split:' + split)\n    labels = np.load(ROOT / f'data/processed/grouped_v1/{split}_y.npy', mmap_mode='r')\n    check(np.array_equal(labels, [r['class_index'] for r in records[split]]), 'cache_label_order:' + split)\n    labels._mmap.close()\nfor a, b in [('train', 'validation'), ('train', 'test'), ('validation', 'test')]:\n    check(not (id_sets[a] & id_sets[b]), 'split_identity_isolation:' + a + ':' + b)\n    check(not (group_sets[a] & group_sets[b]), 'split_group_isolation:' + a + ':' + b)\n# Rehash all manifest origins against original NPY; identity only, no test classification/statistics.\nraw_maps = {s: np.load(ROOT / i['path'], mmap_mode='r') for s, i in meta['inputs'].items()}\ntry:\n    origin_count = 0\n    for split, recs in records.items():\n        for r in recs:\n            check(r['representative'] in r['origins'], 'representative_origin:' + split)\n            for o in r['origins']:\n                scan = raw_maps[o['source']][tuple(o[k] for k in ('person', 'angle', 'direction', 'repeat', 'class_index'))]\n                h = hashlib.sha256(f'{scan.shape}:{scan.dtype.str}:'.encode('ascii'))\n                h.update(scan.tobytes(order='C'))\n                check(h.hexdigest() == r['wave_sha256'] and o['class_index'] == r['class_index'], 'origin_identity:' + split)\n                origin_count += 1\nfinally:\n    for arr in raw_maps.values(): arr._mmap.close()\nfor relative, digest in registry['audit_reports_sha256'].items():\n    bound(relative, digest, 'registered_audit_hash:' + relative)\n    audit = read(relative)\n    code_table(audit['code_sha256'], 'audit_code', registry['code_sha256'])\n    check(audit['cache_metadata_sha256'] == registry['cache_metadata_sha256'], 'audit_metadata')\n    check(audit['summary_sha256'] == meta['summary_sha256'], 'audit_summary')\n    check(audit['raw_inputs_declared_by_cache'] == meta['inputs'], 'audit_raw')\n    for name, d in audit['manifest_sha256'].items(): check(d == registry['manifest_sha256'][name], 'audit_manifest:' + name)\n    for name, d in audit['cache_files_sha256'].items(): check(d == meta['files_sha256'][name], 'audit_cache:' + name)\n    for name, d in audit['artifacts_sha256'].items(): bound((ROOT / relative).parent / name, d, 'audit_artifact:' + name)\n    check(audit['query_split'] == 'test' and audit['reference_split'] in ('train', 'validation'), 'audit_scope')\n    check(audit['exhaustive_pair_count'] == audit['query_count'] * audit['reference_count'], 'audit_pair_count')\nbaseline = read(plan['baseline_report'])\nbound(plan['baseline_report'], registry['baseline_report_sha256'], 'baseline_report_hash')\ncheck(baseline['status'] == 'complete' and not (ROOT / plan['baseline_report']).with_name('failure.json').exists(), 'baseline_complete')\ncode_table(baseline['code_sha256'], 'baseline_code', registry['code_sha256'])\nfor name, d in baseline['files_sha256'].items(): bound((ROOT / plan['baseline_report']).parent / name, d, 'baseline_artifact:' + name)\ncheck(baseline['cache_metadata_sha256'] == registry['cache_metadata_sha256'] and baseline['manifest_sha256'] == registry['manifest_sha256'] and baseline['raw_input_sha256'] == registry['raw_input_sha256'], 'baseline_data_binding')\n\ncheck(len(registry['runs']) == 9, 'registered_run_count')\ncheck({(r['family'], r['seed']) for r in registry['runs']} == {(f['id'], s) for f in plan['families'] for s in plan['training_seeds']}, 'registered_run_coverage')\nresults = []\ny = np.array([r['class_index'] for r in records['validation']], dtype=np.int64)\ngroups = np.array([r['group_id'] for r in records['validation']])\nfor run in registry['runs']:\n    run_id, folder = run['run_id'], ROOT / run['output_dir']\n    config = read(run['config_path'])\n    bound(run['config_path'], run['config_file_sha256'], 'registered_config_hash:' + run_id)\n    family = next(f for f in plan['families'] if f['id'] == run['family'])\n    expected_config = dict(template, model=family['model'], augmentation=family['augmentation'], seed=run['seed'])\n    check(config == expected_config, 'expected_family_config:' + run_id)\n    check(canonical(config) == run['resolved_config_sha256'], 'resolved_config_hash:' + run_id)\n    r = read(folder / 'report.json')\n    check(r['status'] == 'complete' and not (folder / 'failure.json').exists(), 'run_complete:' + run_id)\n    check(r['config'] == config and r['config_sha256'] == canonical(config), 'report_config:' + run_id)\n    check(set(r['code_sha256']) == set(r['code_sha256_lf']), 'source_table_coverage:' + run_id)\n    code_table(r['code_sha256'], 'run_code:' + run_id, registry['code_sha256'])\n    code_table(r['code_sha256_lf'], 'run_code_lf:' + run_id, registry['code_sha256'], lf=True)\n    for k in ('cache_metadata_sha256', 'manifest_sha256', 'raw_input_sha256'):\n        check(r[k] == registry[k], 'report_data:' + run_id + ':' + k)\n    check(r['normalization'] == normalization and r['normalization_sha256'] == meta['files_sha256']['normalization.json'], 'report_normalization:' + run_id)\n    check(r['heldout_test_evaluated'] is False and r['purpose'] == 'development_validation_only', 'run_test_sealed:' + run_id)\n    check(r['sample_counts'] == r['available_sample_counts'] == {'train': 24000, 'validation': 3200}, 'run_full_counts:' + run_id)\n    check(datetime.fromisoformat(registry['registered_utc']) < datetime.fromisoformat(r['created_utc']), 'registration_precedes_start:' + run_id)\n    check(r['classes'] == list(range(20)), 'report_class_order:' + run_id)\n    check(r['class_mapping_status'] == 'unverified', 'report_mapping:' + run_id)\n    check(r['environment']['device'] == 'cuda' and r['environment']['deterministic_algorithms'] is True, 'reported_device:' + run_id)\n    check(r['model_roundtrip_verified'] and r['roundtrip_device'] == 'cuda' and r['checkpoint_tensors_saved_on_cpu'], 'reported_roundtrip:' + run_id)\n    check(r['noise_protocol']['validation_seed'] == 10 and r['noise_protocol']['validation_namespace'] == 'validation' and r['noise_protocol']['conditions'] == {'clean': None, '30': 30, '20': 20, '10': 10}, 'noise_protocol:' + run_id)\n    check(set(r['files_sha256']) == {'model.pt', 'train_rows.json', 'validation_rows.json', 'validation_predictions.csv'}, 'artifact_coverage:' + run_id)\n    for name, digest in r['files_sha256'].items(): bound(folder / name, digest, 'run_artifact_hash:' + run_id + ':' + name)\n    checkpoint = torch.load(folder / 'model.pt', map_location='cpu', weights_only=True)\n    check(checkpoint['schema_version'] == 1 and checkpoint['protocol'] == config['protocol'], 'checkpoint_schema:' + run_id)\n    check(checkpoint['config'] == config and checkpoint['normalization'] == normalization, 'checkpoint_config_and_stats:' + run_id)\n    check(checkpoint['model_name'] == config['model'] and checkpoint['num_classes'] == 20, 'checkpoint_model:' + run_id)\n    check(checkpoint['selected_epoch'] == r['selected_epoch'], 'checkpoint_epoch:' + run_id)\n    check(all(t.device.type == 'cpu' and torch.isfinite(t).all().item() for t in checkpoint['state_dict'].values()), 'checkpoint_finite_cpu_read:' + run_id)\n    del checkpoint\n    check(r['parameter_count'] == (54548 if config['model'] == 'cnn' else 242836), 'reported_parameter_count:' + run_id)\n    check(r['selection_rule'] == ('equal mean clean/30/20/10 dB validation macro_f1, accuracy, earlier epoch' if config['augmentation'] else 'clean validation macro_f1, accuracy, earlier epoch'), 'selection_rule_label:' + run_id)\n    for split, count in [('train', 24000), ('validation', 3200)]:\n        check(read(folder / (split + '_rows.json')) == list(range(count)), 'run_full_rows:' + run_id + ':' + split)\n    ep = r['epochs']\n    check([e['epoch'] for e in ep] == list(range(len(ep))) and 1 <= len(ep) <= config['max_epochs'], 'epoch_sequence:' + run_id)\n    for e in ep:\n        for c, m in e['validation_metrics'].items():\n            recomputed = from_cm(m['confusion_matrix'])\n            check(sum(map(sum, m['confusion_matrix'])) == 3200, 'epoch_support:' + run_id)\n            compare_metrics(recomputed, m, f'{run_id}.epoch{e[\"epoch\"]}.{c}')\n        check(np.allclose(score(e['validation_metrics'], config['augmentation']), e['selection_score'], rtol=0, atol=1e-12), 'selection_score:' + run_id)\n        check(np.isfinite(e['train_loss']) and e['train_loss'] >= 0, 'train_loss_finite:' + run_id)\n        check(0 <= e['augmented_count'] <= 24000 and (config['augmentation'] or e['augmented_count'] == 0), 'augmentation_record:' + run_id)\n    chosen = max(ep, key=lambda e: (*score(e['validation_metrics'], config['augmentation']), -e['epoch']))\n    check(r['selected_epoch'] == chosen['epoch'] and r['validation_metrics'] == chosen['validation_metrics'], 'selected_epoch_and_metrics:' + run_id)\n    # Independent patience replay checks early stop and incomplete epochs.\n    best, stale, stop = None, 0, None\n    for e in ep:\n        key = (*score(e['validation_metrics'], config['augmentation']), -e['epoch'])\n        if best is None or key > best: best, stale = key, 0\n        else: stale += 1\n        if stale >= config['patience'] and stop is None: stop = e['epoch']\n    check((stop is None and len(ep) == config['max_epochs']) or stop == len(ep) - 1, 'stopping_rule:' + run_id)\n    with (folder / 'validation_predictions.csv').open(newline='') as h: rows = list(csv.DictReader(h))\n    check(len(rows) == 12800 and {rr['condition'] for rr in rows} == {'clean', '30', '20', '10'}, 'csv_coverage:' + run_id)\n    entry = dict(run_id=run_id, family=run['family'], seed=run['seed'], selected_epoch=r['selected_epoch'], epochs_completed=len(ep), report_sha256=hashes[str(folder / 'report.json')], conditions={})\n    check(set(r['validation_group_metrics']) == set(map(str, np.unique(groups))), 'group_coverage:' + run_id)\n    for c in ('clean', '30', '20', '10'):\n        selected = [rr for rr in rows if rr['condition'] == c]\n        check(len(selected) == 3200, 'csv_condition_count:' + run_id + ':' + c)\n        for i, rr in enumerate(selected):\n            rec = records['validation'][i]\n            check(int(rr['row_index']) == i and rr['wave_sha256'] == rec['wave_sha256'] and int(rr['group_id']) == rec['group_id'] and int(rr['class_index']) == rec['class_index'], 'csv_identity:' + run_id + ':' + c)\n            check(rr['noise_seed'] == ('' if c == 'clean' else '10') and rr['snr_applicable'] == ('' if c == 'clean' else 'True'), 'csv_noise_seed:' + run_id + ':' + c)\n        p = np.array([int(rr['predicted_class_index']) for rr in selected], dtype=np.int64)\n        m = count_metrics(y, p)\n        compare_metrics(m, r['validation_metrics'][c], run_id + ':' + c)\n        gm = {}\n        for g in np.unique(groups):\n            mask = groups == g\n            direct = count_metrics(y[mask], p[mask])\n            compare_metrics(direct, r['validation_group_metrics'][str(g)][c], f'{run_id}:{c}:group{g}')\n            gm[str(g)] = dict(count=int(mask.sum()), **brief(direct))\n        drift = r['cpu_transfer_comparison'][c]\n        check(drift['argmax_difference_count'] == 0, 'reported_cpu_argmax:' + run_id + ':' + c)\n        compare_metrics(m, drift['cpu_metrics'], run_id + ':' + c + ':reported_cpu')\n        entry['conditions'][c] = dict(**brief(m), groups=gm, reported_cpu_transfer={k:v for k,v in drift.items() if k != 'cpu_metrics'})\n    results.append(entry)\n\n# Check independently produced mainline acceptance references, without launching its script.\nacceptance = read(BASE / 'training_verification.json')\ncheck(acceptance['registry_sha256'] == reg_sha and acceptance['status'] == 'passed', 'mainline_acceptance_registry')\ncheck(acceptance['test_classification_evaluated'] is False and 'repeats10..14 not evaluated' in acceptance['scope'], 'mainline_acceptance_scope')\nscript_path = Path('/tmp/ect_verify_formal_training_v1.py')\nbound(script_path, acceptance['verifier_script_sha256'], 'mainline_verifier_script_hash')\ncheck(script_path.read_text() == acceptance['verifier_script'], 'mainline_verifier_script_content')\ncheck(len(acceptance['runs']) == 9 and {r['run_id'] for r in acceptance['runs']} == {r['run_id'] for r in results}, 'mainline_acceptance_run_set')\nfor verified in acceptance['runs']:\n    rr = next(r for r in results if r['run_id'] == verified['run_id'])\n    check(verified['report_sha256'] == rr['report_sha256'] and verified['selected_epoch'] == rr['selected_epoch'], 'mainline_report_binding:' + rr['run_id'])\n    for c, v in verified['conditions'].items():\n        check(v['gpu_predictions_verified'] == 3200 and v['csv_metrics_and_group_metrics_verified'], 'mainline_verified_count')\n        check(v['cpu_transfer'] == rr['conditions'][c]['reported_cpu_transfer'], 'mainline_transfer_match:' + rr['run_id'] + ':' + c)\ncheck(acceptance['gpu_predictions_verified'] == acceptance['cpu_predictions_verified'] == 115200, 'mainline_prediction_totals')\nstatus = read(BASE / 'execution_status.json')\ncheck(status['registry_sha256'] == reg_sha and status['test_classification_evaluated'] is False and status['completed_runs'] == 9, 'execution_status_binding')\nsummary_stats = {}\nfor family in ['cnn_clean', 'resnet_clean', 'resnet_aug']:\n    members = sorted([r for r in results if r['family'] == family], key=lambda r:r['seed'])\n    summary_stats[family] = {'training_seeds': [r['seed'] for r in members], 'n': 3, 'ddof': 1}\n    for metric in ('accuracy', 'macro_f1'):\n        values = np.array([r['conditions']['clean'][metric] for r in members])\n        summary_stats[family][metric] = dict(values=values.tolist(), mean=float(values.mean()), sample_std=float(values.std(ddof=1)))\n# Guard against concurrent modifications; hash table values are the independent reference snapshot.\ninitial = dict(hashes)\nfor path, digest in initial.items(): bound(path, digest, 'stable_snapshot:' + path)\noutput = dict(status='passed' if not issues else 'issues_found', created_utc=datetime.now(timezone.utc).isoformat(),\n    script_sha256=sha(Path(__file__)), registry_sha256=reg_sha, source_metrics='NumPy bincount only; no ect.deep._metrics/sklearn',\n    scope='read-only records/identity and CPU checkpoint metadata; zero inference; full source origins identity only including test',\n    checks=dict(checks), issues=issues, all_manifest_origins_rehashed=origin_count,\n    validation_csv_rows_verified=sum(12800 for r in results), metric_max_abs_error=metric_max_error,\n    runs=results, clean_summary=summary_stats, files_sha256=hashes,\n    mainline_gpu_acceptance_read_only=dict(status=acceptance['status'], gpu_predictions_verified=acceptance['gpu_predictions_verified'], cpu_predictions_verified=acceptance['cpu_predictions_verified']),\n    repeated_noise_status='Only noise seed10 present, seeds11-14 absent in all nine training CSVs; not repeated evaluation')\nOUT.write_text(json.dumps(output, indent=2, allow_nan=False) + '\\n')\nprint(json.dumps({k:output[k] for k in ['status', 'registry_sha256', 'checks', 'issues', 'all_manifest_origins_rehashed', 'validation_csv_rows_verified', 'metric_max_abs_error', 'clean_summary']}, indent=2))\nprint('Evidence:', OUT)\n",
+  "retention_note": "Independent read-only record retained with the exact script; all file hashes matched again when copied. Complements GPU inference verification with the frozen registry source-code comparison."
+}

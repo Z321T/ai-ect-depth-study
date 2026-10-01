@@ -1,0 +1,1022 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-01T11:27:07.790802+00:00",
+  "scope": "Validation only. All 3200 rows. Clean once per selected model; noisy conditions use epoch-selection seed10 only, not the registered repeats10..14.",
+  "test_classification_evaluated": false,
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "noise_seed": 10,
+  "noise_namespace": "validation",
+  "statistic": "Mean and sample SD across three training seeds on one fixed split; not a population confidence interval.",
+  "augmentation_comparison": "Training noise and epoch-selection objective both differ.",
+  "class_mapping_status": "unverified; class_index metrics only",
+  "files_sha256": {
+    "registry.json": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
+    "training_verification.json": "50eec5cb272651f94b90a44dbb47c2e023bf23a5b4ca899e5014e5e0ec5f674d",
+    "results/baselines/svm_full_v1/report.json": "f9f6b811c11c49a9e3b61b0d4a90597bfae2fd7fdbc679acc5d115615df2997b",
+    "results/experiments/formal_v1/cnn_clean_s0/report.json": "8c19f475761ce26f27ae71955baa4fb6b5067ae4e42d458629b0ccbfc62497f7",
+    "results/experiments/formal_v1/cnn_clean_s1/report.json": "d5fd2f7e12e44ec336dcc4f5fd806e37f775be4c3e00582f8dbb8381bfaa027a",
+    "results/experiments/formal_v1/cnn_clean_s2/report.json": "0d1cb13c0b5a80c120378fda95cfe9e9d40ddcbb602d0c602e123862633480d6",
+    "results/experiments/formal_v1/resnet_clean_s0/report.json": "598cc26917b479a0beb020e5790ab0536824bb0d8d0aa2d3c0772e1f8d39c4e9",
+    "results/experiments/formal_v1/resnet_clean_s1/report.json": "f891caf6379bf855bfd269c6567e2fb7d5fe7b9bbda0804570ed7cfb8adda865",
+    "results/experiments/formal_v1/resnet_clean_s2/report.json": "4d6c0b9dabf3d055f2c9c3ca469e1ecce3257dcd9928e385c816345a902c9cf0",
+    "results/experiments/formal_v1/resnet_aug_s0/report.json": "70f0e6aef84a87903a1a303d00a98e81c90ae7375970c9fcf042419dc20f900f",
+    "results/experiments/formal_v1/resnet_aug_s1/report.json": "b63b05082a26b04a2ec392ee063c89d6911dba4aebee93abf9c5ede3603e7b7b",
+    "results/experiments/formal_v1/resnet_aug_s2/report.json": "9a608529f2b6c008b240dcffc05890b54d1c3910d495d1e2dd59618aa31abe95"
+  },
+  "generator_script_sha256": "3b61f40f31ab5e9531bbe3c7d8196bd121ee770a8b7516ce7ce386735486b685",
+  "generator_script": "\"\"\"Frozen validation training summary; epoch-selection noise seed10 only.\"\"\"\nimport csv\nfrom datetime import datetime, timezone\nimport hashlib\nimport json\nfrom pathlib import Path\nimport os\nos.environ.setdefault('MPLCONFIGDIR', '/tmp/ect_matplotlib')\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nROOT = Path('/home/lucky/devdir/rgzndl')\nFOLDER = ROOT / 'results/experiments/formal_v1'\n\n\ndef sha(path):\n    return hashlib.sha256(Path(path).read_bytes()).hexdigest()\n\n\ndef main():\n    target = FOLDER / 'training_summary.json'\n    assert not target.exists()\n    registry = json.loads((FOLDER / 'registry.json').read_text())\n    verified = json.loads((FOLDER / 'training_verification.json').read_text())\n    assert verified['status'] == 'passed' and len(verified['runs']) == 9\n    reports = {}\n    for run in registry['runs']:\n        path = ROOT / run['output_dir'] / 'report.json'\n        reports[run['run_id']] = json.loads(path.read_text())\n        check = next(x for x in verified['runs'] if x['run_id'] == run['run_id'])\n        assert sha(path) == check['report_sha256']\n    baseline_path = ROOT / registry['plan']['baseline_report']\n    assert sha(baseline_path) == registry['baseline_report_sha256']\n    baseline = json.loads(baseline_path.read_text())\n    selected = baseline['candidates'][baseline['selected_candidate']]\n    families = ('cnn_clean', 'resnet_clean', 'resnet_aug')\n    summary = dict(schema_version=1, created_utc=datetime.now(timezone.utc).isoformat(),\n        scope='Validation only. All 3200 rows. Clean once per selected model; noisy conditions '\n              'use epoch-selection seed10 only, not the registered repeats10..14.',\n        test_classification_evaluated=False,\n        training_seeds=[0, 1, 2], noise_seed=10, noise_namespace='validation',\n        statistic='Mean and sample SD across three training seeds on one fixed split; '\n                  'not a population confidence interval.',\n        augmentation_comparison='Training noise and epoch-selection objective both differ.',\n        class_mapping_status='unverified; class_index metrics only',\n        files_sha256={'registry.json': sha(FOLDER / 'registry.json'),\n                      'training_verification.json': sha(FOLDER / 'training_verification.json'),\n                      registry['plan']['baseline_report']: sha(baseline_path)},\n        generator_script_sha256=sha(__file__), generator_script=Path(__file__).read_text(),\n        baseline=dict(selected_candidate=baseline['selected_candidate'], clean_metrics=selected['metrics'],\n                      deterministic=True, training_seed_sd=None), families={}, runs=[])\n    for run in registry['runs']:\n        report = reports[run['run_id']]\n        summary['files_sha256'][str(Path(run['output_dir']) / 'report.json')] = sha(ROOT / run['output_dir'] / 'report.json')\n        summary['runs'].append(dict(run_id=run['run_id'], family=run['family'], seed=run['seed'],\n            epochs_executed=len(report['epochs']), selected_epoch_zero_based=report['selected_epoch'],\n            selected_epoch_one_based=report['selected_epoch'] + 1,\n            conditions={c: {m: x[m] for m in ('accuracy', 'macro_f1')}\n                        for c, x in report['validation_metrics'].items()}))\n    for family in families:\n        runs = [x for x in summary['runs'] if x['family'] == family]\n        assert [x['seed'] for x in runs] == [0, 1, 2]\n        summary['families'][family] = {\n            c: {m: {'mean': float(np.mean([x['conditions'][c][m] for x in runs])),\n                    'sample_sd': float(np.std([x['conditions'][c][m] for x in runs], ddof=1)), 'n_training_seeds': 3}\n                for m in ('accuracy', 'macro_f1')} for c in ('clean', '30', '20', '10')}\n    with (FOLDER / 'training_summary.csv').open('w', newline='') as handle:\n        writer = csv.writer(handle, lineterminator='\\n')\n        writer.writerow(['run_id', 'family', 'training_seed', 'epochs_executed', 'selected_epoch_one_based',\n                         'condition', 'noise_seed', 'accuracy', 'macro_f1'])\n        for run in summary['runs']:\n            for c, metrics in run['conditions'].items():\n                writer.writerow([run['run_id'], run['family'], run['seed'], run['epochs_executed'],\n                    run['selected_epoch_one_based'], c, '' if c == 'clean' else 10,\n                    metrics['accuracy'], metrics['macro_f1']])\n    # Clean comparison: SVM single deterministic selected model, no invented seed variance.\n    fig, axes = plt.subplots(1, 2, figsize=(10.8, 4.5), constrained_layout=True)\n    names = ['SVM', 'CNN', 'ResNet', 'ResNet + noise']\n    colors = ['#63788c', '#286d9b', '#d18b36', '#579378']\n    for ax, metric, title in zip(axes, ('accuracy', 'macro_f1'), ('Accuracy', 'Macro-F1')):\n        means = [selected['metrics'][metric]] + [summary['families'][f]['clean'][metric]['mean'] for f in families]\n        errors = [0] + [summary['families'][f]['clean'][metric]['sample_sd'] for f in families]\n        ax.bar(range(4), means, color=colors, alpha=.75)\n        ax.errorbar(range(1, 4), means[1:], yerr=errors[1:], fmt='none', color='black', capsize=5)\n        for i, family in enumerate(families, start=1):\n            values = [x['conditions']['clean'][metric] for x in summary['runs'] if x['family'] == family]\n            ax.scatter(np.array([i] * 3) + [-.12, 0, .12], values, c='#20252b', s=20, zorder=3)\n        ax.set(xticks=range(4), xticklabels=names, ylim=(0, 1), ylabel=title)\n        ax.grid(axis='y', alpha=.2)\n    fig.suptitle('Clean validation: SVM vs three training seeds per network\\nError bars: sample SD across training seeds; test held out', fontsize=11)\n    fig.savefig(FOLDER / 'clean_validation.png', dpi=180)\n    fig.savefig(FOLDER / 'clean_validation.svg')\n    plt.close(fig)\n    fig, axes = plt.subplots(3, 2, figsize=(10.8, 9), constrained_layout=True)\n    for row, family in enumerate(families):\n        for run in [r for r in registry['runs'] if r['family'] == family]:\n            report = reports[run['run_id']]\n            epochs = report['epochs']\n            x = np.arange(1, len(epochs) + 1)\n            conditions = ('clean', '30', '20', '10') if family == 'resnet_aug' else ('clean',)\n            scores = [np.mean([e['validation_metrics'][c]['macro_f1'] for c in conditions]) for e in epochs]\n            axes[row, 0].plot(x, [e['train_loss'] for e in epochs], label=f\"seed {run['seed']}\")\n            line, = axes[row, 1].plot(x, scores, label=f\"seed {run['seed']}\")\n            e = report['selected_epoch']\n            axes[row, 1].scatter(e + 1, scores[e], color=line.get_color(), edgecolor='black', zorder=3)\n        axes[row, 0].set(title=f'{family}: training loss', ylabel='Cross-entropy', xlabel='Epoch (1-based)')\n        axes[row, 1].set(title=f'{family}: selection Macro-F1', ylabel='Mean four conditions' if family == 'resnet_aug' else 'Clean',\n                         xlabel='Epoch (1-based)', ylim=(0, .35))\n        for ax in axes[row]:\n            ax.grid(alpha=.2)\n            ax.legend(fontsize=8)\n    fig.suptitle('Frozen protocol: train loss and validation selection curves\\nDots show selected epochs; noisy validation uses seed10 only', fontsize=12)\n    fig.savefig(FOLDER / 'learning_curves.png', dpi=180)\n    fig.savefig(FOLDER / 'learning_curves.svg')\n    plt.close(fig)\n    for name in ('clean_validation.svg', 'learning_curves.svg'):\n        svg = FOLDER / name\n        svg.write_text('\\n'.join(line.rstrip() for line in svg.read_text().splitlines()) + '\\n', newline='\\n')\n    summary['output_files_sha256'] = {n: sha(FOLDER / n) for n in\n        ('training_summary.csv', 'clean_validation.png', 'clean_validation.svg', 'learning_curves.png', 'learning_curves.svg')}\n    target.write_text(json.dumps(summary, indent=2, allow_nan=False) + '\\n', newline='\\n')\n\n\nif __name__ == '__main__':\n    main()\n",
+  "baseline": {
+    "selected_candidate": 8,
+    "clean_metrics": {
+      "accuracy": 0.6090625,
+      "macro_f1": 0.6086428422039789,
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "per_class": {
+        "0": {
+          "precision": 0.98125,
+          "recall": 0.98125,
+          "f1-score": 0.98125,
+          "support": 160.0
+        },
+        "1": {
+          "precision": 0.6488095238095238,
+          "recall": 0.68125,
+          "f1-score": 0.6646341463414634,
+          "support": 160.0
+        },
+        "2": {
+          "precision": 0.5617283950617284,
+          "recall": 0.56875,
+          "f1-score": 0.5652173913043478,
+          "support": 160.0
+        },
+        "3": {
+          "precision": 0.4943181818181818,
+          "recall": 0.54375,
+          "f1-score": 0.5178571428571429,
+          "support": 160.0
+        },
+        "4": {
+          "precision": 0.4716981132075472,
+          "recall": 0.46875,
+          "f1-score": 0.4702194357366771,
+          "support": 160.0
+        },
+        "5": {
+          "precision": 0.6554621848739496,
+          "recall": 0.4875,
+          "f1-score": 0.5591397849462365,
+          "support": 160.0
+        },
+        "6": {
+          "precision": 0.5347222222222222,
+          "recall": 0.48125,
+          "f1-score": 0.506578947368421,
+          "support": 160.0
+        },
+        "7": {
+          "precision": 0.5384615384615384,
+          "recall": 0.6125,
+          "f1-score": 0.5730994152046783,
+          "support": 160.0
+        },
+        "8": {
+          "precision": 0.5063291139240507,
+          "recall": 0.5,
+          "f1-score": 0.5031446540880503,
+          "support": 160.0
+        },
+        "9": {
+          "precision": 0.5531914893617021,
+          "recall": 0.65,
+          "f1-score": 0.5977011494252874,
+          "support": 160.0
+        },
+        "10": {
+          "precision": 0.5460122699386503,
+          "recall": 0.55625,
+          "f1-score": 0.5510835913312694,
+          "support": 160.0
+        },
+        "11": {
+          "precision": 0.5548387096774193,
+          "recall": 0.5375,
+          "f1-score": 0.546031746031746,
+          "support": 160.0
+        },
+        "12": {
+          "precision": 0.47126436781609193,
+          "recall": 0.5125,
+          "f1-score": 0.49101796407185627,
+          "support": 160.0
+        },
+        "13": {
+          "precision": 0.5232558139534884,
+          "recall": 0.5625,
+          "f1-score": 0.5421686746987951,
+          "support": 160.0
+        },
+        "14": {
+          "precision": 0.6496350364963503,
+          "recall": 0.55625,
+          "f1-score": 0.5993265993265994,
+          "support": 160.0
+        },
+        "15": {
+          "precision": 0.6448598130841121,
+          "recall": 0.43125,
+          "f1-score": 0.5168539325842697,
+          "support": 160.0
+        },
+        "16": {
+          "precision": 0.6204819277108434,
+          "recall": 0.64375,
+          "f1-score": 0.6319018404907976,
+          "support": 160.0
+        },
+        "17": {
+          "precision": 0.5687203791469194,
+          "recall": 0.75,
+          "f1-score": 0.6469002695417789,
+          "support": 160.0
+        },
+        "18": {
+          "precision": 0.9741935483870968,
+          "recall": 0.94375,
+          "f1-score": 0.9587301587301588,
+          "support": 160.0
+        },
+        "19": {
+          "precision": 0.7916666666666666,
+          "recall": 0.7125,
+          "f1-score": 0.75,
+          "support": 160.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          157,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          109,
+          27,
+          11,
+          2,
+          3,
+          1,
+          0,
+          4,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          19,
+          91,
+          20,
+          15,
+          5,
+          6,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          16,
+          18,
+          87,
+          21,
+          7,
+          3,
+          4,
+          1,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          6,
+          6,
+          24,
+          75,
+          4,
+          14,
+          12,
+          5,
+          8,
+          0,
+          1,
+          3,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          13,
+          6,
+          20,
+          78,
+          11,
+          13,
+          7,
+          0,
+          1,
+          0,
+          4,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          5,
+          3,
+          8,
+          12,
+          16,
+          77,
+          25,
+          4,
+          5,
+          4,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          10,
+          1,
+          4,
+          17,
+          98,
+          20,
+          8,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          1,
+          7,
+          2,
+          1,
+          9,
+          19,
+          80,
+          22,
+          16,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          1,
+          2,
+          8,
+          15,
+          104,
+          13,
+          9,
+          3,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          2,
+          4,
+          0,
+          2,
+          1,
+          11,
+          13,
+          89,
+          23,
+          8,
+          4,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          4,
+          9,
+          19,
+          86,
+          26,
+          8,
+          3,
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          2,
+          5,
+          12,
+          23,
+          82,
+          26,
+          4,
+          1,
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2,
+          2,
+          1,
+          8,
+          26,
+          90,
+          16,
+          3,
+          7,
+          3,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          5,
+          1,
+          2,
+          11,
+          25,
+          89,
+          9,
+          9,
+          5,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          2,
+          0,
+          1,
+          7,
+          4,
+          15,
+          69,
+          32,
+          25,
+          0,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          1,
+          1,
+          3,
+          7,
+          6,
+          12,
+          103,
+          23,
+          0,
+          3
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          2,
+          10,
+          7,
+          120,
+          0,
+          19
+        ],
+        [
+          0,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          2,
+          151,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          3,
+          0,
+          3,
+          3,
+          32,
+          3,
+          114
+        ]
+      ]
+    },
+    "deterministic": true,
+    "training_seed_sd": null
+  },
+  "families": {
+    "cnn_clean": {
+      "clean": {
+        "accuracy": {
+          "mean": 0.25333333333333335,
+          "sample_sd": 0.02014191188997046,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.2182185979504024,
+          "sample_sd": 0.029040873769791784,
+          "n_training_seeds": 3
+        }
+      },
+      "30": {
+        "accuracy": {
+          "mean": 0.25333333333333335,
+          "sample_sd": 0.020828384828961967,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.2180926639993863,
+          "sample_sd": 0.029631833196821843,
+          "n_training_seeds": 3
+        }
+      },
+      "20": {
+        "accuracy": {
+          "mean": 0.25229166666666664,
+          "sample_sd": 0.022053586490258993,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.21831206973766829,
+          "sample_sd": 0.031317276316216634,
+          "n_training_seeds": 3
+        }
+      },
+      "10": {
+        "accuracy": {
+          "mean": 0.23885416666666667,
+          "sample_sd": 0.0241199260640105,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.20368900909626642,
+          "sample_sd": 0.031062208633462735,
+          "n_training_seeds": 3
+        }
+      }
+    },
+    "resnet_clean": {
+      "clean": {
+        "accuracy": {
+          "mean": 0.2284375,
+          "sample_sd": 0.09769861581030714,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.20360370967106522,
+          "sample_sd": 0.10512157333922409,
+          "n_training_seeds": 3
+        }
+      },
+      "30": {
+        "accuracy": {
+          "mean": 0.22833333333333336,
+          "sample_sd": 0.09788901426913714,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.20401636677555227,
+          "sample_sd": 0.10590524356788834,
+          "n_training_seeds": 3
+        }
+      },
+      "20": {
+        "accuracy": {
+          "mean": 0.2246875,
+          "sample_sd": 0.0950488155830992,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.20038624623882625,
+          "sample_sd": 0.10316099521253003,
+          "n_training_seeds": 3
+        }
+      },
+      "10": {
+        "accuracy": {
+          "mean": 0.19885416666666667,
+          "sample_sd": 0.07628094488195157,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.177910126295141,
+          "sample_sd": 0.08826083977478558,
+          "n_training_seeds": 3
+        }
+      }
+    },
+    "resnet_aug": {
+      "clean": {
+        "accuracy": {
+          "mean": 0.15177083333333333,
+          "sample_sd": 0.07664939796458504,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.12575768974683815,
+          "sample_sd": 0.08275772288587514,
+          "n_training_seeds": 3
+        }
+      },
+      "30": {
+        "accuracy": {
+          "mean": 0.1521875,
+          "sample_sd": 0.07733096485237981,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.12604429583310997,
+          "sample_sd": 0.08330586268790045,
+          "n_training_seeds": 3
+        }
+      },
+      "20": {
+        "accuracy": {
+          "mean": 0.1503125,
+          "sample_sd": 0.0749928381997241,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.1245644358565544,
+          "sample_sd": 0.08175232551965365,
+          "n_training_seeds": 3
+        }
+      },
+      "10": {
+        "accuracy": {
+          "mean": 0.14739583333333334,
+          "sample_sd": 0.0709879592929909,
+          "n_training_seeds": 3
+        },
+        "macro_f1": {
+          "mean": 0.12262995364266449,
+          "sample_sd": 0.0786915561368408,
+          "n_training_seeds": 3
+        }
+      }
+    }
+  },
+  "runs": [
+    {
+      "run_id": "cnn_clean_s0",
+      "family": "cnn_clean",
+      "seed": 0,
+      "epochs_executed": 30,
+      "selected_epoch_zero_based": 23,
+      "selected_epoch_one_based": 24,
+      "conditions": {
+        "clean": {
+          "accuracy": 0.2453125,
+          "macro_f1": 0.20697500694639698
+        },
+        "30": {
+          "accuracy": 0.2440625,
+          "macro_f1": 0.20544660178040858
+        },
+        "20": {
+          "accuracy": 0.2428125,
+          "macro_f1": 0.20592118569443904
+        },
+        "10": {
+          "accuracy": 0.2196875,
+          "macro_f1": 0.18344234584101768
+        }
+      }
+    },
+    {
+      "run_id": "cnn_clean_s1",
+      "family": "cnn_clean",
+      "seed": 1,
+      "epochs_executed": 30,
+      "selected_epoch_zero_based": 24,
+      "selected_epoch_one_based": 25,
+      "conditions": {
+        "clean": {
+          "accuracy": 0.2384375,
+          "macro_f1": 0.19648059456217268
+        },
+        "30": {
+          "accuracy": 0.23875,
+          "macro_f1": 0.19688201806839284
+        },
+        "20": {
+          "accuracy": 0.2365625,
+          "macro_f1": 0.1950860690628974
+        },
+        "10": {
+          "accuracy": 0.2309375,
+          "macro_f1": 0.188172230048229
+        }
+      }
+    },
+    {
+      "run_id": "cnn_clean_s2",
+      "family": "cnn_clean",
+      "seed": 2,
+      "epochs_executed": 30,
+      "selected_epoch_zero_based": 27,
+      "selected_epoch_one_based": 28,
+      "conditions": {
+        "clean": {
+          "accuracy": 0.27625,
+          "macro_f1": 0.25120019234263763
+        },
+        "30": {
+          "accuracy": 0.2771875,
+          "macro_f1": 0.2519493721493574
+        },
+        "20": {
+          "accuracy": 0.2775,
+          "macro_f1": 0.2539289544556685
+        },
+        "10": {
+          "accuracy": 0.2659375,
+          "macro_f1": 0.23945245139955262
+        }
+      }
+    },
+    {
+      "run_id": "resnet_clean_s0",
+      "family": "resnet_clean",
+      "seed": 0,
+      "epochs_executed": 16,
+      "selected_epoch_zero_based": 7,
+      "selected_epoch_one_based": 8,
+      "conditions": {
+        "clean": {
+          "accuracy": 0.2846875,
+          "macro_f1": 0.2677767500796323
+        },
+        "30": {
+          "accuracy": 0.2834375,
+          "macro_f1": 0.26726063106779313
+        },
+        "20": {
+          "accuracy": 0.27625,
+          "macro_f1": 0.26036745860232624
+        },
+        "10": {
+          "accuracy": 0.2303125,
+          "macro_f1": 0.21727757799457414
+        }
+      }
+    },
+    {
+      "run_id": "resnet_clean_s1",
+      "family": "resnet_clean",
+      "seed": 1,
+      "epochs_executed": 9,
+      "selected_epoch_zero_based": 0,
+      "selected_epoch_one_based": 1,
+      "conditions": {
+        "clean": {
+          "accuracy": 0.115625,
+          "macro_f1": 0.08228764926369547
+        },
+        "30": {
+          "accuracy": 0.1153125,
+          "macro_f1": 0.08175184448677485
+        },
+        "20": {
+          "accuracy": 0.115,
+          "macro_f1": 0.0812671846918385
+        },
+        "10": {
+          "accuracy": 0.111875,
+          "macro_f1": 0.07681615141147309
+        }
+      }
+    },
+    {
+      "run_id": "resnet_clean_s2",
+      "family": "resnet_clean",
+      "seed": 2,
+      "epochs_executed": 13,
+      "selected_epoch_zero_based": 4,
+      "selected_epoch_one_based": 5,
+      "conditions": {
+        "clean": {
+          "accuracy": 0.285,
+          "macro_f1": 0.26074672966986795
+        },
+        "30": {
+          "accuracy": 0.28625,
+          "macro_f1": 0.2630366247720889
+        },
+        "20": {
+          "accuracy": 0.2828125,
+          "macro_f1": 0.259524095422314
+        },
+        "10": {
+          "accuracy": 0.254375,
+          "macro_f1": 0.2396366494793757
+        }
+      }
+    },
+    {
+      "run_id": "resnet_aug_s0",
+      "family": "resnet_aug",
+      "seed": 0,
+      "epochs_executed": 9,
+      "selected_epoch_zero_based": 0,
+      "selected_epoch_one_based": 1,
+      "conditions": {
+        "clean": {
+          "accuracy": 0.1353125,
+          "macro_f1": 0.10523281035587564
+        },
+        "30": {
+          "accuracy": 0.1353125,
+          "macro_f1": 0.10512611774242545
+        },
+        "20": {
+          "accuracy": 0.135625,
+          "macro_f1": 0.10468462721305441
+        },
+        "10": {
+          "accuracy": 0.1375,
+          "macro_f1": 0.10742851058807021
+        }
+      }
+    },
+    {
+      "run_id": "resnet_aug_s1",
+      "family": "resnet_aug",
+      "seed": 1,
+      "epochs_executed": 10,
+      "selected_epoch_zero_based": 1,
+      "selected_epoch_one_based": 2,
+      "conditions": {
+        "clean": {
+          "accuracy": 0.0846875,
+          "macro_f1": 0.05519384849518481
+        },
+        "30": {
+          "accuracy": 0.0846875,
+          "macro_f1": 0.05519109105273283
+        },
+        "20": {
+          "accuracy": 0.08375,
+          "macro_f1": 0.05458539602802935
+        },
+        "10": {
+          "accuracy": 0.081875,
+          "macro_f1": 0.05264815069420736
+        }
+      }
+    },
+    {
+      "run_id": "resnet_aug_s2",
+      "family": "resnet_aug",
+      "seed": 2,
+      "epochs_executed": 21,
+      "selected_epoch_zero_based": 12,
+      "selected_epoch_one_based": 13,
+      "conditions": {
+        "clean": {
+          "accuracy": 0.2353125,
+          "macro_f1": 0.21684641038945401
+        },
+        "30": {
+          "accuracy": 0.2365625,
+          "macro_f1": 0.21781567870417168
+        },
+        "20": {
+          "accuracy": 0.2315625,
+          "macro_f1": 0.21442328432857943
+        },
+        "10": {
+          "accuracy": 0.2228125,
+          "macro_f1": 0.20781319964571593
+        }
+      }
+    }
+  ],
+  "output_files_sha256": {
+    "training_summary.csv": "eff98dba0d705ec28527f8be73bc958bfbfbf0bf2580cafa81830f753082b792",
+    "clean_validation.png": "1a19953395b5b8dae0eaa5d8d8d37c5d733cf2f007a0d037638883ac12a142a2",
+    "clean_validation.svg": "71a1f6b2720cdb3a98ad09aecb7ecaac337088cfac9784fdfeb710afb3b01e98",
+    "learning_curves.png": "6950b6d10052300db0e2fa81d7fa8e1b469a56f51068f1d39bdefaa49128a409",
+    "learning_curves.svg": "5b6950588d141b86bf41d6534015b4f0ab33de2324fdb3474575cbaad5f12237"
+  }
+}
