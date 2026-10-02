@@ -1,0 +1,8 @@
+{
+  "raw_csv_sha256": "15be620c35d3277b470a0d2f3a7a20567bacfe9e284158c275d1be333149f417",
+  "gzip_sha256": "27d03da4be18f87750f589e2e9125171839ef54e6e941f09d96939c65dc6b8c2",
+  "raw_bytes": 104507940,
+  "gzip_bytes": 33552500,
+  "roundtrip_byte_identity_verified": true,
+  "report_sha256": "ad8a9f6a75f5482cbb20246a5198cf6db2199d95a0e8d9434ae8d98f14ad8de6"
+}

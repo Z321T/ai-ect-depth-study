@@ -2,6 +2,16 @@
 
 更新日期：2026-10-02。
 
+## 固定权重诊断与论文组件实测（2026-10-02）
+
+CUDA固定权重train/validation761600条诊断预测独立重载全部匹配，56总体/252组指标CSV直算一致。冻结推理Train Accuracy三seed均值CNN16.72%、普通ResNet13.06%、增强11.26%，SVM57.10%；与旧clean validation结果一致。BN批统计反事实提升train而验证多处下降，不是可部署改进。原始state/文件未变。
+
+输入标准化符合训练mean0/std1，但train跨样本DC变化占逐通道方差99.966%/99.973%，联合AC RMS中位0.002897；validation mean约-1.413、std约0.056–0.061。train大连接组1/2共16000条mean约+0.707，其余train及validation各组mean约-1.413。实际采集/增益原因未知，不能由统计宣布数据构造错误；候选干预是保留DC并独立缩放AC，必须先建立可信原方法基线。
+
+论文组件134654参数（26层交叉核查93754），工程假设见docs/paper_model_reconstruction.md；41项组件测试/独立审查通过。预登记40条train学习：Adam4e-5、最多2000epoch、每100epoch10-crop、首次≥95%停止；第1700epoch记忆Accuracy100%、F1 1，CPU/GPU40条类别差0，平均概率最大差0.000318617，独立直接裁剪重载核实。不能将40条训练成绩当泛化或超过论文的证据。
+
+全项目194项真实GPU可访问环境回归通过（26.23秒、无跳过）。下一完整基线设计已提前明确三seed/Adam4e-5/1000epoch有限上限；训练器尚待实现及源码执行绑定，没有完整新模型成绩。原formal_v1、数据划分与结果不变，后续只用train/validation选择并标记探索性。
+
 ## 原论文方法对照与差距（2026-10-02）
 
 本轮核对同版本arXiv原文§II、§V及表II：论文最好网络ResNeXt1D-38，四stage各三个残差单元；训练224点随机裁剪，验证/测试随机10-crop输出平均。Adam初始lr4e-5、batch128、正文10000epoch，5000/7500降学习率；验证Accuracy选择模型。当前简化CNN/三stage ResNet、250整段、AdamW lr1e-3及最多30epoch明显不同，未构成论文复现。原文较浅ResNet1Dv1-14也报87.88%，不能只以原网络更大解释差距；具体机制待train/validation诊断。保持grouped_v1，不能混入原发布重叠划分追求93.58%；改进应与同协议重建原方法比较。新路线见docs/paper_baseline_alignment.md和D014。

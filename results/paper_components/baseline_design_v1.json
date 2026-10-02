@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "design_registered_before_full_training",
+  "protocol": "paper_baseline_finite_v1",
+  "registered_utc": "2026-10-02T09:09:51.263624+00:00",
+  "config_path": "config/paper_baseline_v1.json",
+  "config_sha256": "c14d18a8a451e249d2b3e31c21af9e5c3a49975576b9f3770f553c31a0dc3dc0",
+  "component_code_sha256": {
+    "src/ect/paper_models.py": "7ec086276b464f008ae007d6e490f99f4af43f8e1568e09f00e67fc7c582c14e",
+    "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958"
+  },
+  "cache_metadata_sha256": "8c3bace8e81730d1b37bf17cc991cdc63471015d7850a1d74c0e096cf5c6b2ab",
+  "manifest_sha256": {
+    "train.jsonl": "9890d665bc5da045a14766efc34c08e079e752551a11c19535ed6b5ef8d07b36",
+    "validation.jsonl": "97f6201ba4250c8044c19dd01c4807bf310d95472bf9d2d4b252661e960cde3c",
+    "test.jsonl": "413990beea1c949cb0d99654a75c2d35f6a37cc9476d8b26e1be3a5cb2946b2e"
+  },
+  "component_acceptance_report_sha256": "932be7e82fc63c00ae88e9855c0cf86e62c14f5d0d6e95a42fe7790c31879c59",
+  "component_acceptance_verification_sha256": "32769745301dc2c1ff8d150f384c19e85e98593358f95a84d9bbc890120b114f",
+  "complete_training_started": false,
+  "training_runner_implemented": false,
+  "execution_registry_bound": false,
+  "final_test_already_seen_in_prior_protocol": true,
+  "purpose": "Exploratory method reconstruction; implementation/execution binding pending"
+}

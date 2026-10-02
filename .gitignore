@@ -16,3 +16,4 @@ data/processed/
 *.joblib
 *.pt
 results/evaluation/*/predictions.csv
+results/diagnostics/*/predictions.csv

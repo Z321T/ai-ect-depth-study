@@ -2,7 +2,7 @@
 
 公开仓库：[Z321T/ai-ect-depth-study](https://github.com/Z321T/ai-ect-depth-study)。
 
-本项目从MDDECT I/Q时序信号预测20个类别，研究模型比较和附加噪声。数据审计、整组去重划分、预处理、SVM/CNN/ResNet完整训练及固定五次噪声重复评价已完成，CPU与真实CUDA链路均验收；正式test按冻结协议完成并核验，当前进入课程技术报告和复现整理。类别语义映射仍未确认，仅报告class_index指标。
+本项目从MDDECT I/Q时序信号预测20个类别，研究模型比较和附加噪声。SVM/CNN/ResNet的formal_v1完整训练与冻结test评价已完成；为建立可靠改进基线，进一步完成训练行为诊断和论文ResNeXt/裁剪组件重建及学习验收。下一单元实现并登记有限预算的完整论文方法基线，尚无其全量分数。类别语义仍未确认，仅报告class_index指标。
 
 ## 文档入口
 
@@ -24,6 +24,11 @@
 - [九项完整训练与验证结果](docs/full_training_results.md)
 - [固定噪声重复评价与测试门槛](docs/repeated_evaluation.md)
 - [正式测试与噪声重复结果](docs/formal_evaluation_results.md)
+- [论文方法对照与研究路线](docs/paper_baseline_alignment.md)
+- [固定权重训练行为诊断](docs/learning_diagnostics_results.md)
+- [论文ResNeXt结构与工程假设](docs/paper_model_reconstruction.md)
+- [论文组件学习/设备验收](docs/paper_components_acceptance.md)
+- [下一单元完整基线设计](docs/plans/2026-10-02-paper-baseline-training.md)
 - [近重复诊断结果](results/similarity/train_validation_v1/report.md)
 
 原始论文、译文和GPT旧计划在本地 `reference/` 保留，不上传代码仓库。数据从 [MDDECT官方发布页](https://www.kaggle.com/datasets/mchikyt3/mddect) 下载，将两个NPY放在 `data/raw/`，文件身份见审计报告。论文参考：[arXiv:2104.02472](https://arxiv.org/abs/2104.02472)。数据官方许可为CC BY 4.0，使用时引用数据发布者和论文。人员分工由用户另行处理。

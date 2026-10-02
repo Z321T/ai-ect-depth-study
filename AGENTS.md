@@ -29,4 +29,8 @@ SVM/近重复依赖requirements-models.txt，协议见docs/svm_baseline.md和doc
 
 formal_v1登记、九项完整训练、noise10–14验证重复及100–104正式test均完成；正式结果见docs/formal_evaluation_results.md。registry与九份配置保持不可变，其false字段是登记时历史状态；execution_status为可更新运行状态。validation512000/test768000预测已逐条重载核验，评价源代码及统计有验收记录，147真实GPU回归通过。新的模型/参数另立探索性协议和目录，不覆盖本轮；最终test已见，不能将后续改动当未见test的确认性实验。独立推理先按seed_everything配置确定性/TF32开关，再load_deep_model。
 
-下一单元是课程技术报告和复现整理，不处理人员分工。公开评价预测CSV以predictions.csv.gz保存，未压缩CSV本地存在但忽略Git；按compression.json及报告SHA核对，还原时拒绝覆盖。绘图工具scripts/plot_evaluation.py只读完成报告/汇总，不执行推理。
+用户后续要求先建立原方法基线再做可靠改进。固定旧权重train/validation诊断761600预测已独立核验，BN反事实只诊断、不作部署成绩。论文网络/裁剪组件见docs/paper_model_reconstruction.md，新增paper_models.py/paper_crops.py，不修改旧源码以保证重载。40条train学习验收1700epoch记忆100%，CPU/CUDA重载通过；这是组件证据，不是泛化。全项目194项回归通过。结果入口docs/learning_diagnostics_results.md、docs/paper_components_acceptance.md。
+
+下一单元按docs/plans/2026-10-02-paper-baseline-training.md实现训练器/执行源码绑定，再开始三seed全量train/validation。config/paper_baseline_v1.json只是有限1000epoch设计，尚未执行；保留原5000/7500学习率衰减不缩放，在当前上限内不触发，不能称10000epoch严格复现。原文38层参数表与公开结构计数不一致，按公开结构134654实现，所有未明细节明确登记。不处理人员分工，不重新评估资源。
+
+公开评价/诊断预测CSV以predictions.csv.gz保存，未压缩CSV本地存在但忽略Git；按compression.json及报告SHA核对，还原时拒绝覆盖。绘图工具scripts/plot_evaluation.py只读完成报告/汇总，不执行推理。新完整训练与改进为探索性，不使用已见test挑方案。
