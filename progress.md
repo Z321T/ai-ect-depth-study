@@ -1,5 +1,23 @@
 # 推进日志
 
+## 2026-10-02：终版训练器验收与执行冻结
+
+- 终版264项回归在真实CUDA可访问环境全部通过（50.993秒、无跳过）；CPU/CUDA同40train/40validation两轮训练、各80条独立预测及全部总体/组指标核对一致。CUDA权重另在CPU重载80条，分类差0、指标差0。验收路径results/paper_training/runner_acceptance_v1/。
+- 登记器28项、独立核验器30项回归及16个独立正反例复核完成，无可复现P1/P2；源码停止修改。执行registry已冻结，时间2026-10-02T13:18:27.648343+00:00，SHA256 791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4；验收SHA256 1a3e349394ab64c3211a82e170be4d2549bd2bf7114cba823405c55343fde82c。绑定13份源码、原设计/配置、数据与三个全量run配置，尚未执行完整训练。
+- 用户询问复现进度，已回复实现/验收完成、尚无新全量成绩；接续按冻结规则逐个训练seed0/1/2，各1000轮、24000train/3200validation，不计算新test、不改原衰减点。
+
+
+## 2026-10-02：有限预算论文方法完整训练
+
+- 用户运行中询问进度，已明确回复“三seed全量尚未启动，无新完整验证成绩”，继续原任务。会话恢复后旧代理not_found，主线接管登记语义修复，新代理实现独立核验修复，写集分离。
+- 登记新增CPU/CUDA两个实际smoke报告/权重/行号/预测/独立proof语义，固定smoke配置、cache/manifest/raw/source/概率裁剪工具完整文本SHA、全部覆盖与指标及determinism核查。原“任意JSON+checks”回归先FAIL后拒绝；26项先通过，补1e-12指标容差及determinism回归后修复。最后并行改verifier源码导致prototype proof SHA过期，新进程终版统一验收待源码停止修改；不跳过身份检查。
+- 新训练器/登记/独立核验首次完整248项回归在实际GPU上下文全部通过（43.959秒，无跳过）。CPU/CUDA CLI同40train/40validation两epoch与CPU独立80预测/指标已运行；因后续登记语义修复涉及执行源码，完整可逆归档至忽略的data/processed/paper_runner_before_final_binding，不改写旧报告身份，终版源码将重新验收。
+- 注册/核验独立审查复现3P2：验收只绑定任意artifact+布尔checks、不核对实际CPU/CUDA报告/独立证据；完整用途未核对execution registry；独立proof原子link后清理失败仍抛失败却留success。原实现代理按分离写集补RED回归修复，真实完整训练保持未启动。
+- 训练器warm依赖默认dilation漂移也已真实复现：__code__不包含默认参数；补AST literal_eval检查__defaults__/__kwdefaults__，源码不exec、不改旧模块。十二项必要回归CPU11通过1CUDA跳过；后续完整回归包含真实CUDA。
+- 独立训练器审查复现两P2：导入后磁盘源码漂移却被记录为已执行；成功report之后最终progress失败且failure标记也写不出时仍误载。新增真实子进程源码/写失败回归先RED再修，补warm依赖先导入/编辑/后导入runner回归RED。修复导入快照+实际函数/方法code与源码编译比较，running.marker先建立、全部上下文清理/progress后原子report、marker最后提交；11项CPU10通过1CUDA跳过，限定复核进行中。
+- 用户授权继续，创建feat/paper-baseline-training，沿用既有设计配置与grouped_v1。主线实现论文训练器/CLI，独立代理实现执行登记器及其必要测试，写集分离；完整训练须等CPU/CUDA最小路径、独立重载/指标、代码审查与执行源码绑定通过。
+- 训练器七项必要回归先因缺少paper_training模块失败（沙箱CUDA测试跳过不算验收）；覆盖原衰减点、验证interval/Accuracy及较早epoch选择、真实裁剪/梯度、test隔离、标签、失败占目录和产物/源码篡改拒绝。CPU/GPU正式验收在可访问GPU上下文执行。
+
 ## 2026-10-02：训练诊断与论文组件执行
 
 - 发布验收：实现/实测结果3a86636672354faa7c8095438baaa3308364be14已fast-forward合入main并成功推送；GitHub API远端main完整SHA逐字一致，工作区干净。原formal_v1 registry及本阶段report/压缩预测/预登记SHA再次核对通过，旧冻结执行源码相对778a14e无差异。当前单元结束，接续有限预算论文基线训练器/执行登记/三seed全量训练；没有正在运行的训练或残余代理。

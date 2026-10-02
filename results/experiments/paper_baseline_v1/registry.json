@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "protocol": "paper_baseline_finite_v1",
+  "status": "frozen_execution_registration",
+  "registered_utc": "2026-10-02T13:18:27.648343+00:00",
+  "registration_dir": "results/experiments/paper_baseline_v1",
+  "test_classification_enabled": false,
+  "base_config_path": "config/paper_baseline_v1.json",
+  "base_config_sha256": "c14d18a8a451e249d2b3e31c21af9e5c3a49975576b9f3770f553c31a0dc3dc0",
+  "design_path": "results/paper_components/baseline_design_v1.json",
+  "design_sha256": "341a764a31f1d9b1241244efd695b40bccfec86cd5cb6a3c24bd5548512d70c9",
+  "acceptance_path": "results/paper_training/runner_acceptance_v1/acceptance.json",
+  "acceptance_sha256": "1a3e349394ab64c3211a82e170be4d2549bd2bf7114cba823405c55343fde82c",
+  "code_sha256": {
+    "src/ect/paper_training.py": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+    "src/ect/paper_registration.py": "16ad3f853b8e4a77da0a2e90e718b9068815e1d95f28a7b8cf5b267f96d9cc0f",
+    "src/ect/paper_models.py": "7ec086276b464f008ae007d6e490f99f4af43f8e1568e09f00e67fc7c582c14e",
+    "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+    "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+    "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+    "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+    "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+    "scripts/train_paper_baseline.py": "d32827bcdde7e75ee601cade1002f37a1192ec8d751e6be7aa533f192dbd82d9",
+    "scripts/register_paper_baseline.py": "d1a4d2af3f718989b1c4f9a555c870f7c46462b0853a9a95c6fdf5b71a7f0362",
+    "scripts/verify_paper_run.py": "130b594f3839353841e04cf3a4af84977f8e4de6c2e1598e06e0cec3ab7f5694"
+  },
+  "data_identity": {
+    "cache_dir": "data/processed/grouped_v1",
+    "cache_metadata_sha256": "8c3bace8e81730d1b37bf17cc991cdc63471015d7850a1d74c0e096cf5c6b2ab",
+    "cache_files_sha256": {
+      "train_x.npy": "6f19db1832dc47ed276cc938cffd5dcdfdadfdc30e739ca8248621f07e436edb",
+      "train_y.npy": "1f9942e0abfb322ae229bc935b6152e40e898b06fda626cc78e1f255419b40a4",
+      "validation_x.npy": "127c788ce05184c71810db2acd124cc6a215f0dcb30c6bffb3ef89e95fa4df28",
+      "validation_y.npy": "4b7a598c467e4549a5ed3fb092c72f24e3774e1c0ee21892c9dcfd9a4023631b",
+      "test_x.npy": "dc83068b788a14b310b842244c7a45dcf9427125fbbc1e57f6cdfb946353c8f9",
+      "test_y.npy": "1469efe104e6996af97a6fa6d56b5385fe03838ac9f147c6f826915d63732e0d",
+      "normalization.json": "b02c95d647ec55f0aecc196c3c6207bed3d6806e8e2a1ed38fd0deb683871cbf"
+    },
+    "manifest_sha256": {
+      "train.jsonl": "9890d665bc5da045a14766efc34c08e079e752551a11c19535ed6b5ef8d07b36",
+      "validation.jsonl": "97f6201ba4250c8044c19dd01c4807bf310d95472bf9d2d4b252661e960cde3c",
+      "test.jsonl": "413990beea1c949cb0d99654a75c2d35f6a37cc9476d8b26e1be3a5cb2946b2e"
+    },
+    "summary_path": "manifests/grouped_v1/summary.json",
+    "summary_sha256": "2b66bafcb97dbef19fdd6106ef6956be0a20767043d35f743e12e7489f3b2bbb",
+    "raw_inputs": {
+      "train": {
+        "path": "data/raw/MDDECT_v1_train.npy",
+        "size_bytes": 432000128,
+        "sha256": "f50bc6cb3d08f9972679f3876a41025aec2a4e2672147e24a6b58db007c71ac7"
+      },
+      "test": {
+        "path": "data/raw/MDDECT_v1_test.npy",
+        "size_bytes": 48000128,
+        "sha256": "865f972445ce0b9ad562336e7b6258b48d6b1d70d8d7254ff4fca77fdb951b58"
+      }
+    },
+    "sample_counts": {
+      "train": 24000,
+      "validation": 3200,
+      "test": 4800
+    },
+    "normalization_sha256": "b02c95d647ec55f0aecc196c3c6207bed3d6806e8e2a1ed38fd0deb683871cbf"
+  },
+  "files_sha256": {
+    "config/paper_baseline_v1.json": "c14d18a8a451e249d2b3e31c21af9e5c3a49975576b9f3770f553c31a0dc3dc0",
+    "results/paper_components/baseline_design_v1.json": "341a764a31f1d9b1241244efd695b40bccfec86cd5cb6a3c24bd5548512d70c9",
+    "results/paper_components/acceptance_v1/report.json": "932be7e82fc63c00ae88e9855c0cf86e62c14f5d0d6e95a42fe7790c31879c59",
+    "results/paper_components/acceptance_v1/verification.json": "32769745301dc2c1ff8d150f384c19e85e98593358f95a84d9bbc890120b114f",
+    "results/paper_training/runner_acceptance_v1/cpu/report.json": "23da3b478a48b8e1435d2927d84d0fe181e3a74ec68fa4bfe31a325aaf043fb4",
+    "results/paper_training/runner_acceptance_v1/cpu/train_rows.json": "241cde82dde872287263005d88989c83e53a510defdb15e9ef597266a88f8a89",
+    "results/paper_training/runner_acceptance_v1/cpu/train_predictions.csv": "ed5f7317aa11117ae7148e2e78afaa3d471d58944df023f15e6bffaf05660865",
+    "results/paper_training/runner_acceptance_v1/cpu/validation_predictions.csv": "cd90a4049accd6f55dd4c1fb3ee618cf61e66f3800dcfd666b03c40f73b34a57",
+    "results/paper_training/runner_acceptance_v1/cpu/validation_rows.json": "84ecaebaafd5f6d8fedb4d155f820a3e0c549ba1e769f8c8509a6eb24fed7cff",
+    "results/paper_training/runner_acceptance_v1/cpu/model.pt": "276b391c1d78e5a509a79813d926850abc8a1fb3992c2fd53185dd531a4b689e",
+    "results/paper_training/runner_acceptance_v1/cpu_verification.json": "465213f7c0da92e2e25863fe212cf6da966d7280a02ecdc938cbceb7dd31dc25",
+    "results/paper_training/runner_acceptance_v1/cuda/report.json": "d44ea8400a5899ffe6bf9bfcae9348df5366b334fb3b243f81ba778c1a41afb1",
+    "results/paper_training/runner_acceptance_v1/cuda/train_rows.json": "241cde82dde872287263005d88989c83e53a510defdb15e9ef597266a88f8a89",
+    "results/paper_training/runner_acceptance_v1/cuda/train_predictions.csv": "0d454900c6a989540031939219259bc2ac46850c581b6753e455a2449091f67f",
+    "results/paper_training/runner_acceptance_v1/cuda/validation_predictions.csv": "fb8244b4f4ff2a22e70321cbef4f6994ffdd2da0b6a6363e4b8a64aa97d550d2",
+    "results/paper_training/runner_acceptance_v1/cuda/validation_rows.json": "84ecaebaafd5f6d8fedb4d155f820a3e0c549ba1e769f8c8509a6eb24fed7cff",
+    "results/paper_training/runner_acceptance_v1/cuda/model.pt": "c8e5e53230764ef20083ee7452b9e342101560dd88112e9a7d0327530c14fa20",
+    "results/paper_training/runner_acceptance_v1/cuda_verification.json": "60e42bce6e0a096bf6749c1b954455612e4f50eee0c5fed6b1bc91de19e99581",
+    "results/paper_training/runner_acceptance_v1/cuda_cpu_verification.json": "ce88b88087d4bdc4ddc50b22838cb97cac121075ee1ef017b3372a32d7415d50",
+    "results/paper_training/runner_acceptance_v1/regression.json": "87f291fc9884c298664c6af102967af36e3e1e4ba5b9094c1f0057f88d964775",
+    "results/paper_training/runner_acceptance_v1/regression.log": "49c4108b2e415c2516bebdb1ee3ce1718bd18c10468f8208dc485e4a68bdd2b3",
+    "results/paper_training/runner_acceptance_v1/independent_review.json": "e22becdcbbffa3c42bbe657b7c64de34e6a85ad6a23cb7f0d335cfdd0225fd9b",
+    "results/paper_training/runner_acceptance_v1/review_reproduction.json": "8ed7c06a5e8bd97e2a2ddce45eb0a8f9d1db21367f582d867a31b5ec99cf3810",
+    "results/paper_training/runner_acceptance_v1/acceptance.json": "1a3e349394ab64c3211a82e170be4d2549bd2bf7114cba823405c55343fde82c",
+    "data/processed/grouped_v1/metadata.json": "8c3bace8e81730d1b37bf17cc991cdc63471015d7850a1d74c0e096cf5c6b2ab",
+    "manifests/grouped_v1/summary.json": "2b66bafcb97dbef19fdd6106ef6956be0a20767043d35f743e12e7489f3b2bbb",
+    "data/processed/grouped_v1/train_x.npy": "6f19db1832dc47ed276cc938cffd5dcdfdadfdc30e739ca8248621f07e436edb",
+    "data/processed/grouped_v1/train_y.npy": "1f9942e0abfb322ae229bc935b6152e40e898b06fda626cc78e1f255419b40a4",
+    "data/processed/grouped_v1/validation_x.npy": "127c788ce05184c71810db2acd124cc6a215f0dcb30c6bffb3ef89e95fa4df28",
+    "data/processed/grouped_v1/validation_y.npy": "4b7a598c467e4549a5ed3fb092c72f24e3774e1c0ee21892c9dcfd9a4023631b",
+    "data/processed/grouped_v1/test_x.npy": "dc83068b788a14b310b842244c7a45dcf9427125fbbc1e57f6cdfb946353c8f9",
+    "data/processed/grouped_v1/test_y.npy": "1469efe104e6996af97a6fa6d56b5385fe03838ac9f147c6f826915d63732e0d",
+    "data/processed/grouped_v1/normalization.json": "b02c95d647ec55f0aecc196c3c6207bed3d6806e8e2a1ed38fd0deb683871cbf",
+    "manifests/grouped_v1/train.jsonl": "9890d665bc5da045a14766efc34c08e079e752551a11c19535ed6b5ef8d07b36",
+    "manifests/grouped_v1/validation.jsonl": "97f6201ba4250c8044c19dd01c4807bf310d95472bf9d2d4b252661e960cde3c",
+    "manifests/grouped_v1/test.jsonl": "413990beea1c949cb0d99654a75c2d35f6a37cc9476d8b26e1be3a5cb2946b2e",
+    "data/raw/MDDECT_v1_train.npy": "f50bc6cb3d08f9972679f3876a41025aec2a4e2672147e24a6b58db007c71ac7",
+    "data/raw/MDDECT_v1_test.npy": "865f972445ce0b9ad562336e7b6258b48d6b1d70d8d7254ff4fca77fdb951b58",
+    "results/experiments/paper_baseline_v1/configs/resnext_s0.json": "aac65b1ef7eb107f21578dbeb36dd73e6569c7300a97891640e1a951fe87bcc0",
+    "results/experiments/paper_baseline_v1/configs/resnext_s1.json": "a6c5b75a0a16b36272324c5dedb3cd6b36cb3ae40040113df4de713e294871e4",
+    "results/experiments/paper_baseline_v1/configs/resnext_s2.json": "c837792bd9bfd18708498c975236d38825a3e5bc9bd3b1e687364ace3a7bb047"
+  },
+  "runs": [
+    {
+      "run_id": "resnext_s0",
+      "seed": 0,
+      "config_path": "results/experiments/paper_baseline_v1/configs/resnext_s0.json",
+      "config_file_sha256": "aac65b1ef7eb107f21578dbeb36dd73e6569c7300a97891640e1a951fe87bcc0",
+      "resolved_config_sha256": "8db394df181ea9c35f2624f2f59522568d6489e891d507faa5b56eedd64c84aa",
+      "output_dir": "results/experiments/paper_baseline_v1/resnext_s0",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "resnext_s1",
+      "seed": 1,
+      "config_path": "results/experiments/paper_baseline_v1/configs/resnext_s1.json",
+      "config_file_sha256": "a6c5b75a0a16b36272324c5dedb3cd6b36cb3ae40040113df4de713e294871e4",
+      "resolved_config_sha256": "0210c3a7479a1e51ef5a83942dfd675072e16372638d4003b4cc42e9934bf731",
+      "output_dir": "results/experiments/paper_baseline_v1/resnext_s1",
+      "status_at_registration": "registered"
+    },
+    {
+      "run_id": "resnext_s2",
+      "seed": 2,
+      "config_path": "results/experiments/paper_baseline_v1/configs/resnext_s2.json",
+      "config_file_sha256": "c837792bd9bfd18708498c975236d38825a3e5bc9bd3b1e687364ace3a7bb047",
+      "resolved_config_sha256": "d8dd58734bb38b3d7db46564afb5920b0ea2a01615fab65cee15adc5cf91d3da",
+      "output_dir": "results/experiments/paper_baseline_v1/resnext_s2",
+      "status_at_registration": "registered"
+    }
+  ]
+}

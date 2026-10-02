@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "status": "verified",
+  "protocol": "paper_baseline_runner_acceptance_v1",
+  "created_utc": "2026-10-02T13:18:25.063908+00:00",
+  "test_classification_enabled": false,
+  "checks": {
+    "cpu_training": true,
+    "cuda_training": true,
+    "independent_crop_reload": true,
+    "csv_metrics": true,
+    "full_regression": true,
+    "independent_code_review": true
+  },
+  "code_sha256": {
+    "src/ect/paper_training.py": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+    "src/ect/paper_registration.py": "16ad3f853b8e4a77da0a2e90e718b9068815e1d95f28a7b8cf5b267f96d9cc0f",
+    "src/ect/paper_models.py": "7ec086276b464f008ae007d6e490f99f4af43f8e1568e09f00e67fc7c582c14e",
+    "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+    "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+    "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+    "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+    "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+    "scripts/train_paper_baseline.py": "d32827bcdde7e75ee601cade1002f37a1192ec8d751e6be7aa533f192dbd82d9",
+    "scripts/register_paper_baseline.py": "d1a4d2af3f718989b1c4f9a555c870f7c46462b0853a9a95c6fdf5b71a7f0362",
+    "scripts/verify_paper_run.py": "130b594f3839353841e04cf3a4af84977f8e4de6c2e1598e06e0cec3ab7f5694"
+  },
+  "files_sha256": {
+    "results/paper_training/runner_acceptance_v1/cpu/report.json": "23da3b478a48b8e1435d2927d84d0fe181e3a74ec68fa4bfe31a325aaf043fb4",
+    "results/paper_training/runner_acceptance_v1/cpu/train_rows.json": "241cde82dde872287263005d88989c83e53a510defdb15e9ef597266a88f8a89",
+    "results/paper_training/runner_acceptance_v1/cpu/train_predictions.csv": "ed5f7317aa11117ae7148e2e78afaa3d471d58944df023f15e6bffaf05660865",
+    "results/paper_training/runner_acceptance_v1/cpu/validation_predictions.csv": "cd90a4049accd6f55dd4c1fb3ee618cf61e66f3800dcfd666b03c40f73b34a57",
+    "results/paper_training/runner_acceptance_v1/cpu/validation_rows.json": "84ecaebaafd5f6d8fedb4d155f820a3e0c549ba1e769f8c8509a6eb24fed7cff",
+    "results/paper_training/runner_acceptance_v1/cpu/model.pt": "276b391c1d78e5a509a79813d926850abc8a1fb3992c2fd53185dd531a4b689e",
+    "results/paper_training/runner_acceptance_v1/cpu_verification.json": "465213f7c0da92e2e25863fe212cf6da966d7280a02ecdc938cbceb7dd31dc25",
+    "results/paper_training/runner_acceptance_v1/cuda/report.json": "d44ea8400a5899ffe6bf9bfcae9348df5366b334fb3b243f81ba778c1a41afb1",
+    "results/paper_training/runner_acceptance_v1/cuda/train_rows.json": "241cde82dde872287263005d88989c83e53a510defdb15e9ef597266a88f8a89",
+    "results/paper_training/runner_acceptance_v1/cuda/train_predictions.csv": "0d454900c6a989540031939219259bc2ac46850c581b6753e455a2449091f67f",
+    "results/paper_training/runner_acceptance_v1/cuda/validation_predictions.csv": "fb8244b4f4ff2a22e70321cbef4f6994ffdd2da0b6a6363e4b8a64aa97d550d2",
+    "results/paper_training/runner_acceptance_v1/cuda/validation_rows.json": "84ecaebaafd5f6d8fedb4d155f820a3e0c549ba1e769f8c8509a6eb24fed7cff",
+    "results/paper_training/runner_acceptance_v1/cuda/model.pt": "c8e5e53230764ef20083ee7452b9e342101560dd88112e9a7d0327530c14fa20",
+    "results/paper_training/runner_acceptance_v1/cuda_verification.json": "60e42bce6e0a096bf6749c1b954455612e4f50eee0c5fed6b1bc91de19e99581",
+    "results/paper_training/runner_acceptance_v1/cuda_cpu_verification.json": "ce88b88087d4bdc4ddc50b22838cb97cac121075ee1ef017b3372a32d7415d50",
+    "results/paper_training/runner_acceptance_v1/regression.json": "87f291fc9884c298664c6af102967af36e3e1e4ba5b9094c1f0057f88d964775",
+    "results/paper_training/runner_acceptance_v1/regression.log": "49c4108b2e415c2516bebdb1ee3ce1718bd18c10468f8208dc485e4a68bdd2b3",
+    "results/paper_training/runner_acceptance_v1/independent_review.json": "e22becdcbbffa3c42bbe657b7c64de34e6a85ad6a23cb7f0d335cfdd0225fd9b",
+    "results/paper_training/runner_acceptance_v1/review_reproduction.json": "8ed7c06a5e8bd97e2a2ddce45eb0a8f9d1db21367f582d867a31b5ec99cf3810"
+  },
+  "runs": [
+    {
+      "device": "cpu",
+      "run_dir": "results/paper_training/runner_acceptance_v1/cpu",
+      "verification_path": "results/paper_training/runner_acceptance_v1/cpu_verification.json"
+    },
+    {
+      "device": "cuda",
+      "run_dir": "results/paper_training/runner_acceptance_v1/cuda",
+      "verification_path": "results/paper_training/runner_acceptance_v1/cuda_verification.json"
+    }
+  ],
+  "cpu_transfer_verification_path": "results/paper_training/runner_acceptance_v1/cuda_cpu_verification.json",
+  "note": "40 train/40 validation, 2 epochs: implementation/device acceptance only, not a performance comparison.",
+  "execution_script": {
+    "text": "from datetime import datetime,timezone\nimport hashlib,json,re,shutil,sys\nfrom pathlib import Path\nROOT=Path('/home/lucky/devdir/rgzndl')\nsys.path.insert(0,str(ROOT))\nfrom src.ect.paper_registration import _sources\nfrom src.ect.paper_training import ARTIFACTS\nfolder=ROOT/'results/paper_training/runner_acceptance_v1'\nsha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()\nwrite=lambda p,v:Path(p).write_text(json.dumps(v,indent=2,allow_nan=False)+'\\n',newline='\\n')\n_,sources=_sources()\nreview=json.loads(Path('/tmp/rgzndl_readonly_review_final.json').read_text())\nassert review['result']=='no_reproducible_P1_P2_in_requested_scope'\nassert review['code_sha256']==sources\nshutil.copyfile('/tmp/rgzndl_readonly_review_final.json',folder/'independent_review.json')\nhelper=Path('/tmp/rgzndl_registration_readonly_review.py')\nif helper.exists():\n    text=helper.read_text()\n    write(folder/'review_reproduction.json',dict(script=text,sha256=sha(helper)))\nlog=Path('/tmp/ect_paper_final_regression.log').read_text()\nassert re.search(r'Ran 264 tests in 50\\.993s',log) and log.rstrip().endswith('OK')\nassert 'skipped' not in log and 'FAILED' not in log\n(folder/'regression.log').write_text(log,newline='\\n')\nwrite(folder/'regression.json',dict(status='passed',test_count=264,skipped=0,elapsed_seconds=50.993,\n    command='.venv/bin/python -m unittest discover -s tests -v',\n    execution_context='actual CUDA accessible',code_sha256=sources,log_sha256=sha(folder/'regression.log')))\nruns=[]\nfiles={}\nfor device in ('cpu','cuda'):\n    run=folder/device\n    report=json.loads((run/'report.json').read_text())\n    proof_path=folder/f'{device}_verification.json'\n    proof=json.loads(proof_path.read_text())\n    assert report['status']=='complete' and report['sample_counts']=={'train':40,'validation':40}\n    assert report['environment']['device']==device and report['parameter_update_l2']>0\n    assert proof['status']=='verified' and proof['device']==device and proof['prediction_counts']==report['sample_counts']\n    assert proof['report_sha256']==sha(run/'report.json') and proof['maximum_metric_error']<=1e-12\n    for p in [run/'report.json',*[run/n for n in ARTIFACTS],proof_path]:\n        files[p.relative_to(ROOT).as_posix()]=sha(p)\n    runs.append(dict(device=device,run_dir=run.relative_to(ROOT).as_posix(),verification_path=proof_path.relative_to(ROOT).as_posix()))\ncpu_transfer=json.loads((folder/'cuda_cpu_verification.json').read_text())\nassert cpu_transfer['status']=='verified' and cpu_transfer['device']=='cpu' and cpu_transfer['prediction_counts']=={'train':40,'validation':40}\nfor name in ('cuda_cpu_verification.json','regression.json','regression.log','independent_review.json','review_reproduction.json'):\n    p=folder/name\n    if p.exists(): files[p.relative_to(ROOT).as_posix()]=sha(p)\nprogram=Path(__file__)\nacceptance=dict(schema_version=1,status='verified',protocol='paper_baseline_runner_acceptance_v1',\n    created_utc=datetime.now(timezone.utc).isoformat(),test_classification_enabled=False,\n    checks={k:True for k in ('cpu_training','cuda_training','independent_crop_reload','csv_metrics','full_regression','independent_code_review')},\n    code_sha256=sources,files_sha256=files,runs=runs,\n    cpu_transfer_verification_path=(folder/'cuda_cpu_verification.json').relative_to(ROOT).as_posix(),\n    note='40 train/40 validation, 2 epochs: implementation/device acceptance only, not a performance comparison.',\n    execution_script=dict(text=program.read_text(),sha256=sha(program)))\noutput=folder/'acceptance.json'\nassert not output.exists()\nwrite(output,acceptance)\nprint(json.dumps(dict(status='verified',sha256=sha(output),files=len(files))))\n",
+    "sha256": "4df88bfa709bde87d89f254d8dc50250e0fb5b3372b67c4531b7bb28f5ad4924"
+  }
+}

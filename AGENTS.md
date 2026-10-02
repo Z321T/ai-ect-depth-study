@@ -31,6 +31,6 @@ formal_v1登记、九项完整训练、noise10–14验证重复及100–104正�
 
 用户后续要求先建立原方法基线再做可靠改进。固定旧权重train/validation诊断761600预测已独立核验，BN反事实只诊断、不作部署成绩。论文网络/裁剪组件见docs/paper_model_reconstruction.md，新增paper_models.py/paper_crops.py，不修改旧源码以保证重载。40条train学习验收1700epoch记忆100%，CPU/CUDA重载通过；这是组件证据，不是泛化。全项目194项回归通过。结果入口docs/learning_diagnostics_results.md、docs/paper_components_acceptance.md。
 
-下一单元按docs/plans/2026-10-02-paper-baseline-training.md实现训练器/执行源码绑定，再开始三seed全量train/validation。config/paper_baseline_v1.json只是有限1000epoch设计，尚未执行；保留原5000/7500学习率衰减不缩放，在当前上限内不触发，不能称10000epoch严格复现。原文38层参数表与公开结构计数不一致，按公开结构134654实现，所有未明细节明确登记。不处理人员分工，不重新评估资源。
+当前按docs/plans/2026-10-02-paper-baseline-training.md推进。训练器paper_training.py、执行登记paper_registration.py和独立核验verify_paper_run.py完成，终版264项真实GPU回归、CPU/CUDA同40/40两轮及CUDA权重CPU迁移共240条预测独立核验通过。验收见results/paper_training/runner_acceptance_v1/；执行registry/configs见results/experiments/paper_baseline_v1/，13份源码/数据/验收已冻结，不修改绑定源码与配置。接续三个seed全量train/validation；可变状态见execution_status.json，各run的progress.json只是进度，完整report发布及独立核验后才报告最终成绩。config/paper_baseline_v1.json为有限1000epoch设计；保留原5000/7500学习率衰减不缩放，在当前上限内不触发，不能称10000epoch严格复现。原文38层参数表与公开结构计数不一致，按公开结构134654实现，所有未明细节明确登记。不处理人员分工，不重新评估资源。
 
 公开评价/诊断预测CSV以predictions.csv.gz保存，未压缩CSV本地存在但忽略Git；按compression.json及报告SHA核对，还原时拒绝覆盖。绘图工具scripts/plot_evaluation.py只读完成报告/汇总，不执行推理。新完整训练与改进为探索性，不使用已见test挑方案。

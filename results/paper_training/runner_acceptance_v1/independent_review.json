@@ -1,0 +1,54 @@
+{
+  "project_root": "/home/lucky/devdir/rgzndl",
+  "review_scope": [
+    "registrar acceptance semantic binding",
+    "independent full execution registry identity",
+    "proof link commit and cleanup OSError",
+    "loaded positional and keyword defaults guard"
+  ],
+  "result": "no_reproducible_P1_P2_in_requested_scope",
+  "project_modified": false,
+  "git_actions": false,
+  "cuda_executed": false,
+  "full_training_executed": false,
+  "synthetic_cuda_fixture_not_acceptance": true,
+  "checks": {
+    "registration_cpu_tests": {
+      "passed": 28,
+      "elapsed_seconds": 14.148
+    },
+    "verifier_cpu_tests": {
+      "passed": 30,
+      "elapsed_seconds": 7.76
+    },
+    "independent_registration_probes": {
+      "accepted_expected": 2,
+      "rejected_expected": 14
+    },
+    "main_combined_log": {
+      "passed": 58,
+      "elapsed_seconds": 20.559
+    }
+  },
+  "code_sha256": {
+    "scripts/register_paper_baseline.py": "d1a4d2af3f718989b1c4f9a555c870f7c46462b0853a9a95c6fdf5b71a7f0362",
+    "scripts/train_paper_baseline.py": "d32827bcdde7e75ee601cade1002f37a1192ec8d751e6be7aa533f192dbd82d9",
+    "scripts/verify_paper_run.py": "130b594f3839353841e04cf3a4af84977f8e4de6c2e1598e06e0cec3ab7f5694",
+    "src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+    "src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+    "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+    "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+    "src/ect/paper_models.py": "7ec086276b464f008ae007d6e490f99f4af43f8e1568e09f00e67fc7c582c14e",
+    "src/ect/paper_registration.py": "16ad3f853b8e4a77da0a2e90e718b9068815e1d95f28a7b8cf5b267f96d9cc0f",
+    "src/ect/paper_training.py": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+    "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16"
+  },
+  "other_sha256": {
+    "/home/lucky/devdir/rgzndl/tests/test_paper_registration.py": "6cf096c507238cce04f670eb5b8936f1c5b1a5dae5901c80e77e3d6fb11132e0",
+    "/home/lucky/devdir/rgzndl/tests/test_verify_paper_run.py": "de032581c32a78875b84dc6518b452fd7f39bb6f279b8faaa12c5389021d8cfb",
+    "/tmp/rgzndl_registration_readonly_review.py": "b50c53c7b075c3c18f69b30028b4f2f3a5bbf6dcba4ee7b9908fa7cb925834ca",
+    "/tmp/ect_reg_verify_final.log": "6e0dd0d6f9fe0de28bd13cc0d5b06d94c320cfd4f49fda88e3e3a05df50aecd3"
+  }
+}
