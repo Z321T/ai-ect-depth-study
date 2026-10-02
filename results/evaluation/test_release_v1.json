@@ -1,0 +1,29 @@
+{
+  "status": "released",
+  "created_utc": "2026-10-02T07:49:53.970770+00:00",
+  "registry_sha256": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
+  "implementation_acceptance_sha256": "bbbcf9b8a2ac689db1fc98cb65827abe124cffee949d06404aa925f899419318",
+  "validation_acceptance_sha256": "2ebd2aa7772109a070867ce16a4f2d32e6b694a0541ac06818def64fc8aad348",
+  "evaluation_code_sha256": {
+    "src/ect/evaluation.py": "631d9d09e38d58fff2ca58fa1912f84c25cf190354bfd2e53fe6f2cdbed23d64",
+    "src/ect/evaluation_summary.py": "651788178a915316e2f260970afe81b3185232829c80484fe5b8ba4d97f342e1",
+    "scripts/evaluate_registered.py": "30d75961935a30006cc5b5071e45b53f6896d3bf0683f716e1085fdb60ace612"
+  },
+  "validation_predictions_verified": 512000,
+  "test_sample_count": 4800,
+  "test_noise_seeds": [
+    100,
+    101,
+    102,
+    103,
+    104
+  ],
+  "conditions": [
+    "clean",
+    30,
+    20,
+    10
+  ],
+  "model_selection": "Frozen weights, no new selection or fitting.",
+  "test_classification_completed": false
+}

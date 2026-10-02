@@ -1,0 +1,12 @@
+{
+  "format": "gzip",
+  "source_file": "predictions.csv",
+  "source_sha256": "514a876c0f3ad0f4e1e3721cf6f9f62128baf3dc32a5f7ba339bcfabd42eebcc",
+  "source_bytes": 91752063,
+  "compressed_file": "predictions.csv.gz",
+  "compressed_sha256": "a144701417631fe54ce6b33e653f5bb87e42bf9ef86e123b25d0ec9693630805",
+  "compressed_bytes": 33573689,
+  "report_sha256": "049f8b439729e05acd2f74ad2c323e1193fa6d0dd7480d9ae1c0c67fa9d65786",
+  "roundtrip_byte_identity_verified": true,
+  "note": "Uncompressed CSV kept locally and ignored by Git; extract this archive to reproduce the original report artifact."
+}

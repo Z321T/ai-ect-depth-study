@@ -15,3 +15,4 @@ data/processed/
 .matplotlib/
 *.joblib
 *.pt
+results/evaluation/*/predictions.csv

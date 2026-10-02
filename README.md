@@ -2,7 +2,7 @@
 
 公开仓库：[Z321T/ai-ect-depth-study](https://github.com/Z321T/ai-ect-depth-study)。
 
-本项目从MDDECT I/Q时序信号预测20个类别，研究模型比较和噪声增强。数据审计、分组划分、预处理、近重复诊断与SVM开发验证已实现；CNN/ResNet、设备切换和统一噪声已通过CPU最小训练验收。最终测试分类指标尚未计算。
+本项目从MDDECT I/Q时序信号预测20个类别，研究模型比较和附加噪声。数据审计、整组去重划分、预处理、SVM/CNN/ResNet完整训练及固定五次噪声重复评价已完成，CPU与真实CUDA链路均验收；正式test按冻结协议完成并核验，当前进入课程技术报告和复现整理。类别语义映射仍未确认，仅报告class_index指标。
 
 ## 文档入口
 
@@ -23,6 +23,7 @@
 - [正式实验登记协议](docs/experiment_protocol.md)
 - [九项完整训练与验证结果](docs/full_training_results.md)
 - [固定噪声重复评价与测试门槛](docs/repeated_evaluation.md)
+- [正式测试与噪声重复结果](docs/formal_evaluation_results.md)
 - [近重复诊断结果](results/similarity/train_validation_v1/report.md)
 
 原始论文、译文和GPT旧计划在本地 `reference/` 保留，不上传代码仓库。数据从 [MDDECT官方发布页](https://www.kaggle.com/datasets/mchikyt3/mddect) 下载，将两个NPY放在 `data/raw/`，文件身份见审计报告。论文参考：[arXiv:2104.02472](https://arxiv.org/abs/2104.02472)。数据官方许可为CC BY 4.0，使用时引用数据发布者和论文。人员分工由用户另行处理。
@@ -86,7 +87,7 @@ uv pip install --python .venv/bin/python -r requirements-models.txt
 
 每组只用train/validation各每类10条、两epoch，验证Clean/30/20/10dB与CPU权重重载；不同全量SVM比较性能。权重.pt本地保留，公开代码/配置/验收记录。复跑选择新output目录。
 
-截止2026-10-25；RTX5070Ti 16GB。训练支持auto/cpu/cuda，CPU与真实CUDA训练/重载均通过验收；受限执行沙箱内CUDA不可见，普通GPU可访问上下文使用同一模型代码。正式登记命令见docs/experiment_protocol.md，test分类仍封存。
+截止2026-10-25；RTX5070Ti 16GB。训练支持auto/cpu/cuda，CPU与真实CUDA训练/重载均通过验收；受限执行沙箱内CUDA不可见，普通GPU可访问上下文使用同一模型代码。正式登记命令见docs/experiment_protocol.md。2026-10-02已按冻结协议完成test及五噪声重复：SVM Clean60.23%/10dB5.43%，CNN三seed均值25.58%/23.71%；不据test成绩调参。逐条评价CSV以gzip发布，还原命令见正式结果文档，模型权重仍留本地。
 
 ## 代码管理
 

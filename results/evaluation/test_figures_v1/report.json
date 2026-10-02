@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "created_utc": "2026-10-02T08:03:10.766504+00:00",
+  "input_directory": "/home/lucky/devdir/rgzndl/results/evaluation/test_v1",
+  "output_directory": "/home/lucky/devdir/rgzndl/results/evaluation/test_figures_v1",
+  "split": "test",
+  "script_sha256": "00d4d304acbcc09d8c0dcde51a6a4d0290ef6cdd8aa3faae5922ecfdc99c9c57",
+  "input_files_sha256": {
+    "report.json": "049f8b439729e05acd2f74ad2c323e1193fa6d0dd7480d9ae1c0c67fa9d65786",
+    "summary.json": "a9745dcdfb667aef65047e700fe017b2be0f974a91a2ba690eb92502c1ce73c4",
+    "predictions.csv": "514a876c0f3ad0f4e1e3721cf6f9f62128baf3dc32a5f7ba339bcfabd42eebcc"
+  },
+  "files_sha256": {
+    "accuracy.png": "d21abf84b65a65a26d7e9daa8dc54f7ca737845a8202e837f387ed3e1bde39b1",
+    "accuracy.svg": "adcaa346d7c0397be7592ee8f674fe5aca17ed588dc2f2ac98f4a933c33c91e8",
+    "macro_f1.png": "730b5182879c217434e2b7d266f3f2ba27754110421fc9a9859890bb10314fd3",
+    "macro_f1.svg": "84b0fd4ddfd904ffcd97252faef61bacef0560ff252fe7212c55b33b5d400f36",
+    "clean_confusion.png": "afaeb65e491d6a64d0b59fce3cb0c4f5fdede689987e34eb29f6935521315f93",
+    "clean_confusion.svg": "9cbf363803da151077381b05b6e7f97c4121ebcb293147b47956678f4d423de7",
+    "provenance.json": "0869c89aa3143c9264ce3816214b6f606717b5d7a3d3db609116ec338659a854"
+  }
+}

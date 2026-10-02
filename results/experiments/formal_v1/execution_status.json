@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "updated_utc": "2026-10-01T11:19:21.577711+00:00",
+  "updated_utc": "2026-10-02T07:59:16.515219+00:00",
   "registry_sha256": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
   "completed_runs": 9,
   "registered_runs_pending": 0,
-  "validation_noise_repeats_10_to_14": "pending; epoch selection reports seed10",
-  "test_classification_evaluated": false,
+  "validation_noise_repeats_10_to_14": "complete_verified; results/evaluation/validation_v1",
+  "test_classification_evaluated": true,
   "runs": [
     {
       "run_id": "cnn_clean_s0",
@@ -54,5 +54,7 @@
     }
   ],
   "independently_verified_runs": 9,
-  "training_verification_sha256": "50eec5cb272651f94b90a44dbb47c2e023bf23a5b4ca899e5014e5e0ec5f674d"
+  "training_verification_sha256": "50eec5cb272651f94b90a44dbb47c2e023bf23a5b4ca899e5014e5e0ec5f674d",
+  "test_evaluation_status": "complete_verified; results/evaluation/test_v1",
+  "current_evaluation_state_sha256": "d155d8ec6fedfec7fc6889ce18cbc4d3ec9a7d1b079b400a33c80b95d79c75b7"
 }

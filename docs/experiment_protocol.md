@@ -37,3 +37,5 @@ grouped_v1共享缓存：train24000、validation3200、test4800；固定FIR和�
 device默认auto，cpu/cuda可切换并记录实际设备。当前WSL受限沙箱CUDA不可见，允许GPU访问的上下文已真实验证RTX5070Ti；普通终端按命令执行，无需为沙箱结果改模型或驱动。
 
 正式test分类须九项完整训练/权重/预测核验完成，固定协议与评估实现验收后一次执行。禁止依据test成绩新增调参。本轮登记不自动释放test分类，完整文件身份校验及上述test数据审计仍允许。
+
+执行补充（2026-10-02）：上述门槛通过，validation512000预测及统计验收后记录test_release_v1，已完成test768000预测及重载核验，见docs/formal_evaluation_results.md。registry保留登记时状态，不追改历史字段；当前状态见results/evaluation/execution_status.json。

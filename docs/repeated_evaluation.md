@@ -4,6 +4,8 @@
 
 每集合十个模型：九网络权重和单SVM Pipeline。Clean各一次，30/20/10dB各五个noise seed；validation10–14、test100–104，同一namespace为split名称。每个条件先由冻结AC噪声函数生成一份原单位float64信号，十模型共享；深度网络再使用固定训练标准化，SVM再提取既有25维特征和训练Scaler。报告记录共享信号SHA、实际残差SNR和不适用数量。每集合16条件，每模型全量样本。
 
+device=auto/cpu/cuda作用于网络推理；原单位扰动/特征提取使用CPU NumPy，SVM Pipeline使用CPU。本轮auto实际为CUDA，后续CPU可加载同一权重，设备差异不保证任意输入逐位一致。
+
 评价前校验登记源码/模板/配置/类别映射/审计/缓存和清单SHA，九项完整训练验收记录及报告/权重/全量行身份，SVM报告/产物和全部模型类别顺序。推理调用seed_everything固定确定性、单线程、禁TF32；仅索引指定split，完整文件身份哈希/mmap按既有PreparedDataset范围允许。
 
 每条预测保存split、run/family、training_seed、condition、noise_seed、SNR适用、row、wave_sha256、group_id和class_index。总体、每类和名义连接组指标按独立计数公式计算，非语义类别指标。汇总每训练seed内部五次扰动的均值/样本SD，再对三训练seed均值计算家族均值/样本SD，单列噪声波动；SVM训练SD为null，Clean噪声SD为null，不复制Clean或将15值作独立训练。

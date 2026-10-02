@@ -1,0 +1,35 @@
+{
+  "updated_utc": "2026-10-02T07:59:16.515219+00:00",
+  "protocol": "formal_v1",
+  "registry_sha256": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
+  "training_runs_completed": 9,
+  "validation_noise_seeds": [
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "test_noise_seeds": [
+    100,
+    101,
+    102,
+    103,
+    104
+  ],
+  "test_classification_evaluated": true,
+  "validation_status": "complete_verified",
+  "test_status": "complete_verified",
+  "class_mapping_status": "unverified",
+  "next_stage": "Course technical report and reproduction; no changes based on test scores.",
+  "files_sha256": {
+    "validation_v1/report.json": "041795a158622d2727132b126ec048e2461311dc92e24adb205bb466541651dc",
+    "validation_v1/summary.json": "7100879af2607e11b4310c29f28c7648ecfd7ec74ea10f27d46373b0432f77ee",
+    "validation_v1/acceptance.json": "2ebd2aa7772109a070867ce16a4f2d32e6b694a0541ac06818def64fc8aad348",
+    "validation_v1/compression.json": "99cf884b555ffe6cea015246dfb4ea3e134de3df3755008a8d7bc3e3e66d99ff",
+    "test_v1/report.json": "049f8b439729e05acd2f74ad2c323e1193fa6d0dd7480d9ae1c0c67fa9d65786",
+    "test_v1/summary.json": "a9745dcdfb667aef65047e700fe017b2be0f974a91a2ba690eb92502c1ce73c4",
+    "test_v1/verification.json": "4642bc4c18891fd52923d7e94f47995b455d599b6dbbda4bb6f5d02f5ac1540c",
+    "test_v1/compression.json": "ece1ca6e94d03a96a76d7eba4dab322ba91d771f7eb65b08f9e9a25d78be93f7"
+  }
+}

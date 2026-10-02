@@ -1,5 +1,7 @@
 # formal_v1完整训练与验证结果
 
+本文件保留2026-10-01训练验收时点记录。后续固定noise10–14验证重复及noise100–104正式test已于2026-10-02完成，最新结果见[正式评价结果](formal_evaluation_results.md)。
+
 2026-10-01。九项冻结配置全部完成：24000条训练、3200条验证，CNN clean、ResNet clean、ResNet增强各训练seed0/1/2。默认auto均实际使用RTX5070Ti，模型与数据代码保持登记时的版本。最终test分类尚未执行。
 
 ## 干净验证结果
