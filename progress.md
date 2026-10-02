@@ -1,5 +1,10 @@
 # 推进日志
 
+## 2026-10-02：三seed完整基线运行已启动
+
+执行代码提交`446498e38ba459a3763a716da343a263c554a3a6`先于完整训练。已于2026-10-02T13:27:46.901165+00:00启动顺序运行：seed0→独立CUDA核验→seed1→核验→seed2→核验。当前seed0训练中；每run为全量24000/3200、1000epoch，无新test分类。进度见`results/experiments/paper_baseline_v1/execution_status.json`及各run的`progress.json`。运行状态会自动更新，最终结果仍须完整报告、独立核验及图表复核；当前不能宣布泛化提升。
+
+
 ## 2026-10-02：终版训练器验收与执行冻结
 
 - 终版264项回归在真实CUDA可访问环境全部通过（50.993秒、无跳过）；CPU/CUDA同40train/40validation两轮训练、各80条独立预测及全部总体/组指标核对一致。CUDA权重另在CPU重载80条，分类差0、指标差0。验收路径results/paper_training/runner_acceptance_v1/。

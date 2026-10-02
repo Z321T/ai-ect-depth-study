@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "protocol": "paper_baseline_finite_v1",
+  "registry_sha256": "791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4",
+  "status": "running",
+  "started_utc": "2026-10-02T13:27:46.901165+00:00",
+  "updated_utc": "2026-10-02T13:27:46.902888+00:00",
+  "heldout_test_evaluated": false,
+  "pid": 5496,
+  "execution_context": "authorized actual CUDA accessible",
+  "implementation_commit": "446498e38ba459a3763a716da343a263c554a3a6",
+  "orchestration_script_sha256": "2cf6b178b11b6eec05a79c3fa55a50f64f8e3c7e4e4248249ead582ae5bbb0ad",
+  "orchestration_script_text": "\"\"\"Execute the immutable three-run registry sequentially, then independent verification.\nThis is orchestration only: no config edits, no restart/overwrite, no test inference.\n\"\"\"\nfrom pathlib import Path\nimport datetime, hashlib, json, os, subprocess, sys, traceback\nROOT = Path('/home/lucky/devdir/rgzndl')\nREGISTRY = ROOT/'results/experiments/paper_baseline_v1/registry.json'\nBASE = REGISTRY.parent\nPYTHON = ROOT/'.venv/bin/python'\ndef digest(path):\n    h=hashlib.sha256()\n    with Path(path).open('rb') as f:\n        for data in iter(lambda:f.read(1024*1024), b''): h.update(data)\n    return h.hexdigest()\ndef now(): return datetime.datetime.now(datetime.timezone.utc).isoformat()\ndef write(path, data):\n    scratch=path.with_name('.'+path.name+'.pending')\n    with scratch.open('w', encoding='utf-8', newline='\\n') as f:\n        json.dump(data,f,ensure_ascii=False,indent=2,allow_nan=False); f.write('\\n')\n    scratch.replace(path)\ndef relative(path): return str(path.relative_to(ROOT))\nreg=json.loads(REGISTRY.read_text()); registry_sha=digest(REGISTRY)\nassert reg['status']=='frozen_execution_registration' and not reg['test_classification_enabled']\nassert [r['seed'] for r in reg['runs']]==[0,1,2]\nassert not (BASE/'execution_status.json').exists(), 'Do not overwrite an execution status'\nassert all(not (ROOT/r['output_dir']).exists() for r in reg['runs']), 'Do not restart/overwrite runs'\nfor name,sha in (reg['code_sha256']|reg['files_sha256']).items(): assert digest(ROOT/name)==sha, name\nstatus=dict(schema_version=1, protocol=reg['protocol'], registry_sha256=registry_sha,\n    status='running', started_utc=now(), updated_utc=now(), heldout_test_evaluated=False,\n    pid=os.getpid(), execution_context='authorized actual CUDA accessible',\n    implementation_commit=subprocess.check_output(['git','--git-dir=.project-git','--work-tree=.','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),\n    orchestration_script_sha256=digest(__file__),orchestration_script_text=Path(__file__).read_text(),\n    runs=[dict(run_id=r['run_id'],seed=r['seed'],output_dir=r['output_dir'],status='pending') for r in reg['runs']])\n(BASE/'logs').mkdir(); (BASE/'verification').mkdir()\ndef save():\n    assert digest(REGISTRY)==registry_sha, 'Registry drift'\n    status['updated_utc']=now();write(BASE/'execution_status.json', status)\ndef execute(args,log,state,phase):\n    state['status']=phase;state['phase_started_utc']=now();state.setdefault('commands',[]).append(args);save()\n    print(json.dumps({'run':state['run_id'],'phase':phase,'utc':now()}),flush=True)\n    with log.open('x', encoding='utf-8', newline='\\n') as stream:\n        subprocess.run([str(PYTHON),*args],cwd=ROOT,stdout=stream,stderr=subprocess.STDOUT,check=True)\n    state.setdefault('logs_sha256',{})[relative(log)]=digest(log);save()\ntry:\n    save()\n    for registered,state in zip(reg['runs'],status['runs']):\n        state['started_utc']=now()\n        execute(['scripts/train_paper_baseline.py','--config',registered['config_path'],'--registry',relative(REGISTRY),\n            '--output',registered['output_dir'],'--device','cuda'],BASE/'logs'/f\"{state['run_id']}_train.log\",state,'training')\n        run=ROOT/registered['output_dir'];report=json.loads((run/'report.json').read_text())\n        assert report['status']=='complete' and len(report['epochs'])==1000\n        assert report['sample_counts']==dict(train=24000,validation=3200)\n        assert report['environment']['device'].startswith('cuda')\n        state.update(report_sha256=digest(run/'report.json'), selected_epoch=report['selected_epoch'],\n            validation_metrics={k:report['metrics']['validation'][k] for k in ('accuracy','macro_f1')},\n            train_metrics={k:report['metrics']['train'][k] for k in ('accuracy','macro_f1')})\n        proof=BASE/'verification'/f\"{state['run_id']}_cuda.json\"\n        execute(['scripts/verify_paper_run.py','--run',registered['output_dir'],'--output',relative(proof),\n            '--device','cuda','--split','both'],BASE/'logs'/f\"{state['run_id']}_verify_cuda.log\",state,'verifying')\n        checked=json.loads(proof.read_text()); assert checked['status']=='verified'\n        state.update(status='complete_verified',completed_utc=now(), verification_path=relative(proof),verification_sha256=digest(proof))\n        save()\n    status.update(status='all_training_and_cuda_verification_complete',completed_utc=now(),\n        results_review_and_figures_complete=False)\n    save(); print(json.dumps({'status':status['status']}),flush=True)\nexcept BaseException as error:\n    status.update(status='failed',error_type=type(error).__name__,error=str(error),traceback=traceback.format_exc())\n    if 'state' in globals():state.update(status='failed',error_type=type(error).__name__,error=str(error))\n    save();raise\n",
+  "runs": [
+    {
+      "run_id": "resnext_s0",
+      "seed": 0,
+      "output_dir": "results/experiments/paper_baseline_v1/resnext_s0",
+      "status": "training",
+      "started_utc": "2026-10-02T13:27:46.902816+00:00",
+      "phase_started_utc": "2026-10-02T13:27:46.902870+00:00",
+      "commands": [
+        [
+          "scripts/train_paper_baseline.py",
+          "--config",
+          "results/experiments/paper_baseline_v1/configs/resnext_s0.json",
+          "--registry",
+          "results/experiments/paper_baseline_v1/registry.json",
+          "--output",
+          "results/experiments/paper_baseline_v1/resnext_s0",
+          "--device",
+          "cuda"
+        ]
+      ]
+    },
+    {
+      "run_id": "resnext_s1",
+      "seed": 1,
+      "output_dir": "results/experiments/paper_baseline_v1/resnext_s1",
+      "status": "pending"
+    },
+    {
+      "run_id": "resnext_s2",
+      "seed": 2,
+      "output_dir": "results/experiments/paper_baseline_v1/resnext_s2",
+      "status": "pending"
+    }
+  ]
+}

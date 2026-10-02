@@ -1,5 +1,10 @@
 # 研究发现与证据
 
+## 2026-10-02：三seed完整基线运行已启动
+
+执行代码提交`446498e38ba459a3763a716da343a263c554a3a6`先于完整训练。已于2026-10-02T13:27:46.901165+00:00启动顺序运行：seed0→独立CUDA核验→seed1→核验→seed2→核验。当前seed0训练中；每run为全量24000/3200、1000epoch，无新test分类。进度见`results/experiments/paper_baseline_v1/execution_status.json`及各run的`progress.json`。运行状态会自动更新，最终结果仍须完整报告、独立核验及图表复核；当前不能宣布泛化提升。
+
+
 ## 终版训练器验收已完成（2026-10-02）
 
 264项真实GPU回归无跳过通过；CPU/CUDA固定40/40两轮运行及CUDA权重CPU迁移的三次独立核验共240条预测匹配，全部指标误差0。最终验收与执行registry已完成，位置results/paper_training/runner_acceptance_v1/及results/experiments/paper_baseline_v1/。小规模验收证明执行和产物链可核验，不支持模型泛化或指标提升；完整三seed仍待执行。下面早期“待终版验收”段落保留为阶段历史。

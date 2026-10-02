@@ -1,6 +1,6 @@
 # 下一单元：有限预算论文方法基线
 
-2026-10-02。配置为config/paper_baseline_v1.json；设计登记时训练器尚未实现/绑定，历史状态保持不变。当前已实现训练器及登记/独立核验工具，终版264项真实GPU回归、CPU/CUDA及独立核验已通过，执行registry已冻结，完整基线训练尚未开始。前置为docs/paper_model_reconstruction.md及组件实际学习/重载验收。
+2026-10-02。配置为config/paper_baseline_v1.json；设计登记时训练器尚未实现/绑定，历史状态保持不变。当前已实现训练器及登记/独立核验工具，终版264项真实GPU回归、CPU/CUDA及独立核验已通过，执行registry已冻结，完整基线已启动seed0，三个run将顺序训练并独立核验。前置为docs/paper_model_reconstruction.md及组件实际学习/重载验收。
 
 设计身份见results/paper_components/baseline_design_v1.json，绑定配置/组件源码/数据/验收SHA并显式记录training_runner_implemented=false、execution_registry_bound=false。下一单元另创建完整执行登记，不改写这个历史设计状态。
 
