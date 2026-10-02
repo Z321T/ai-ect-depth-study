@@ -40,5 +40,5 @@ Files: 新建docs/paper_model_reconstruction.md、src/ect/paper_models.py、src/
 
 - [x] 基线全项目147项真实GPU回归通过，再运行新增必要测试及独立代码审查；审查发现的问题先复现后修复。
 - [x] 核对冻结源码/registry/cache/weights SHA未变、公开文件不含NPY/权重/原始资料，生成图表并目视核验。
-- [ ] 更新三个根记录、D015（诊断/重建实际选择），提交/发布已授权仓库并核验远端SHA。
+- [x] 更新三个根记录、D015（诊断/重建实际选择）；39文件独立终审无P1/P2，3a86636已合入/发布公开main，GitHub API完整SHA与本地逐字一致。
 - [x] 根据诊断与组件验收建立下一单元有限预算论文基线设计登记config/paper_baseline_v1.json；训练器实现/验收和执行源码绑定是下一单元前置，不在这些门槛完成前启动全量新方法训练。
