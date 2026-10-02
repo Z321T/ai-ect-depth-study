@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "created_utc": "2026-10-02T07:46:37.565074+00:00",
+  "evaluation_code_sha256": {
+    "src/ect/evaluation.py": "631d9d09e38d58fff2ca58fa1912f84c25cf190354bfd2e53fe6f2cdbed23d64",
+    "src/ect/evaluation_summary.py": "651788178a915316e2f260970afe81b3185232829c80484fe5b8ba4d97f342e1",
+    "scripts/evaluate_registered.py": "30d75961935a30006cc5b5071e45b53f6896d3bf0683f716e1085fdb60ace612"
+  },
+  "registry_sha256": "fd4de972e6f34376d3d3e6643b986daa58e7e1327563a32230e634036d85135c",
+  "regression_tests": 147,
+  "tests_passed": 147,
+  "cuda_skipped": 0,
+  "limited_independent_review": "Three P2 issues reproduced and resolved; no remaining P1/P2 in reviewed scope.",
+  "test_classification_evaluated": false
+}
