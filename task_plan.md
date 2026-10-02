@@ -49,11 +49,12 @@
 - [x] 一次执行冻结test100–104评价，768000预测逐条重载及160总体/480组指标核验通过；原registry保持不变。
 - [x] 正式结果与CSV压缩发布方式记录于docs/formal_evaluation_results.md；压缩文件还原SHA与原始CSV一致。
 - [x] 完成正式结果图表：两集合Accuracy/Macro-F1曲线和Clean混淆矩阵，PNG/SVG导出、SHA及目视验收。
-- [ ] 将本阶段完整结果与记录发布到公开main；随后编写课程技术报告及复现清单。
+- [x] 将本阶段完整结果与记录发布到公开main，7173fe1远端SHA已核验。
+- [ ] 优先完成train/validation训练行为诊断，再确定探索性改进对照与课程报告主线。
 
 ## 下一工作单元
 
-正式结果见docs/formal_evaluation_results.md：SVM干净test60.23%而10dB5.43%，CNN25.58%→23.71%，增强ResNet未显示当前流程优势。下一单元整理课程技术报告、复现说明和关键图；人员分工不处理。可在train/validation诊断学习行为，但新训练规则必须另立探索性协议，不覆盖formal_v1；最终测试已见，不能将后续新模型评价当未见test的确认性实验。未确认映射仅报告class_index；GPU可运行，CPU可交接，不再评估资源。
+正式结果见docs/formal_evaluation_results.md：SVM干净test60.23%而10dB5.43%，CNN25.58%→23.71%，增强ResNet未显示当前流程优势。用户关心整体指标与课程报告价值；下一单元优先只用train/validation诊断固定权重的训练集识别、验证差距、学习曲线及输入尺度/归一化行为，再根据证据另立探索性改进协议，暂缓课程报告定稿。现有流程验收不等于模型性能已充分优化，不能承诺一定提升。SVM本身属于机器学习，当前没有传统非AI方法对照，不能作AI相对非AI提升的结论。新训练规则不覆盖formal_v1；最终测试已见，不能将后续新模型评价当未见test的确认性实验。未确认映射仅报告class_index；GPU可运行，CPU可交接，不再评估资源；人员分工不处理。
 
 已执行单元见[固定噪声重复评价计划](docs/plans/2026-10-01-repeated-evaluation.md)，正式条件仍以已登记registry为准。
 
