@@ -1,0 +1,20 @@
+{
+  "status": "verified",
+  "created_utc": "2026-10-02T13:38:42.048040+00:00",
+  "training_running_pid": 5496,
+  "registry_unchanged": true,
+  "bound_sources_unchanged": true,
+  "questions_count": 5,
+  "plan_sha256": "d55eeb81b6e66c468fcee501f82d293e77b6dff37c4a99746be7e5c143dcf8c1",
+  "snapshot_sha256": {
+    "progress_snapshot.json": "acda21687247a06cecf2f75d8af8c8b0918b7874235b8ab7624a304f415fffb0",
+    "observed_epochs.json": "68d3dac0f14ee401bfcab70b2f46dd6d3bdab013a4e3f2f31616886d8833defa"
+  },
+  "early_best_validation_epoch": 80,
+  "early_best_validation_metrics": {
+    "accuracy": 0.346875,
+    "macro_f1": 0.3086143666753335
+  },
+  "latest_progress_epoch": 90,
+  "heldout_test_evaluated": false
+}

@@ -1,0 +1,278 @@
+{
+  "status": "running",
+  "seed": 0,
+  "last_epoch": {
+    "epoch": 90,
+    "learning_rate": 4e-05,
+    "train_loss": 1.1823732242584228,
+    "online_train_accuracy": 0.5859166666666666,
+    "bn": {
+      "stem.1": {
+        "variance_min": 0.0041251773945987225,
+        "variance_median": 0.03532023727893829,
+        "variance_max": 1.0524917840957642,
+        "mean_abs_max": 0.00942811369895935,
+        "batches": 16920
+      },
+      "stages.0.0.main.1": {
+        "variance_min": 0.003848863299936056,
+        "variance_median": 0.06390927731990814,
+        "variance_max": 0.2943108081817627,
+        "mean_abs_max": 1.1173259019851685,
+        "batches": 16920
+      },
+      "stages.0.0.main.4": {
+        "variance_min": 0.017970692366361618,
+        "variance_median": 0.14309082925319672,
+        "variance_max": 0.3940587341785431,
+        "mean_abs_max": 0.2651544213294983,
+        "batches": 16920
+      },
+      "stages.0.1.main.0": {
+        "variance_min": 0.12971679866313934,
+        "variance_median": 0.4301207661628723,
+        "variance_max": 1.900887131690979,
+        "mean_abs_max": 0.9640886783599854,
+        "batches": 16920
+      },
+      "stages.0.1.main.3": {
+        "variance_min": 0.24539780616760254,
+        "variance_median": 0.6761141419410706,
+        "variance_max": 1.695243239402771,
+        "mean_abs_max": 0.8453347086906433,
+        "batches": 16920
+      },
+      "stages.0.1.main.6": {
+        "variance_min": 0.010240151546895504,
+        "variance_median": 0.09762945771217346,
+        "variance_max": 0.3169955015182495,
+        "mean_abs_max": 0.21621307730674744,
+        "batches": 16920
+      },
+      "stages.0.2.main.0": {
+        "variance_min": 0.19803522527217865,
+        "variance_median": 0.8097544312477112,
+        "variance_max": 1.7768611907958984,
+        "mean_abs_max": 1.124467134475708,
+        "batches": 16920
+      },
+      "stages.0.2.main.3": {
+        "variance_min": 0.28994062542915344,
+        "variance_median": 0.5292044878005981,
+        "variance_max": 2.0622100830078125,
+        "mean_abs_max": 0.6608205437660217,
+        "batches": 16920
+      },
+      "stages.0.2.main.6": {
+        "variance_min": 0.04971011355519295,
+        "variance_median": 0.1440449357032776,
+        "variance_max": 0.7758136987686157,
+        "mean_abs_max": 0.26706498861312866,
+        "batches": 16920
+      },
+      "stages.1.0.main.0": {
+        "variance_min": 0.18249551951885223,
+        "variance_median": 0.9801191091537476,
+        "variance_max": 2.6789536476135254,
+        "mean_abs_max": 1.4189964532852173,
+        "batches": 16920
+      },
+      "stages.1.0.main.3": {
+        "variance_min": 0.08888283371925354,
+        "variance_median": 0.37021660804748535,
+        "variance_max": 0.8907365202903748,
+        "mean_abs_max": 0.5360722541809082,
+        "batches": 16920
+      },
+      "stages.1.0.main.6": {
+        "variance_min": 0.04654427617788315,
+        "variance_median": 0.1468031108379364,
+        "variance_max": 0.6748461723327637,
+        "mean_abs_max": 0.3205874562263489,
+        "batches": 16920
+      },
+      "stages.1.1.main.0": {
+        "variance_min": 0.192525714635849,
+        "variance_median": 1.0353703498840332,
+        "variance_max": 2.6021711826324463,
+        "mean_abs_max": 1.1281081438064575,
+        "batches": 16920
+      },
+      "stages.1.1.main.3": {
+        "variance_min": 0.26330310106277466,
+        "variance_median": 0.7083011865615845,
+        "variance_max": 2.0289254188537598,
+        "mean_abs_max": 0.4583694338798523,
+        "batches": 16920
+      },
+      "stages.1.1.main.6": {
+        "variance_min": 0.034185852855443954,
+        "variance_median": 0.08966469764709473,
+        "variance_max": 0.21303045749664307,
+        "mean_abs_max": 0.19754724204540253,
+        "batches": 16920
+      },
+      "stages.1.2.main.0": {
+        "variance_min": 0.2627706527709961,
+        "variance_median": 1.2649593353271484,
+        "variance_max": 3.7586989402770996,
+        "mean_abs_max": 0.9713684320449829,
+        "batches": 16920
+      },
+      "stages.1.2.main.3": {
+        "variance_min": 0.14513631165027618,
+        "variance_median": 0.515343427658081,
+        "variance_max": 2.1501593589782715,
+        "mean_abs_max": 0.7136831879615784,
+        "batches": 16920
+      },
+      "stages.1.2.main.6": {
+        "variance_min": 0.013398049399256706,
+        "variance_median": 0.11942476034164429,
+        "variance_max": 0.4472254812717438,
+        "mean_abs_max": 0.26507797837257385,
+        "batches": 16920
+      },
+      "stages.2.0.main.0": {
+        "variance_min": 0.34912988543510437,
+        "variance_median": 1.3050785064697266,
+        "variance_max": 4.3526787757873535,
+        "mean_abs_max": 0.8871408104896545,
+        "batches": 16920
+      },
+      "stages.2.0.main.3": {
+        "variance_min": 0.16438905894756317,
+        "variance_median": 0.41729849576950073,
+        "variance_max": 1.4340466260910034,
+        "mean_abs_max": 0.4856337010860443,
+        "batches": 16920
+      },
+      "stages.2.0.main.6": {
+        "variance_min": 0.030778704211115837,
+        "variance_median": 0.11767255514860153,
+        "variance_max": 0.5260835886001587,
+        "mean_abs_max": 0.2652627229690552,
+        "batches": 16920
+      },
+      "stages.2.1.main.0": {
+        "variance_min": 0.2225290834903717,
+        "variance_median": 0.9893169403076172,
+        "variance_max": 7.5334343910217285,
+        "mean_abs_max": 1.1805598735809326,
+        "batches": 16920
+      },
+      "stages.2.1.main.3": {
+        "variance_min": 0.14096663892269135,
+        "variance_median": 0.4184381663799286,
+        "variance_max": 2.7838029861450195,
+        "mean_abs_max": 0.7322191596031189,
+        "batches": 16920
+      },
+      "stages.2.1.main.6": {
+        "variance_min": 0.022529182955622673,
+        "variance_median": 0.11567158997058868,
+        "variance_max": 0.41924411058425903,
+        "mean_abs_max": 0.3818502724170685,
+        "batches": 16920
+      },
+      "stages.2.2.main.0": {
+        "variance_min": 0.25830408930778503,
+        "variance_median": 1.1603636741638184,
+        "variance_max": 7.70130729675293,
+        "mean_abs_max": 1.4259052276611328,
+        "batches": 16920
+      },
+      "stages.2.2.main.3": {
+        "variance_min": 0.18083123862743378,
+        "variance_median": 0.5484117865562439,
+        "variance_max": 2.9159891605377197,
+        "mean_abs_max": 0.923920214176178,
+        "batches": 16920
+      },
+      "stages.2.2.main.6": {
+        "variance_min": 0.027041224762797356,
+        "variance_median": 0.09992317110300064,
+        "variance_max": 0.35429006814956665,
+        "mean_abs_max": 0.4991913437843323,
+        "batches": 16920
+      },
+      "stages.3.0.main.0": {
+        "variance_min": 0.3949827551841736,
+        "variance_median": 1.2561124563217163,
+        "variance_max": 8.211010932922363,
+        "mean_abs_max": 1.623616337776184,
+        "batches": 16920
+      },
+      "stages.3.0.main.3": {
+        "variance_min": 0.09883598238229752,
+        "variance_median": 0.4003114104270935,
+        "variance_max": 1.6564288139343262,
+        "mean_abs_max": 0.5492634177207947,
+        "batches": 16920
+      },
+      "stages.3.0.main.6": {
+        "variance_min": 0.021654581651091576,
+        "variance_median": 0.13333722949028015,
+        "variance_max": 0.5261237621307373,
+        "mean_abs_max": 0.3758147954940796,
+        "batches": 16920
+      },
+      "stages.3.1.main.0": {
+        "variance_min": 0.09687384963035583,
+        "variance_median": 0.22657853364944458,
+        "variance_max": 1.6783668994903564,
+        "mean_abs_max": 1.0919994115829468,
+        "batches": 16920
+      },
+      "stages.3.1.main.3": {
+        "variance_min": 0.1929846704006195,
+        "variance_median": 0.4879445433616638,
+        "variance_max": 1.8362233638763428,
+        "mean_abs_max": 1.4853359460830688,
+        "batches": 16920
+      },
+      "stages.3.1.main.6": {
+        "variance_min": 0.04809638112783432,
+        "variance_median": 0.11539360880851746,
+        "variance_max": 0.22430318593978882,
+        "mean_abs_max": 0.6962413191795349,
+        "batches": 16920
+      },
+      "stages.3.2.main.0": {
+        "variance_min": 0.19278226792812347,
+        "variance_median": 0.36238908767700195,
+        "variance_max": 2.2903356552124023,
+        "mean_abs_max": 1.5059422254562378,
+        "batches": 16920
+      },
+      "stages.3.2.main.3": {
+        "variance_min": 0.2367796152830124,
+        "variance_median": 0.5255866646766663,
+        "variance_max": 1.1188849210739136,
+        "mean_abs_max": 1.286582112312317,
+        "batches": 16920
+      },
+      "stages.3.2.main.6": {
+        "variance_min": 0.056923143565654755,
+        "variance_median": 0.09624002873897552,
+        "variance_max": 0.18021626770496368,
+        "mean_abs_max": 0.8607800006866455,
+        "batches": 16920
+      },
+      "final.0": {
+        "variance_min": 0.5315659046173096,
+        "variance_median": 1.0068998336791992,
+        "variance_max": 2.380204916000366,
+        "mean_abs_max": 1.8877637386322021,
+        "batches": 16920
+      }
+    },
+    "validation": {
+      "accuracy": 0.304375,
+      "macro_f1": 0.26567085844352
+    },
+    "elapsed_seconds": 8.260674088000087
+  },
+  "selected_epoch": 80,
+  "elapsed_seconds": 653.310569518
+}

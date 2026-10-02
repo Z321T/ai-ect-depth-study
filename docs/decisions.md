@@ -1,5 +1,11 @@
 # 决策记录
 
+## D017（2026-10-02）先完成1000轮，补充记录诊断问题
+
+用户在讨论原10000轮后明确先完成本次1000轮，记录要验证的结果。保持D015/D016、执行registry、三个seed配置及绑定源码不变；继续当前训练与独立核验链，不启动10000轮。补充分析口径见docs/paper_baseline_1000_questions.md及results/experiments/paper_baseline_v1/analysis_plan_v1/plan.json，记录五项问题：学习趋势、同种eval推理下的train/validation差距、既有clean validation流程比较、seed/连接组/类别稳定性、独立复算可信性。
+
+补充计划在seed0已完成90轮且早期验证已见后登记，是探索性分析，不称训练前预注册。提前明确首/末100轮训练窗口、首/末10个验证点和第10/100/500/1000轮读数；三个seed全列及样本SD，不由当前分数缩短/延长训练或改变选择目标。train在线Accuracy与eval/10-crop指标分开，不能直接相减归因；曲线/组差异只提供下一受控实验线索，不直接证明BN、欠拟合或分布偏移原因。
+
 ## D016（2026-10-02）论文训练器执行绑定与成功提交点
 
 保持D015有限1000轮设计及历史base/design不变，新增完整训练器、三seed执行登记和独立裁剪/指标核验工具；每个resolved config是原base加seed，实际CPU/CUDA通过独立override选择，不改已登记device=auto。新网络仍只用train/validation、Accuracy及较早轮次选择，完整重建不是创新改进成绩，已见test不参与选择。

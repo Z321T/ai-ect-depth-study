@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "protocol": "paper_baseline_1000_diagnostic_analysis_v1",
+  "created_utc": "2026-10-02T13:38:42.048040+00:00",
+  "status": "analysis_questions_recorded_training_running",
+  "study_type": "exploratory",
+  "timing": "supplement_after_training_start_and_after_early_validation_seen",
+  "user_instruction": "先进行这次1000轮训练，记录想验证的结果；不启动10000轮。",
+  "training_registry_path": "results/experiments/paper_baseline_v1/registry.json",
+  "training_registry_sha256": "791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4",
+  "training_protocol_changed": false,
+  "selection_changed": false,
+  "test_inference_allowed": false,
+  "early_results_visible": {
+    "seed": 0,
+    "latest_progress_epoch": 90,
+    "latest_logged_validation_epoch": 90,
+    "other_seeds_not_started": true
+  },
+  "fixed_conditions": {
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "max_epochs": 1000,
+    "train_samples": 24000,
+    "validation_samples": 3200,
+    "lr": 4e-05,
+    "validation_every_epochs": 10,
+    "crops": 10,
+    "crop_seed": 10,
+    "selection": "validation Accuracy then earlier epoch",
+    "early_stopping": false
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "在1000轮初始学习率阶段，模型是否持续学习，末期是否仍有变化？",
+      "evidence": [
+        "每epoch训练交叉熵和在线Accuracy",
+        "第1–100轮与901–1000轮训练loss/在线Accuracy均值及差值",
+        "第10/100/500/1000轮validation Accuracy/Macro-F1",
+        "首10个与末10个验证点均值及差值"
+      ],
+      "limits": "这些是描述性学习趋势；即使曲线趋平，也不能证明收敛或预测10000轮及衰减后的表现。"
+    },
+    {
+      "id": "Q2",
+      "question": "选中权重对参与优化的train与隔离的validation，表现差距有多大？",
+      "evidence": [
+        "选中权重固定seed10、10-crop、eval模式的完整train/validation Accuracy/Macro-F1及差值",
+        "在线train Accuracy曲线单独展示"
+      ],
+      "limits": "在线train与eval/10-crop不是同种评价；不能直接相减作泛化gap。eval train–validation差距也不能单独确定过拟合、BN或数据偏移原因。"
+    },
+    {
+      "id": "Q3",
+      "question": "论文方法重建在当前有限预算下，相对既有模型的验证表现是否提高？",
+      "evidence": [
+        "全部三个seed选中模型validation Accuracy/Macro-F1及均值/样本SD(ddof=1)",
+        "对既有SVM、CNN、普通ResNet及增强ResNet clean validation汇总分别计算百分点差值，Macro-F1原尺度差值"
+      ],
+      "limits": "SVM与旧深度模型训练/裁剪/优化预算不同，差值只是流程整体描述，不将其归因于单一组件；SVM属于AI，不能推导AI相对非AI提升；不使用test或原文93.58%作通过阈值。"
+    },
+    {
+      "id": "Q4",
+      "question": "结果是否依赖某一个随机种子、连接组或少数类别？",
+      "evidence": [
+        "保留seed0/1/2全部结果、样本SD与min/max",
+        "validation连接组3和11每组Accuracy/Macro-F1及train各连接组指标",
+        "20类混淆矩阵、每类Recall/F1，保留零Recall类别"
+      ],
+      "limits": "三个seed不能替代独立数据重复或作为置信区间；连接组不等同已确认实际人员；类别未确认，不报告毫米误差或猜测Lift-off类别。"
+    },
+    {
+      "id": "Q5",
+      "question": "以上读数是否能从保存权重和原始CSV独立复算？",
+      "evidence": [
+        "每seed选中权重CUDA重载train24000/validation3200逐条预测核验，总共81600条",
+        "独立CSV重算总体、类别、连接组指标，误差阈值沿既有verifier=1e-12",
+        "完整源码/配置/数据/权重/预测/核验记录SHA绑定"
+      ],
+      "limits": "实现正确性验收不等同科学性能提升；任一失败如实保留，不把未核验运行合并成最终研究结果。"
+    }
+  ],
+  "all_questions_status": "pending_complete_training_and_independent_verification",
+  "snapshot_sha256": {
+    "progress_snapshot.json": "acda21687247a06cecf2f75d8af8c8b0918b7874235b8ab7624a304f415fffb0",
+    "observed_epochs.json": "68d3dac0f14ee401bfcab70b2f46dd6d3bdab013a4e3f2f31616886d8833defa"
+  },
+  "recording_script_sha256": "8634c80538a610842e6141bf1f92c74c7858b2f41589070870663afb4e331d8a",
+  "recording_script_text": "from pathlib import Path\nimport datetime,json,hashlib,os\nroot=Path('/home/lucky/devdir/rgzndl');base=root/'results/experiments/paper_baseline_v1';out=base/'analysis_plan_v1'\nassert not out.exists() or not any(out.iterdir());out.mkdir(exist_ok=True)\ndef sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()\ndef dump(p,v):p.write_text(json.dumps(v,ensure_ascii=False,indent=2,allow_nan=False)+'\\n',newline='\\n')\nreg=json.loads((base/'registry.json').read_text());status=json.loads((base/'execution_status.json').read_text())\nassert status['status']=='running'\nos.kill(status['pid'],0)\nprogress_path=base/'resnext_s0/progress.json';snap=progress_path.read_bytes();progress=json.loads(snap)\n(out/'progress_snapshot.json').write_bytes(snap)\nobserved=[]\n# Parse only complete epoch JSON lines; log remains read-only and appendable.\nfor line in (base/'logs/resnext_s0_train.log').read_text().splitlines():\n try: e=json.loads(line)\n except json.JSONDecodeError:continue\n if isinstance(e,dict) and 'epoch' in e:observed.append(e)\ndump(out/'observed_epochs.json',observed)\nfor p,h in reg['code_sha256'].items():assert sha(root/p)==h,p\nassert sha(base/'registry.json')=='791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4'\ncreated=datetime.datetime.now(datetime.timezone.utc).isoformat()\nquestions=[\n dict(id='Q1',question='在1000轮初始学习率阶段，模型是否持续学习，末期是否仍有变化？',\n  evidence=['每epoch训练交叉熵和在线Accuracy','第1–100轮与901–1000轮训练loss/在线Accuracy均值及差值','第10/100/500/1000轮validation Accuracy/Macro-F1','首10个与末10个验证点均值及差值'],\n  limits='这些是描述性学习趋势；即使曲线趋平，也不能证明收敛或预测10000轮及衰减后的表现。'),\n dict(id='Q2',question='选中权重对参与优化的train与隔离的validation，表现差距有多大？',\n  evidence=['选中权重固定seed10、10-crop、eval模式的完整train/validation Accuracy/Macro-F1及差值','在线train Accuracy曲线单独展示'],\n  limits='在线train与eval/10-crop不是同种评价；不能直接相减作泛化gap。eval train–validation差距也不能单独确定过拟合、BN或数据偏移原因。'),\n dict(id='Q3',question='论文方法重建在当前有限预算下，相对既有模型的验证表现是否提高？',\n  evidence=['全部三个seed选中模型validation Accuracy/Macro-F1及均值/样本SD(ddof=1)','对既有SVM、CNN、普通ResNet及增强ResNet clean validation汇总分别计算百分点差值，Macro-F1原尺度差值'],\n  limits='SVM与旧深度模型训练/裁剪/优化预算不同，差值只是流程整体描述，不将其归因于单一组件；SVM属于AI，不能推导AI相对非AI提升；不使用test或原文93.58%作通过阈值。'),\n dict(id='Q4',question='结果是否依赖某一个随机种子、连接组或少数类别？',\n  evidence=['保留seed0/1/2全部结果、样本SD与min/max','validation连接组3和11每组Accuracy/Macro-F1及train各连接组指标','20类混淆矩阵、每类Recall/F1，保留零Recall类别'],\n  limits='三个seed不能替代独立数据重复或作为置信区间；连接组不等同已确认实际人员；类别未确认，不报告毫米误差或猜测Lift-off类别。'),\n dict(id='Q5',question='以上读数是否能从保存权重和原始CSV独立复算？',\n  evidence=['每seed选中权重CUDA重载train24000/validation3200逐条预测核验，总共81600条','独立CSV重算总体、类别、连接组指标，误差阈值沿既有verifier=1e-12','完整源码/配置/数据/权重/预测/核验记录SHA绑定'],\n  limits='实现正确性验收不等同科学性能提升；任一失败如实保留，不把未核验运行合并成最终研究结果。')]\nplan=dict(schema_version=1,protocol='paper_baseline_1000_diagnostic_analysis_v1',created_utc=created,\n status='analysis_questions_recorded_training_running',study_type='exploratory',\n timing='supplement_after_training_start_and_after_early_validation_seen',\n user_instruction='先进行这次1000轮训练，记录想验证的结果；不启动10000轮。',\n training_registry_path=str((base/'registry.json').relative_to(root)),training_registry_sha256=sha(base/'registry.json'),\n training_protocol_changed=False,selection_changed=False,test_inference_allowed=False,\n early_results_visible=dict(seed=0,latest_progress_epoch=progress['last_epoch']['epoch'],latest_logged_validation_epoch=max(e['epoch'] for e in observed if e['validation'] is not None),other_seeds_not_started=True),\n fixed_conditions=dict(seeds=[0,1,2],max_epochs=1000,train_samples=24000,validation_samples=3200,lr=4e-5,validation_every_epochs=10,crops=10,crop_seed=10,selection='validation Accuracy then earlier epoch',early_stopping=False),\n questions=questions,all_questions_status='pending_complete_training_and_independent_verification',\n snapshot_sha256={p.name:sha(p) for p in [out/'progress_snapshot.json',out/'observed_epochs.json']},\n recording_script_sha256=sha(__file__),recording_script_text=Path(__file__).read_text())\ndump(out/'plan.json',plan)\n# Only the snapshot is interpreted as early observation; no new inference or live artifact rewrite.\nval=[e for e in observed if e['validation'] is not None];best=max(val,key=lambda e:(e['validation']['accuracy'],-e['epoch']))\ndump(out/'recording_verification.json',dict(status='verified',created_utc=created,\n training_running_pid=status['pid'],registry_unchanged=True,bound_sources_unchanged=True,\n questions_count=len(questions),plan_sha256=sha(out/'plan.json'),\n snapshot_sha256=plan['snapshot_sha256'],early_best_validation_epoch=best['epoch'],\n early_best_validation_metrics=best['validation'],latest_progress_epoch=progress['last_epoch']['epoch'],\n heldout_test_evaluated=False))\nprint(json.dumps(dict(recorded_utc=created,plan_sha256=sha(out/'plan.json'),epoch=progress['last_epoch']['epoch'],questions=5,best_early_validation=best['validation']),ensure_ascii=False))\n"
+}

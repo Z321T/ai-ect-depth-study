@@ -29,6 +29,7 @@
 - [论文ResNeXt结构与工程假设](docs/paper_model_reconstruction.md)
 - [论文组件学习/设备验收](docs/paper_components_acceptance.md)
 - [完整论文方法训练与重载](docs/paper_training.md)
+- [本轮1000轮训练的五项诊断问题](docs/paper_baseline_1000_questions.md)
 - [有限预算完整基线设计](docs/plans/2026-10-02-paper-baseline-training.md)
 - [近重复诊断结果](results/similarity/train_validation_v1/report.md)
 

@@ -59,7 +59,7 @@
 
 ## 下一工作单元
 
-诊断/论文组件已完成。训练器/执行登记/独立核验工具及终版264项真实GPU回归完成；CPU/CUDA训练与CPU迁移共240条预测及指标独立核验一致。执行registry已冻结（SHA256 791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4），已按docs/plans/2026-10-02-paper-baseline-training.md启动顺序执行三个seed的全量24000/3200训练；当前seed0训练中，进度见results/experiments/paper_baseline_v1/execution_status.json。配置max1000epoch、Adam4e-5、每10epoch固定10-crop验证、不早停；这是有限预算公开方法重建，原文10000epoch严格复现尚未完成。尚无新完整基线或提升成绩。
+诊断/论文组件已完成。训练器/执行登记/独立核验工具及终版264项真实GPU回归完成；CPU/CUDA训练与CPU迁移共240条预测及指标独立核验一致。执行registry已冻结（SHA256 791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4），已按docs/plans/2026-10-02-paper-baseline-training.md启动顺序执行三个seed的全量24000/3200训练；当前seed0训练中，进度见results/experiments/paper_baseline_v1/execution_status.json。配置max1000epoch、Adam4e-5、每10epoch固定10-crop验证、不早停；这是有限预算公开方法重建，原文10000epoch严格复现尚未完成。尚无新完整基线或提升成绩。1000上限没有足够收敛的实证依据；原训练预算的最终方法基线应补齐10000轮及5000/7500衰减，另立协议，当前运行只作有限预算诊断。用户已确认先完成本次1000轮三seed，不立即启动10000；验证目标/固定窗口见docs/paper_baseline_1000_questions.md，记录时早期成绩已见，属于探索性补充。
 
 用户进一步明确期望有指标提升并关注原论文表现；按D014推进“固定权重诊断→ResNeXt1D-38/裁剪/10-crop/原优化设置重建→同协议改进对照”。当前简化CNN/ResNet不能视为论文复现，先修正基线再写最终报告。保持去重分组划分，已见测试不用于挑方案；不能保证超过原报告93.58%。完整方法差异与边界见[论文基线对照](docs/paper_baseline_alignment.md)。
 
