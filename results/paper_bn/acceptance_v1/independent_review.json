@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "review_type": "independent_read_only_producer_coverage_followup",
+  "completed_utc": "2026-10-03T03:37:58.015013+00:00",
+  "project_root": "/home/lucky/devdir/rgzndl",
+  "scope": "Latest proof coverage fix and the three previously reproduced producer P2 findings only; same E1 protocol.",
+  "reviewed_source_sha256": "ad2adc0b5b60fb5915a5b4b0b2a97f7070f8d785ed24e6f14ec366600422a6ef",
+  "checked_files_sha256": {
+    "AGENTS.md": "1f8b3bf033904897f5a2bef37fe011606f5fd30756659da6718492bd237d9cd8",
+    "task_plan.md": "986ea233f7fd3672484c9ecf1cc7bc9b73106515810a8773353787699a168fe4",
+    "findings.md": "72587cb69e599f74c19898e15e23940e069ba3c7362775a5846c15be8cc6242f",
+    "progress.md": "cc38a5d08fb783802378c4b7092c4c5268e39ef9aeeff796d5f89d6337968070",
+    "docs/plans/2026-10-03-controlled-followup.md": "fc17e23009c9e98350e21bf14cf48bbd92e0a1c675bb6492a507a0558a394bcd",
+    "src/ect/paper_bn.py": "ad2adc0b5b60fb5915a5b4b0b2a97f7070f8d785ed24e6f14ec366600422a6ef",
+    "scripts/recalibrate_paper_bn.py": "f08558f8c160e2bb56834e724d90c4fc2371b360c959e4d154c3c19e3f594edd",
+    "tests/test_paper_bn.py": "69894828c0c6c5a0c3901cfeced55cb845c2a80eda766c99fedbe079b56814fe",
+    "src/ect/paper_training.py": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+    "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+    "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+    "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "scripts/verify_paper_bn.py": "e7e2b02b854c3afeb947dd635aef9ca078de29f91b3f1ca2054012800d912034",
+    "tests/test_paper_bn_verification.py": "763533c0feab8fe74619a1abae6ffc002035c53c50745cc89c9c7a40cb212cc8",
+    "results/experiments/paper_baseline_v1/registry.json": "791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4",
+    "tests/test_paper_bn_acceptance.py": "7aeb65816130f48ac5438113b0aff4816600ac30f2a318324df40b9dc5eedaa8"
+  },
+  "previous_review": "/tmp/ect_bn_producer_review_final.json",
+  "issues": [],
+  "conclusion": "No remaining P1/P2 identified within the requested focused follow-up. All three recorded findings are fixed on the reviewed source hash.",
+  "resolved_issues": [
+    {
+      "id": "BN-PRODUCER-001",
+      "status": "fixed",
+      "evidence": "Fresh 40/40 claim-only CPU/CUDA/migration acceptance rejected with Actual independent verifier proof required."
+    },
+    {
+      "id": "BN-PRODUCER-002",
+      "status": "fixed",
+      "evidence": "Fresh acceptance and registry-ancestor failure.json/running.marker all rejected before proof validation."
+    },
+    {
+      "id": "BN-PRODUCER-003",
+      "status": "fixed",
+      "evidence": "Fresh genuine independently replayed 42-file CPU proof accepted; six-file pruned proof rejected explicitly for missing original/source/cache/manifest/raw coverage."
+    }
+  ],
+  "checks": [
+    {
+      "name": "focused acceptance tests",
+      "command": "PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python -m unittest discover -s tests -p test_paper_bn_acceptance.py -v",
+      "exit_code": 0,
+      "tests_run": 3,
+      "passed": 3,
+      "skipped": 0,
+      "elapsed_seconds": 5.736,
+      "evidence": "/tmp/ect_bn_review_final2_tests.log"
+    },
+    {
+      "name": "fresh original claim/state reproductions",
+      "command": "PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python /tmp/ect_bn_review_reproduce_final.py",
+      "exit_code": 0,
+      "observations": {
+        "fixture_root": "/tmp/ect_bn_review_fixture_o6vg_tfa",
+        "checks": [
+          {
+            "name": "claim-only CPU/CUDA plus migration acceptance",
+            "result": "rejected",
+            "error": "Actual independent verifier proof required"
+          },
+          {
+            "name": "acceptance failure.json",
+            "result": "rejected",
+            "error": "Failed evidence: /tmp/ect_bn_review_fixture_o6vg_tfa/evidence"
+          },
+          {
+            "name": "registry ancestry failure.json",
+            "result": "rejected",
+            "error": "Failed evidence: /tmp/ect_bn_review_fixture_o6vg_tfa/evidence"
+          },
+          {
+            "name": "acceptance running.marker",
+            "result": "rejected",
+            "error": "Running evidence: /tmp/ect_bn_review_fixture_o6vg_tfa/evidence"
+          },
+          {
+            "name": "registry ancestry running.marker",
+            "result": "rejected",
+            "error": "Running evidence: /tmp/ect_bn_review_fixture_o6vg_tfa/evidence"
+          }
+        ],
+        "original_files_unchanged": true,
+        "producer_sha256": "ad2adc0b5b60fb5915a5b4b0b2a97f7070f8d785ed24e6f14ec366600422a6ef",
+        "code_sha256": {
+          "src/ect/paper_training.py": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+          "src/ect/paper_registration.py": "16ad3f853b8e4a77da0a2e90e718b9068815e1d95f28a7b8cf5b267f96d9cc0f",
+          "src/ect/paper_models.py": "7ec086276b464f008ae007d6e490f99f4af43f8e1568e09f00e67fc7c582c14e",
+          "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+          "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+          "src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+          "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+          "src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+          "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+          "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+          "scripts/train_paper_baseline.py": "d32827bcdde7e75ee601cade1002f37a1192ec8d751e6be7aa533f192dbd82d9",
+          "scripts/register_paper_baseline.py": "d1a4d2af3f718989b1c4f9a555c870f7c46462b0853a9a95c6fdf5b71a7f0362",
+          "scripts/verify_paper_run.py": "130b594f3839353841e04cf3a4af84977f8e4de6c2e1598e06e0cec3ab7f5694",
+          "src/ect/paper_bn.py": "ad2adc0b5b60fb5915a5b4b0b2a97f7070f8d785ed24e6f14ec366600422a6ef",
+          "scripts/recalibrate_paper_bn.py": "f08558f8c160e2bb56834e724d90c4fc2371b360c959e4d154c3c19e3f594edd",
+          "scripts/verify_paper_bn.py": "e7e2b02b854c3afeb947dd635aef9ca078de29f91b3f1ca2054012800d912034"
+        }
+      },
+      "evidence": "/tmp/ect_bn_review_final2_reproduction.log"
+    },
+    {
+      "name": "fresh genuine proof accepted and pruning rejected",
+      "command": "PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python /tmp/ect_bn_review_coverage_final2.py",
+      "exit_code": 0,
+      "observations": {
+        "producer_sha256": "ad2adc0b5b60fb5915a5b4b0b2a97f7070f8d785ed24e6f14ec366600422a6ef",
+        "fixture_root": "/tmp/ect_bn_review_fixture_o6vg_tfa",
+        "genuine_proof_path": "/tmp/ect_bn_review_fixture_o6vg_tfa/evidence/final2_genuine_cpu_proof.json",
+        "genuine_proof_sha256": "6b03df4aa7711aed6470e79387f9fa493311d8187502a952db708acba2914917",
+        "genuine_complete_proof_accepted": true,
+        "checked_file_count": 42,
+        "prediction_counts": {
+          "train": 40,
+          "validation": 40
+        },
+        "maximum_metric_error": 0.0,
+        "calibration_buffer_max_abs_error": 0.0,
+        "pruned_file_count": 6,
+        "pruned_proof_rejected": true,
+        "rejection": "Complete original/source/cache/manifest/raw proof identity coverage required",
+        "original_files_unchanged": true
+      },
+      "evidence": "/tmp/ect_bn_review_coverage_final2.json"
+    },
+    {
+      "name": "coverage implementation read",
+      "result": "Required paths derived before digest validation: calibrated and origin reports/artifacts; all 16 code sources and old base config; cache metadata and seven cache files; summary, three manifests and raw input paths. Existing per-file SHA and failed/running checks then validate all supplied evidence."
+    }
+  ],
+  "artifacts_sha256": {
+    "/tmp/ect_bn_review_final2_tests.log": "97475eeafe08a0f22dfe3873bb6b983648814765842eb4f95be276169591da21",
+    "/tmp/ect_bn_review_final2_reproduction.log": "ff0024fa592f079295debd0c0702855ad335e9fdd7c347b6e941faf9f54b9de7",
+    "/tmp/ect_bn_review_reproduce_final.py": "05518120289e02ff68ef3e4f3fd3b8bc44484148d17e052a3ce6827d7e9f0878",
+    "/tmp/ect_bn_review_coverage_final2.py": "dc9d8c7f7debe9f4ae651d0e5915da5adc975c52e6b64182b8c18b34cd53fe3d",
+    "/tmp/ect_bn_review_coverage_final2.json": "450112033a4716634119aa6f1a3161a609081ceb9d595898da6685ad6babfd73"
+  },
+  "constraints": {
+    "repository_files_written": false,
+    "git_used": false,
+    "full_real_dataset_inference": false,
+    "source_modified": false,
+    "real_cuda_execution": false
+  },
+  "limitations": [
+    "Focused review uses synthetic 40/40 CPU fixtures and covers the specified three findings; no further exploratory review performed.",
+    "Historical source smoke/regression artifacts are not treated as current acceptance. Parent will separately repeat real CPU/CUDA/migration acceptance and regression after source freeze."
+  ]
+}

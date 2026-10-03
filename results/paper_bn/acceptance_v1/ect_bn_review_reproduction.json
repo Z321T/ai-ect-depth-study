@@ -1,0 +1,18 @@
+{
+  "fixture_root": "/tmp/ect_bn_review_fixture_g_fs1r9c",
+  "acceptance_without_independent_verifier_accepted": true,
+  "actual_calibration_device_for_both_runs": "cpu",
+  "proof_fields": [
+    "device",
+    "maximum_metric_error",
+    "prediction_counts",
+    "report_sha256",
+    "status"
+  ],
+  "original_files_unchanged": true,
+  "producer_sha256": "0d8637f87e4d10307375088d861c9c2b10527f526247d900aa1ae4c21d9edcbc",
+  "failed_acceptance_parent_accepted": true,
+  "failure_marker_path": "evidence/failure.json",
+  "running_acceptance_parent_accepted": true,
+  "producer_sha256_at_followup": "0d8637f87e4d10307375088d861c9c2b10527f526247d900aa1ae4c21d9edcbc"
+}

@@ -1,0 +1,249 @@
+{
+  "schema_version": 1,
+  "review_type": "independent_read_only_producer_review",
+  "project_root": "/home/lucky/devdir/rgzndl",
+  "branch_user_supplied": "feat/paper-bn-recalibration",
+  "git_used": false,
+  "started_utc": "2026-10-03T03:20:18.751993+00:00",
+  "completed_utc": "2026-10-03T03:26:19.468156+00:00",
+  "checked_files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "1f8b3bf033904897f5a2bef37fe011606f5fd30756659da6718492bd237d9cd8",
+      "initial_sha256": "1f8b3bf033904897f5a2bef37fe011606f5fd30756659da6718492bd237d9cd8",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "task_plan.md",
+      "sha256": "986ea233f7fd3672484c9ecf1cc7bc9b73106515810a8773353787699a168fe4",
+      "initial_sha256": "ca00cf9e72d97f5d56a21808ed67e866ad8b60c9e910d2398adee737ce22f917",
+      "changed_during_review": true,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "findings.md",
+      "sha256": "72587cb69e599f74c19898e15e23940e069ba3c7362775a5846c15be8cc6242f",
+      "initial_sha256": "72587cb69e599f74c19898e15e23940e069ba3c7362775a5846c15be8cc6242f",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "progress.md",
+      "sha256": "cc38a5d08fb783802378c4b7092c4c5268e39ef9aeeff796d5f89d6337968070",
+      "initial_sha256": "cc38a5d08fb783802378c4b7092c4c5268e39ef9aeeff796d5f89d6337968070",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "docs/plans/2026-10-03-controlled-followup.md",
+      "sha256": "fc17e23009c9e98350e21bf14cf48bbd92e0a1c675bb6492a507a0558a394bcd",
+      "initial_sha256": "fc17e23009c9e98350e21bf14cf48bbd92e0a1c675bb6492a507a0558a394bcd",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "src/ect/paper_bn.py",
+      "sha256": "0d8637f87e4d10307375088d861c9c2b10527f526247d900aa1ae4c21d9edcbc",
+      "initial_sha256": "1fc78e9d28994442fc4985c09d832f0d71c32dcb9699d619891f7edb833145fb",
+      "changed_during_review": true,
+      "scope": "primary"
+    },
+    {
+      "path": "scripts/recalibrate_paper_bn.py",
+      "sha256": "f08558f8c160e2bb56834e724d90c4fc2371b360c959e4d154c3c19e3f594edd",
+      "initial_sha256": "f08558f8c160e2bb56834e724d90c4fc2371b360c959e4d154c3c19e3f594edd",
+      "changed_during_review": false,
+      "scope": "primary"
+    },
+    {
+      "path": "tests/test_paper_bn.py",
+      "sha256": "69894828c0c6c5a0c3901cfeced55cb845c2a80eda766c99fedbe079b56814fe",
+      "initial_sha256": "cbc1f32dbbf5d2c00773d7794b2f540cc46689cfbf2f053f7abacff5417a5d11",
+      "changed_during_review": true,
+      "scope": "primary"
+    },
+    {
+      "path": "src/ect/paper_training.py",
+      "sha256": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+      "initial_sha256": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "src/ect/paper_crops.py",
+      "sha256": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+      "initial_sha256": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "src/ect/preprocessing.py",
+      "sha256": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+      "initial_sha256": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "src/ect/prepare.py",
+      "sha256": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+      "initial_sha256": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "src/ect/devices.py",
+      "sha256": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+      "initial_sha256": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "scripts/verify_paper_bn.py",
+      "sha256": "8d784cea179f2fabff4fb87248d3b448a4b19f015b47137a86726c91323fa521",
+      "initial_sha256": "256e3e1b865654a3a76b2e9f53a0b7e56b3c69ffb0de70d5df9c84496e93679b",
+      "changed_during_review": true,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "tests/test_paper_bn_verification.py",
+      "sha256": "a4df3a34f57665d5025940c301f5d3298f7cba9a1efd6c1c1b832b130a042bba",
+      "initial_sha256": "dec9890de897b718674f997aa12025c97eec11c8f730fe0dd9114036f749e4b8",
+      "changed_during_review": true,
+      "scope": "context_or_dependency"
+    },
+    {
+      "path": "results/experiments/paper_baseline_v1/registry.json",
+      "sha256": "791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4",
+      "initial_sha256": "791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4",
+      "changed_during_review": false,
+      "scope": "context_or_dependency"
+    }
+  ],
+  "scope": [
+    "BN-buffer-only updates and exact learned parameters",
+    "manifest order, seed0 epoch0 training crops and retained last batch",
+    "train-only fitting, original model and artifacts unchanged, restored momentum and eval",
+    "runner/loader/imported source guards",
+    "registry and acceptance provenance",
+    "complete/running/failed states"
+  ],
+  "constraints": {
+    "repository_files_written": false,
+    "full_real_dataset_inference": false,
+    "verifier_agent_files_written": false,
+    "all_generated_artifacts_under_tmp": true,
+    "real_cuda_execution": false
+  },
+  "checks": [
+    {
+      "name": "latest producer unit suite",
+      "command": "PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python -m unittest discover -s tests -p test_paper_bn.py -v",
+      "exit_code": 0,
+      "tests_run": 11,
+      "passed": 10,
+      "skipped": 1,
+      "skip_reason": "actual CUDA required",
+      "elapsed_seconds": 3.846,
+      "evidence": "/tmp/ect_bn_review_tests.log",
+      "parent_bool_int_fix": "green"
+    },
+    {
+      "name": "independent synthetic 40/40 acceptance reproducer",
+      "command": "PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python /tmp/ect_bn_review_reproduce.py",
+      "exit_code": 0,
+      "evidence": "/tmp/ect_bn_review_reproduction.json",
+      "observations": {
+        "fixture_root": "/tmp/ect_bn_review_fixture_g_fs1r9c",
+        "acceptance_without_independent_verifier_accepted": true,
+        "actual_calibration_device_for_both_runs": "cpu",
+        "proof_fields": [
+          "device",
+          "maximum_metric_error",
+          "prediction_counts",
+          "report_sha256",
+          "status"
+        ],
+        "original_files_unchanged": true,
+        "producer_sha256": "0d8637f87e4d10307375088d861c9c2b10527f526247d900aa1ae4c21d9edcbc",
+        "failed_acceptance_parent_accepted": true,
+        "failure_marker_path": "evidence/failure.json",
+        "running_acceptance_parent_accepted": true,
+        "producer_sha256_at_followup": "0d8637f87e4d10307375088d861c9c2b10527f526247d900aa1ae4c21d9edcbc"
+      }
+    },
+    {
+      "name": "loaded BN and dependency function default guards",
+      "result": "both rejected altered imported defaults; restored source guards passed",
+      "evidence": "/tmp/ect_bn_review_source_checks.json",
+      "observations": {
+        "bn_default_tampering_rejected": "Imported function defaults differ from source: paper_bn.py",
+        "dependency_default_tampering_rejected": "Imported function defaults differ from source: paper_crops.py",
+        "restored_sources_valid": true
+      }
+    },
+    {
+      "name": "CLI argparse help",
+      "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python scripts/recalibrate_paper_bn.py --help",
+      "exit_code": 0
+    },
+    {
+      "name": "registry/origin_verification_path static review",
+      "result": "latest runner publishes canonical old verification path; full registry requires original report/model/proof anchors and ordered three seeds; no full registration or dataset inference executed"
+    },
+    {
+      "name": "model runner loader preservation checks",
+      "result": "tests covered manual one-pass match, tail retention, learned and affine parameter invariance, original modes/gradients/state, nontrain and dropout rejection, sealed test split, artifact/metadata tampering, output non-overwrite and failure publication guards"
+    }
+  ],
+  "issues": [
+    {
+      "id": "BN-PRODUCER-001",
+      "priority": "P2",
+      "title": "Acceptance permits hand-written verification claims without real CPU/CUDA/migration proof",
+      "file": "src/ect/paper_bn.py",
+      "line_start": 167,
+      "line_end": 185,
+      "observed_source_sha256": "0d8637f87e4d10307375088d861c9c2b10527f526247d900aa1ae4c21d9edcbc",
+      "description": "The acceptance gate checks a few scalar claims and report/artifact hashes, but does not require the independent verifier protocol/schema, checks, checked_files_sha256, verification_script identity/text, reproduced metrics/groups, or migration calibration comparison. Hashing a hand-written JSON does not establish those checks ran.",
+      "minimal_proof": "The /tmp reproducer creates genuine 40 train / 40 validation synthetic smoke artifacts for two CPU-only recalibrations, relabels only one report environment.device to cuda, and writes six-field CPU/CUDA proofs plus a five-field CPU-transfer proof. All artifact SHA256 tables are correct. _acceptance returns successfully although no independent verifier or CUDA/migration execution ran. Neither producer methods nor loader are mocked.",
+      "observed_result": "acceptance_without_independent_verifier_accepted=true; actual_calibration_device_for_both_runs=cpu",
+      "impact": "register_experiment and validate_registration use this gate to authorize full execution, so the required real 40/40 CPU/CUDA plus migration acceptance contract is bypassed.",
+      "evidence_script": "/tmp/ect_bn_review_reproduce.py",
+      "evidence_json": "/tmp/ect_bn_review_reproduction.json",
+      "recommendation": "Validate the actual independent verifier proof schema, required checks, source/evidence identity and recomputed results for both smoke runs and migration; reject stripped claim-only proofs."
+    },
+    {
+      "id": "BN-PRODUCER-002",
+      "priority": "P2",
+      "title": "Failed or running acceptance evidence remains eligible for registration",
+      "file": "src/ect/paper_bn.py",
+      "line_start": 151,
+      "line_end": 157,
+      "observed_source_sha256": "0d8637f87e4d10307375088d861c9c2b10527f526247d900aa1ae4c21d9edcbc",
+      "description": "Acceptance and checksum-table readers do not inspect failure.json or running.marker beside acceptance/proof evidence; only recalibrated run directories have this guard.",
+      "minimal_proof": "Using the same valid hashed fixture acceptance, create evidence/failure.json beside evidence/acceptance.json and the proofs: _acceptance still returns verified. Replace it with evidence/running.marker: the gate still returns verified. Changing markers does not alter any bound artifact.",
+      "observed_result": "failed_acceptance_parent_accepted=true; running_acceptance_parent_accepted=true",
+      "impact": "Retained success JSON from a failed or unfinished acceptance publication can authorize registration despite its authoritative state marker.",
+      "evidence_script": "/tmp/ect_bn_review_reproduce.py",
+      "evidence_json": "/tmp/ect_bn_review_reproduction.json",
+      "recommendation": "Apply read-only failed/running evidence checks to acceptance, proof and registry paths (including containing evidence directories), while retaining the runner output marker exception needed for its own final validation."
+    }
+  ],
+  "not_reported_as_issues": [
+    "Parent bool/int equality finding: latest fix independently green.",
+    "Verifier script changed during review; old fixture checksum rejection was transient and excluded.",
+    "Actual CUDA unit test skipped in restricted sandbox; this is not claimed as GPU acceptance."
+  ],
+  "limitations": [
+    "Review is evidence for the recorded source snapshots, not frozen execution acceptance.",
+    "No full dataset inference, full experiment registration, training, or verifier-agent tests were run.",
+    "Verifier source was read only for its proof schema; its implementation remains owned by the verifier agent."
+  ],
+  "review_artifacts_sha256": {
+    "/tmp/ect_bn_review_reproduce.py": "f61a6e92dbf8f71c2966e1cde0766f585b600305875adc9f3bc26a3d544bf28f",
+    "/tmp/ect_bn_review_reproduction.json": "59fba731450b658d6e44f5e9230307cee641a97fc0ba4c1730cef0c4000907cb",
+    "/tmp/ect_bn_review_source_checks.json": "eb45b94426effcd7df5c49b0a904f590a433275d77f110b83c4740a1c0717880",
+    "/tmp/ect_bn_review_tests.log": "c54f99192cba69c0f613afb3fcb80a9d68014a82233ea495e9555513e6b80500"
+  }
+}

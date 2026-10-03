@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "status": "verified",
+  "protocol": "paper_bn_acceptance_v1",
+  "created_utc": "2026-10-03T03:39:10.417570+00:00",
+  "code_sha256": {
+    "src/ect/paper_training.py": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+    "src/ect/paper_registration.py": "16ad3f853b8e4a77da0a2e90e718b9068815e1d95f28a7b8cf5b267f96d9cc0f",
+    "src/ect/paper_models.py": "7ec086276b464f008ae007d6e490f99f4af43f8e1568e09f00e67fc7c582c14e",
+    "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+    "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+    "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+    "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+    "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+    "scripts/train_paper_baseline.py": "d32827bcdde7e75ee601cade1002f37a1192ec8d751e6be7aa533f192dbd82d9",
+    "scripts/register_paper_baseline.py": "d1a4d2af3f718989b1c4f9a555c870f7c46462b0853a9a95c6fdf5b71a7f0362",
+    "scripts/verify_paper_run.py": "130b594f3839353841e04cf3a4af84977f8e4de6c2e1598e06e0cec3ab7f5694",
+    "src/ect/paper_bn.py": "ad2adc0b5b60fb5915a5b4b0b2a97f7070f8d785ed24e6f14ec366600422a6ef",
+    "scripts/recalibrate_paper_bn.py": "f08558f8c160e2bb56834e724d90c4fc2371b360c959e4d154c3c19e3f594edd",
+    "scripts/verify_paper_bn.py": "e7e2b02b854c3afeb947dd635aef9ca078de29f91b3f1ca2054012800d912034"
+  },
+  "files_sha256": {
+    "results/paper_bn/acceptance_v1/cpu/report.json": "95610b050c6a88a5e211cfbfe52a0c89fd1a40c583e53d506969d8f59b83d879",
+    "results/paper_bn/acceptance_v1/cpu/validation_predictions.csv": "ac30006a87fadfa9c31fc5e2435d25a5e44a0a7f88b8873d10838157ac16c500",
+    "results/paper_bn/acceptance_v1/cpu/model.pt": "0b8fdf1a0bd3dc4a460974e521ed22cef608c1bb6037bf8b8cc662ace7b80ad9",
+    "results/paper_bn/acceptance_v1/cpu/validation_rows.json": "84ecaebaafd5f6d8fedb4d155f820a3e0c549ba1e769f8c8509a6eb24fed7cff",
+    "results/paper_bn/acceptance_v1/cpu/train_predictions.csv": "97bf6f48e8f56f710728684af39d2eaf50fa448717b8afc3d4109409d7b85d41",
+    "results/paper_bn/acceptance_v1/cpu/train_rows.json": "241cde82dde872287263005d88989c83e53a510defdb15e9ef597266a88f8a89",
+    "results/paper_bn/acceptance_v1/cpu_verification.json": "351f6f611a4f4e7895f7d5c99b0f23096e0bfe0593712ced183e2d84d960d272",
+    "results/paper_bn/acceptance_v1/cuda/report.json": "1249ce1276b544fdaf071f7726f1b9e1dbfe4af1e8a7591d68922a85608f2aac",
+    "results/paper_bn/acceptance_v1/cuda/validation_predictions.csv": "ac30006a87fadfa9c31fc5e2435d25a5e44a0a7f88b8873d10838157ac16c500",
+    "results/paper_bn/acceptance_v1/cuda/model.pt": "70978b39b78b92d3bf11cb3fb8ab962e8547492b20e6fecbba5ac681d0edea6d",
+    "results/paper_bn/acceptance_v1/cuda/validation_rows.json": "84ecaebaafd5f6d8fedb4d155f820a3e0c549ba1e769f8c8509a6eb24fed7cff",
+    "results/paper_bn/acceptance_v1/cuda/train_predictions.csv": "97bf6f48e8f56f710728684af39d2eaf50fa448717b8afc3d4109409d7b85d41",
+    "results/paper_bn/acceptance_v1/cuda/train_rows.json": "241cde82dde872287263005d88989c83e53a510defdb15e9ef597266a88f8a89",
+    "results/paper_bn/acceptance_v1/cuda_verification.json": "d015631d3e5485aab61364441839cabaa246966a781a2122c9e8c714132b9363",
+    "results/paper_bn/acceptance_v1/ect_bn_review_reproduce.py": "f61a6e92dbf8f71c2966e1cde0766f585b600305875adc9f3bc26a3d544bf28f",
+    "results/paper_bn/acceptance_v1/regression.log": "6de5a59262dcebc2c4d777df94eb51612309b4da1eee5ce904684fcd4ac49de6",
+    "results/paper_bn/acceptance_v1/ect_bn_producer_review.json": "b8327dd65e8246f8422b5a904fe1d8698d092e5088c842b69d7859d94c0ec9e6",
+    "results/paper_bn/acceptance_v1/cuda_cpu_verification.json": "a2aa272eb5eac30622437fdd46f632b8d73683b13a45aa1757a2fdbe763fe3a9",
+    "results/paper_bn/acceptance_v1/independent_review.json": "d1c68452fb086d787a2790a44a449bd89cd84d3744f256a0558f43b3453c37d3",
+    "results/paper_bn/acceptance_v1/ect_bn_review_reproduction.json": "59fba731450b658d6e44f5e9230307cee641a97fc0ba4c1730cef0c4000907cb",
+    "results/paper_bn/acceptance_v1/regression.json": "5adebd62cc2a7efee88b997289e414228e4d445ae45ce15dd6193e20d925f237"
+  },
+  "runs": [
+    {
+      "device": "cpu",
+      "run_dir": "results/paper_bn/acceptance_v1/cpu",
+      "verification_path": "results/paper_bn/acceptance_v1/cpu_verification.json"
+    },
+    {
+      "device": "cuda",
+      "run_dir": "results/paper_bn/acceptance_v1/cuda",
+      "verification_path": "results/paper_bn/acceptance_v1/cuda_verification.json"
+    }
+  ],
+  "cpu_transfer_verification_path": "results/paper_bn/acceptance_v1/cuda_cpu_verification.json",
+  "checks": {
+    "cpu_calibration": true,
+    "actual_cuda_calibration": true,
+    "independent_calibration_replay": true,
+    "parameters_unchanged": true,
+    "original_weights_unchanged": true,
+    "independent_predictions_metrics": true,
+    "cuda_cpu_migration": true,
+    "full_gpu_regression": true,
+    "independent_producer_review": true
+  },
+  "note": "Implementation/device acceptance only: 40 train/40 validation, no model optimization.",
+  "execution_script": {
+    "text": "from datetime import datetime,timezone\nimport hashlib,json,re,shutil\nfrom pathlib import Path\nimport sys\nROOT=Path('/home/lucky/devdir/rgzndl');sys.path.insert(0,str(ROOT))\nfrom src.ect.paper_bn import source_hashes,write_json,ARTIFACTS,_acceptance\n\ndef sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()\nfolder=ROOT/'results/paper_bn/acceptance_v1'\nsources=source_hashes()\nreview_path=Path('/tmp/ect_bn_producer_review_final2.json')\nassert review_path.exists(),'Independent producer review not finalized'\nreview=json.loads(review_path.read_text())\nassert not review.get('issues'),review\nshutil.copyfile(review_path,folder/'independent_review.json')\nfor p in ['/tmp/ect_bn_producer_review.json','/tmp/ect_bn_review_reproduce.py','/tmp/ect_bn_review_reproduction.json']:\n    if Path(p).exists():shutil.copyfile(p,folder/Path(p).name)\nlog=Path('/tmp/ect_bn_final_regression.log').read_text()\nmatch=re.search(r'Ran 309 tests in ([0-9.]+)s',log)\nassert match and log.rstrip().endswith('OK')\nassert 'skipped' not in log and 'FAILED' not in log\n(folder/'regression.log').write_text(log,newline='\\n')\nwrite_json(folder/'regression.json',dict(status='passed',test_count=309,skipped=0,elapsed_seconds=float(match.group(1)),\n    execution_context='actual CUDA accessible',command='.venv/bin/python -m unittest discover -s tests -v',\n    code_sha256=sources,log_sha256=sha(folder/'regression.log')))\nfiles={};runs=[]\nfor device in ('cpu','cuda'):\n    run=folder/device;report=json.loads((run/'report.json').read_text())\n    proof_path=folder/f'{device}_verification.json';proof=json.loads(proof_path.read_text())\n    assert report['code_sha256']==sources and report['sample_counts']=={'train':40,'validation':40}\n    assert report['environment']['device']==device and proof['device']==device\n    assert proof['same_device_calibration_exact'] and proof['calibration_buffer_max_abs_error']==0\n    assert proof['maximum_metric_error']==0 and proof['prediction_counts']==report['sample_counts']\n    for p in [run/'report.json',*[run/n for n in ARTIFACTS],proof_path]:files[p.relative_to(ROOT).as_posix()]=sha(p)\n    runs.append(dict(device=device,run_dir=run.relative_to(ROOT).as_posix(),verification_path=proof_path.relative_to(ROOT).as_posix()))\nfor p in folder.iterdir():\n    if p.is_file() and p.name!='acceptance.json':files[p.relative_to(ROOT).as_posix()]=sha(p)\ntransfer=folder/'cuda_cpu_verification.json';p=json.loads(transfer.read_text())\nassert p['status']=='verified' and p['device']=='cpu' and p['maximum_metric_error']==0\nassert p['prediction_counts']=={'train':40,'validation':40} and p['checks']['prediction_class_mismatches']==0\nacceptance=dict(schema_version=1,status='verified',protocol='paper_bn_acceptance_v1',created_utc=datetime.now(timezone.utc).isoformat(),\n    code_sha256=sources,files_sha256=files,runs=runs,cpu_transfer_verification_path=transfer.relative_to(ROOT).as_posix(),\n    checks={k:True for k in ['cpu_calibration','actual_cuda_calibration','independent_calibration_replay','parameters_unchanged',\n        'original_weights_unchanged','independent_predictions_metrics','cuda_cpu_migration','full_gpu_regression','independent_producer_review']},\n    note='Implementation/device acceptance only: 40 train/40 validation, no model optimization.',\n    execution_script=dict(text=Path(__file__).read_text(),sha256=sha(__file__)))\nassert not (folder/'acceptance.json').exists()\nwrite_json(folder/'.acceptance.pending.json',acceptance)\n_acceptance(ROOT,folder/'.acceptance.pending.json')\n(folder/'.acceptance.pending.json').rename(folder/'acceptance.json')\nprint(json.dumps(dict(status='verified',acceptance_sha256=sha(folder/'acceptance.json'),files=len(files))))\n",
+    "sha256": "f1f4c5328e5a3e0d6aff3b6f6b3b1300adcd16bb87f3d790324e367f8beaf9ea"
+  }
+}
