@@ -32,6 +32,6 @@
 - [x] 冻结三个全量执行配置/registry，在所有结果前记录登记时间与SHA。
 - [x] 按登记完成seed0/1/2全量训练，保留所有轮次与失败状态。
 - [x] 独立重载全部预测/指标，生成曲线/分组图及结果说明，独立结果复核通过。
-- [ ] 发布已授权仓库并核对远端。
+- [x] 发布已授权仓库并核对远端（main c608968b326face5bdd289f16951db75eceb9ac1）。
 
 执行冻结身份：`results/experiments/paper_baseline_v1/registry.json`，SHA256 `791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4`。验收见`results/paper_training/runner_acceptance_v1/acceptance.json`；历史design不改写。

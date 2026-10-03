@@ -1,5 +1,10 @@
 # 推进日志
 
+## 2026-10-03：1000轮完整基线发布检查点
+
+有限预算论文基线完整结果c608968b326face5bdd289f16951db75eceb9ac1已fast-forward合入公开main并推送；ls-remote返回完整SHA与本地逐字一致，发布时工作区干净。本单元训练/81600预测核验/五项诊断汇总/PNG-SVG/3025项独立复核/264项真实CUDA回归/公开发布完成。权重、原始NPY、参考资料、环境和凭据未入仓库，旧formal_v1与新registry/config/报告不变；执行status完成字段更新的精确复核时快照和允许字段变化另存results_acceptance_v1/status_finalization.json。后续另立受控研究方案，不自动启动10000或新的test评价。
+
+
 ## 2026-10-03：结果复核与验收完成
 
 独立结果复核完成：3025项检查通过，111输入及10输出SHA一致，81600 CSV指标直算误差0，均值/样本SD/时长/固定窗口核对一致，无可复现P1/P2。验收保存results/experiments/paper_baseline_v1/results_acceptance_v1/，execution_status记录结果/图表复核完成；不修改registry/源报告/绑定代码。当前准备完整结果公开发布，原始资料/NPY/权重/环境排除。汇总时一次临时读取把per_class字典当列表导致KeyError，确认实际schema后修正读取，无训练/报告变更。Matplotlib只读用户配置缓存不可写，自动使用/tmp临时缓存，不影响图。
