@@ -1,4 +1,8 @@
 * text=auto eol=lf
+
+# Matplotlib SVG path attributes include valid trailing separators. Preserve
+# the verified artifact bytes; other whitespace checks remain enabled.
+results/experiments/paper_bn_recalibration_v1/analysis_results_v1/figures/*.svg whitespace=-blank-at-eol
 *.png binary
 *.joblib binary
 *.gz binary

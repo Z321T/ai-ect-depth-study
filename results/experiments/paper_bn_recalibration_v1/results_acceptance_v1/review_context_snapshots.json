@@ -1,0 +1,32 @@
+{
+  "task_plan.md": {
+    "original_path": "task_plan.md",
+    "snapshot_path": "results/experiments/paper_bn_recalibration_v1/results_acceptance_v1/review_input_snapshots/task_plan.md",
+    "review_sha256": "b1fcb7c87f8fe830431a5cd6b7d7eebd018e4862a822b767765376bf868128a1",
+    "note": "Exact context bytes read by independent audit; later status/editorial updates do not change experiment inputs."
+  },
+  "findings.md": {
+    "original_path": "findings.md",
+    "snapshot_path": "results/experiments/paper_bn_recalibration_v1/results_acceptance_v1/review_input_snapshots/findings.md",
+    "review_sha256": "ed8cdaaaf6db8b226e1b2282f6d43fe672777b86f9fa1fa73bcbd39d5e542369",
+    "note": "Exact context bytes read by independent audit; later status/editorial updates do not change experiment inputs."
+  },
+  "progress.md": {
+    "original_path": "progress.md",
+    "snapshot_path": "results/experiments/paper_bn_recalibration_v1/results_acceptance_v1/review_input_snapshots/progress.md",
+    "review_sha256": "4e62a22551ef9527bd899460f71d01d7890057de995ec4f063c4b2d11f5c2110",
+    "note": "Exact context bytes read by independent audit; later status/editorial updates do not change experiment inputs."
+  },
+  "docs/plans/2026-10-03-controlled-followup.md": {
+    "original_path": "docs/plans/2026-10-03-controlled-followup.md",
+    "snapshot_path": "results/experiments/paper_bn_recalibration_v1/results_acceptance_v1/review_input_snapshots/docs/plans/2026-10-03-controlled-followup.md",
+    "review_sha256": "5df77335b565a37a8bd2c0ef9eb8a4f71dd2e6bb330edb12369682b609d08cdf",
+    "note": "Exact context bytes read by independent audit; later status/editorial updates do not change experiment inputs."
+  },
+  "docs/plans/2026-10-03-bn-execution.md": {
+    "original_path": "docs/plans/2026-10-03-bn-execution.md",
+    "snapshot_path": "results/experiments/paper_bn_recalibration_v1/results_acceptance_v1/review_input_snapshots/docs/plans/2026-10-03-bn-execution.md",
+    "review_sha256": "b8fadb7f8fd4f4ac9004e9032fdda50dc43a14b588b96a0c4fe042adad6d6337",
+    "note": "Exact context bytes read by independent audit; later status/editorial updates do not change experiment inputs."
+  }
+}

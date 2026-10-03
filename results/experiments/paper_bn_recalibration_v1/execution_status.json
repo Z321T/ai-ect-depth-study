@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "status": "all_calibration_and_cuda_verification_complete",
+  "registry_sha256": "a01ad2d6c0e8e2d9bc40b6bd1391f0b16cfa54c582533b19334d641e6589adeb",
+  "created_utc": "2026-10-03T03:41:23.038654+00:00",
+  "execution_script": {
+    "text": "from datetime import datetime,timezone\nimport hashlib,json,subprocess,sys\nfrom pathlib import Path\nROOT=Path('/home/lucky/devdir/rgzndl');folder=ROOT/'results/experiments/paper_bn_recalibration_v1'\nregistry=folder/'registry.json';data=json.loads(registry.read_text())\ndef sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()\ndef write():\n    status['updated_utc']=datetime.now(timezone.utc).isoformat()\n    p=folder/'.status.pending.json';p.write_text(json.dumps(status,indent=2)+'\\n',newline='\\n');p.replace(folder/'execution_status.json')\nstatus=dict(schema_version=1,status='running',registry_sha256=sha(registry),created_utc=datetime.now(timezone.utc).isoformat(),\n    execution_script=dict(text=Path(__file__).read_text(),sha256=sha(__file__)),runs=[])\nfor item in data['runs']:\n    state=dict(run_id=item['run_id'],seed=item['seed'],status='pending');status['runs'].append(state)\nwrite()\ntry:\n    for item,state in zip(data['runs'],status['runs']):\n        state['status']='calibrating';write()\n        run=ROOT/item['output_dir'];log=folder/f'{item[\"run_id\"]}_execution.log'\n        with log.open('w',newline='\\n') as handle:\n            subprocess.run([sys.executable,str(ROOT/'scripts/recalibrate_paper_bn.py'),'run','--origin',item['origin_run'],\n                '--output',item['output_dir'],'--registry',str(registry),'--device','cuda'],cwd=ROOT,stdout=handle,stderr=subprocess.STDOUT,check=True)\n        state['status']='verifying';write()\n        proof=folder/'verification'/f'{item[\"run_id\"]}_cuda.json'\n        subprocess.run([sys.executable,str(ROOT/'scripts/verify_paper_bn.py'),'--run',item['output_dir'],\n            '--output',str(proof),'--device','cuda'],cwd=ROOT,check=True)\n        result=json.loads((run/'report.json').read_text());evidence=json.loads(proof.read_text())\n        assert evidence['status']=='verified' and evidence['prediction_counts']=={'train':24000,'validation':3200}\n        state.update(status='verified',report_sha256=sha(run/'report.json'),verification_path=proof.relative_to(ROOT).as_posix(),\n            verification_sha256=sha(proof),validation_metrics={k:result['metrics']['validation'][k] for k in ('accuracy','macro_f1')})\n        write();print(json.dumps(state),flush=True)\n    status['status']='all_calibration_and_cuda_verification_complete';write()\nexcept BaseException as error:\n    status.update(status='failed',error_type=type(error).__name__,error=str(error));write();raise\n",
+    "sha256": "cc4bd99102e5aec40ffefb51f4e7f770282a4b8a1f1dcd835e1484fab7f12331"
+  },
+  "runs": [
+    {
+      "run_id": "resnext_s0",
+      "seed": 0,
+      "status": "verified",
+      "report_sha256": "87e0026cf0ed04e9987dfedc3ed07130a0bc10e6bc962e36490f96592a42f7ed",
+      "verification_path": "results/experiments/paper_bn_recalibration_v1/verification/resnext_s0_cuda.json",
+      "verification_sha256": "0493424619d1112bdede45e9e1ba6be82ba58340dfcae9ab1dc573c66c0ff1c7",
+      "validation_metrics": {
+        "accuracy": 0.618125,
+        "macro_f1": 0.6168540646768573
+      }
+    },
+    {
+      "run_id": "resnext_s1",
+      "seed": 1,
+      "status": "verified",
+      "report_sha256": "e70c7c875725cc5968ec557f573274a46b67d54ea715a3dab82fb0710d4c2215",
+      "verification_path": "results/experiments/paper_bn_recalibration_v1/verification/resnext_s1_cuda.json",
+      "verification_sha256": "fcfd9126af588c895cd7b9223eeb2d5a7f114d3b44c09e5cef5f1fe7be0dda7d",
+      "validation_metrics": {
+        "accuracy": 0.678125,
+        "macro_f1": 0.6767325124803757
+      }
+    },
+    {
+      "run_id": "resnext_s2",
+      "seed": 2,
+      "status": "verified",
+      "report_sha256": "5e8a2487d0ff64adbb11cd09348c2ed971b59c775cfdadf08b420bd7e2ec9cb7",
+      "verification_path": "results/experiments/paper_bn_recalibration_v1/verification/resnext_s2_cuda.json",
+      "verification_sha256": "2696b382d8e789af1cf0cb9d3cd2e366cba9bfb87310f46f381aa78b46492335",
+      "validation_metrics": {
+        "accuracy": 0.4796875,
+        "macro_f1": 0.4801996138707484
+      }
+    }
+  ],
+  "updated_utc": "2026-10-03T03:42:46.573852+00:00"
+}

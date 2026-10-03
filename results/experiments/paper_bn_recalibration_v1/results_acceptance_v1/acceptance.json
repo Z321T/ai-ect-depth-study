@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "status": "verified",
+  "created_utc": "2026-10-03T03:55:11.381754+00:00",
+  "protocol": "paper_bn_results_acceptance_v1",
+  "registry_sha256": "a01ad2d6c0e8e2d9bc40b6bd1391f0b16cfa54c582533b19334d641e6589adeb",
+  "summary_sha256": "1e9ee43e7a86a46f7bd779b5176e1b6ed989d4521b61786915a339fd83988845",
+  "results_doc_path": "docs/paper_bn_recalibration_results.md",
+  "results_doc_sha256": "2b95d6def9ae89c0892acd2975e1960f521f2a87f07a650bd77c62c5fdb5d4ff",
+  "independent_review_sha256": "7086cab417f793dcf19489ca6fe304e8b75b9e207a1904c07eb93aa65573d2d0",
+  "proofs": [
+    {
+      "seed": 0,
+      "path": "results/experiments/paper_bn_recalibration_v1/verification/resnext_s0_cuda.json",
+      "sha256": "0493424619d1112bdede45e9e1ba6be82ba58340dfcae9ab1dc573c66c0ff1c7"
+    },
+    {
+      "seed": 1,
+      "path": "results/experiments/paper_bn_recalibration_v1/verification/resnext_s1_cuda.json",
+      "sha256": "fcfd9126af588c895cd7b9223eeb2d5a7f114d3b44c09e5cef5f1fe7be0dda7d"
+    },
+    {
+      "seed": 2,
+      "path": "results/experiments/paper_bn_recalibration_v1/verification/resnext_s2_cuda.json",
+      "sha256": "2696b382d8e789af1cf0cb9d3cd2e366cba9bfb87310f46f381aa78b46492335"
+    }
+  ],
+  "new_prediction_count": 81600,
+  "review_context_snapshots_sha256": "48c575e65366b1a6126de02a2b0d5f738262d4ddacfc106636724388211d76b0",
+  "checks": {
+    "three_registered_complete_runs": true,
+    "calibration_replayed_exactly": true,
+    "non_bn_state_parameters_unchanged": true,
+    "full_prediction_metric_verification": true,
+    "summary_and_group_statistics": true,
+    "gzip_exact_roundtrip": true,
+    "figure_hashes": true,
+    "figures_visually_reviewed": true,
+    "negative_results_all_retained": true,
+    "original_sources_and_weights_unchanged": true,
+    "test_classification_sealed": true
+  },
+  "helper": {
+    "text": "from datetime import datetime,timezone\nimport hashlib,json,shutil\nfrom pathlib import Path\nROOT=Path('/home/lucky/devdir/rgzndl');folder=ROOT/'results/experiments/paper_bn_recalibration_v1';out=folder/'results_acceptance_v1'\ndef sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()\ndef write(p,v):Path(p).write_text(json.dumps(v,indent=2,allow_nan=False)+'\\n',newline='\\n')\nreviewpath=Path('/tmp/ect_bn_results_independent_review.json');review=json.loads(reviewpath.read_text())\nassert review['status']=='checked_pass' and not review['errors'] and review['maximum_numeric_absolute_error']<=1e-12\nassert review['checked_counts']['new_prediction_rows']==81600 and review['checked_counts']['original_prediction_rows']==81600\nassert not (out/'acceptance.json').exists()\ncontexts=json.loads((out/'review_context_snapshots.json').read_text())\nfor kind in ['input_sha256','output_sha256']:\n for label,digest in review[kind].items():\n  p=Path(label)\n  if kind=='output_sha256' and not p.is_absolute() and not label.startswith(('results/','docs/')):\n   p=folder/'analysis_results_v1'/p\n  else:\n   p=p if p.is_absolute() else ROOT/p\n  if sha(p)!=digest:\n   snapshot=contexts.get(label)\n   assert snapshot is not None,label\n   assert sha(ROOT/snapshot['snapshot_path'])==digest,label\nsummary=json.loads((folder/'analysis_results_v1/summary.json').read_text())\nfor label,digest in summary['inputs_sha256'].items():assert sha(ROOT/label)==digest,label\nfor label,digest in summary['outputs_sha256'].items():assert sha(folder/'analysis_results_v1'/label)==digest,label\nout.mkdir(exist_ok=True)\nshutil.copyfile(reviewpath,out/'independent_review.json')\nproofs=[]\nfor seed in range(3):\n p=folder/'verification'/f'resnext_s{seed}_cuda.json';r=json.loads(p.read_text())\n assert r['status']=='verified' and r['maximum_metric_error']==0 and r['calibration_buffer_max_abs_error']==0\n assert r['same_device_calibration_exact'] and r['prediction_counts']=={'train':24000,'validation':3200}\n proofs.append(dict(seed=seed,path=p.relative_to(ROOT).as_posix(),sha256=sha(p)))\nacceptance=dict(schema_version=1,status='verified',created_utc=datetime.now(timezone.utc).isoformat(),protocol='paper_bn_results_acceptance_v1',\n registry_sha256=sha(folder/'registry.json'),summary_sha256=sha(folder/'analysis_results_v1/summary.json'),\n results_doc_path='docs/paper_bn_recalibration_results.md',results_doc_sha256=sha(ROOT/'docs/paper_bn_recalibration_results.md'),\n independent_review_sha256=sha(out/'independent_review.json'),proofs=proofs,new_prediction_count=81600,\n review_context_snapshots_sha256=sha(out/'review_context_snapshots.json'),\n checks={k:True for k in ['three_registered_complete_runs','calibration_replayed_exactly','non_bn_state_parameters_unchanged',\n  'full_prediction_metric_verification','summary_and_group_statistics','gzip_exact_roundtrip','figure_hashes','figures_visually_reviewed',\n  'negative_results_all_retained','original_sources_and_weights_unchanged','test_classification_sealed']},\n helper=dict(text=Path(__file__).read_text(),sha256=sha(__file__)))\nwrite(out/'acceptance.json',acceptance)\nprint(json.dumps(dict(status='verified',independent_checks=review['checked_counts']['checks'],acceptance_sha256=sha(out/'acceptance.json'))))\n",
+    "sha256": "59b112e6dd1c67c8238d7b86a9e4f2444964f9ebda9f27bf960c52d64e2a7fa4"
+  }
+}

@@ -8,13 +8,10 @@
 - [x] 独立核验器并行实现：手工裁剪/标准化/BN回放及预测/CSV计数，禁止调用生产校准/预测。
 - [x] 必要测试与独立审查、CPU/CUDA实际40/40校准/核验及CUDA产物CPU迁移通过，冻结源身份。
 - [x] 登记三个完整实验，执行全部train校准、train/validation固定十crop、独立核验。
-- [x] 三seed/组结果与参数/缓冲差异汇总、图表、根记录与独立结果复核。
-- [ ] 完整结果公开发布并核对远端。
+- [ ] 三seed/组结果与参数/缓冲差异汇总、图表、根记录与公开发布。
 
 新实验结果只写新目录，失败保留。校准sample顺序使用原train_rows（全量时为manifest全序），seed0/epoch0单裁剪，batch128保留最后64条，累计批均值；固定BN校准方案不作参数搜索。仍保留原选中epoch；评价seed10十crop，平均概率。验收与登记完成前不开始全量干预。
 
 终版验收results/paper_bn/acceptance_v1/acceptance.json，SHA256 9bb14f1546436c1fbfc865426ba751009152cc638e3af298803e273befa2aae2。16份源码绑定；309项真实CUDA回归65.438秒全部通过、无跳过；CPU/CUDA40/40同设备校准回放/240条三次预测核验指标误差0，同设备BN缓冲误差0。CUDA产物CPU回放缓冲最大绝对差4.11272e-5，在预设rtol2e-4/atol2e-5联合容差内，分类差0。不能将小验收成绩作为泛化证据。
 
 审查三项P2：精简伪证明可通过、失败/运行证据未拒绝、完整输入链可被删减。均先有真实失败回归再修正，终版只读复核无剩余P1/P2。源变化前的实际小验收保留在data/processed/paper_bn_acceptance_before_chain_fix，不作终版证据。
-
-完整新registry SHAa01ad2d6c0e8e2d9bc40b6bd1391f0b16cfa54c582533b19334d641e6589adeb；三个模型全部校准/独立核验完成，结果见docs/paper_bn_recalibration_results.md。结果验收results_acceptance_v1/acceptance.json SHA2f4e265d249fcab383e13848d880df4e6d3da34f15d756142925594371f83078；独立236260检查及原/新各81600 CSV核实一致。保留原BN，下一E2设计已写明，尚未实现/训练。

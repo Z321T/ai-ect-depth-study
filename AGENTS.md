@@ -40,3 +40,5 @@ formal_v1登记、九项完整训练、noise10–14验证重复及100–104正�
 2026-10-03更新：paper_baseline_v1三seed均1000epoch及CUDA独立核验完成（81600预测/全部指标误差0），analysis_results_v1/和docs/paper_baseline_1000_results.md记录五项问题、所有seed/组/class及图/时长。平均validation Accuracy72.3125%、样本SD8.7774pp，SVM差+11.40625pp；不当单组件创新或原文严格复现。选中轮800/820/770，seed1训练大组1/2明显较低而其他组较高，原因未定，下一步另立受控协议，不启动新训练。最新全项目264项真实CUDA回归通过51.253秒无跳过；原13源码/登记/config/数据/权重保持不变。
 
 下一阶段入口docs/plans/2026-10-03-controlled-followup.md、D018：先实现E1固定选中权重、全部train-only BN运行统计重校准与配对核验，再E2保留DC的尺度分离/1000轮同预算消融，E3另立10000轮原预算及候选同预算对照，E4固定噪声/报告。新实验尚未执行，设计不等于执行登记。旧checkpoint没有末轮/optimizer/RNG，不能等价续跑9000轮；原冻结源码/配置/结果不改写，已见test不参与方案选择。人员分工/资源估算不处理。
+
+2026-10-03 E1更新：paper_bn/独立CLI与verify_paper_bn完成，终版309项真实CUDA回归65.438秒无跳过、CPU/CUDA40/40及迁移240预测验收通过，绑定16源码。新registry a01ad2d6...先于三个完整干预，81600预测/BN缓冲独立CUDA回放精确、指标误差0；validation均值72.3125%→59.19792%，三个seed/train均下降，保留原BN。结果docs/paper_bn_recalibration_results.md、D019；新冻结16源码/registry/报告不改写。下一实现单元docs/plans/2026-10-03-dc-ac-training.md，新训练尚未开始。完整BN预测CSV仅gzip发布，解压默认拒绝覆盖、按compression.json核对。源码修正前小验收保留data/processed/paper_bn_acceptance_before_chain_fix，不作终版证据。

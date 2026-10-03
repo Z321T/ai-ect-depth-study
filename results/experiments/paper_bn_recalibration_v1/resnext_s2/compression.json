@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "format": "gzip",
+  "report_sha256": "5e8a2487d0ff64adbb11cd09348c2ed971b59c775cfdadf08b420bd7e2ec9cb7",
+  "files": [
+    {
+      "source_file": "train_predictions.csv",
+      "source_sha256": "7a3a9ee2004c9ca5891436424d5c6b591c7eba69b394405f6af049c15751ab0a",
+      "source_bytes": 1861357,
+      "compressed_file": "train_predictions.csv.gz",
+      "compressed_sha256": "161aee8d73c9fdf3aa4df1114721e3236b0441320683a910aee93708993df1d6",
+      "compressed_bytes": 1021155,
+      "roundtrip_byte_identity_verified": true
+    },
+    {
+      "source_file": "validation_predictions.csv",
+      "source_sha256": "24f98cb917cdb1e5cf67fee35ead78d91a8d5c4e9c05d108311f780658410674",
+      "source_bytes": 247007,
+      "compressed_file": "validation_predictions.csv.gz",
+      "compressed_sha256": "d1eef51e51380ea6f195a74651738d3c7371d62f731253f24b5de23159264ffa",
+      "compressed_bytes": 136015,
+      "roundtrip_byte_identity_verified": true
+    }
+  ]
+}

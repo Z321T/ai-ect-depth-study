@@ -14,7 +14,7 @@ Material Passport：Origin Skill = experiment-agent（academic-research-suite）
 
 ## E1：固定权重，仅重校准BN统计
 
-此单元已按以下规则执行并核验。复用已核验的三个选中模型，不重新训练，不改变已学参数。对每个seed比较原eval推理与以下预先固定的干预：
+这是下一实现单元。复用已核验的三个选中模型，不重新训练，不改变已学参数。对每个seed比较原eval推理与以下预先固定的干预：
 
 1. 克隆模型，核对全部参数与原checkpoint相同；只允许BN的running_mean、running_var、num_batches_tracked改变，含BN仿射参数在内的全部可学习参数保持逐值相同。
 2. 只使用全部24000条train。按manifest行顺序、batch128、保留末尾64条，采用既有训练裁剪算法、固定seed0/epoch0的224点裁剪。全部seed共享同一输入顺序与裁剪，不按组挑样本，不使用validation/test拟合。
