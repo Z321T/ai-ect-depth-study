@@ -1,0 +1,17 @@
+{
+  "status": "verified",
+  "note": "Independent review examined execution status before result-review completion. That exact input is retained; only review-completion metadata was then added to mutable execution_status, with all training/run fields unchanged.",
+  "review_input_path": "/home/lucky/devdir/rgzndl/results/experiments/paper_baseline_v1/execution_status.json",
+  "review_input_sha256": "f7b72996e16b26ff430951cfe6b28caa58b55b451566b0d6f35dedd1ea7256f6",
+  "review_input_snapshot": "results/experiments/paper_baseline_v1/results_acceptance_v1/execution_status_at_independent_review.json",
+  "current_execution_status_sha256": "d5573b1666bac4f78e21602b9c81ae0fc8d966cd114826c151dd104f0c235d9a",
+  "allowed_changed_fields": {
+    "results_review_and_figures_complete": true,
+    "results_review_completed_utc": "2026-10-03T02:48:20.468338+00:00",
+    "results_summary_path": "results/experiments/paper_baseline_v1/analysis_results_v1/summary.json",
+    "results_summary_sha256": "51dd72bcd73baac753793373cea5fa3bb902a87c85ddec470c388111f65b0099",
+    "independent_review_path": "results/experiments/paper_baseline_v1/results_acceptance_v1/independent_review.json",
+    "independent_review_sha256": "c884abcbd05a57330d18803ab902c5a97ba2c8c89cd7fe47ed6c87924f1ef7bf"
+  },
+  "all_scientific_training_fields_unchanged": true
+}

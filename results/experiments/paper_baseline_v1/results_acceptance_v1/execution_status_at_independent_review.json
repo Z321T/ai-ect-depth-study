@@ -161,10 +161,5 @@
     }
   ],
   "completed_utc": "2026-10-02T19:57:43.226495+00:00",
-  "results_review_and_figures_complete": true,
-  "results_review_completed_utc": "2026-10-03T02:48:20.468338+00:00",
-  "results_summary_path": "results/experiments/paper_baseline_v1/analysis_results_v1/summary.json",
-  "results_summary_sha256": "51dd72bcd73baac753793373cea5fa3bb902a87c85ddec470c388111f65b0099",
-  "independent_review_path": "results/experiments/paper_baseline_v1/results_acceptance_v1/independent_review.json",
-  "independent_review_sha256": "c884abcbd05a57330d18803ab902c5a97ba2c8c89cd7fe47ed6c87924f1ef7bf"
+  "results_review_and_figures_complete": false
 }

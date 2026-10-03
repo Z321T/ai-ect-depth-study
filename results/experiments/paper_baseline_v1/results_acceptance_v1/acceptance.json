@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "verified",
+  "created_utc": "2026-10-03T02:48:20.468922+00:00",
+  "heldout_test_evaluated": false,
+  "registry_sha256": "791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4",
+  "summary_sha256": "51dd72bcd73baac753793373cea5fa3bb902a87c85ddec470c388111f65b0099",
+  "independent_review_sha256": "c884abcbd05a57330d18803ab902c5a97ba2c8c89cd7fe47ed6c87924f1ef7bf",
+  "regression_sha256": "21946c68552962a398078370a0a71c0567aec8fcc0ece97fc3593b838443f246",
+  "checks": {
+    "all_three_runs_complete_verified": true,
+    "all_81600_predictions_verified": true,
+    "independent_csv_metrics_error_zero": true,
+    "independent_3025_checks_passed": true,
+    "all_264_real_cuda_regressions_passed": true,
+    "three_png_svg_sets_visually_checked": true
+  },
+  "run_reports_sha256": {
+    "resnext_s0": "6d45b44a9611dde018eee3b08c6ca4e35a16e54dad7877d9063755574fc7735e",
+    "resnext_s1": "4381ba3b20bfc7cbf19a869cb97262db4cafa7573f20a7a12a8668d991e1abe0",
+    "resnext_s2": "9c8d00b2111ffa7bc8a13bac83b03d9d6b16255eeff6b653bc45df5d2c9f1fd9"
+  },
+  "result_document_path": "docs/paper_baseline_1000_results.md",
+  "result_document_sha256": "cf03d6777df604175c4fa19e89707b5974d7da2d1406ab017ca6e7e4bfc7f5fa",
+  "status_finalization_sha256": "dd01fbe128c11663dd2118fc45d1f9dac355cfd918e94bfb07cb7b416f98a78f",
+  "execution_status_at_review_sha256": "f7b72996e16b26ff430951cfe6b28caa58b55b451566b0d6f35dedd1ea7256f6"
+}

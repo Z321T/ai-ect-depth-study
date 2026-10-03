@@ -1,6 +1,6 @@
 # 下一单元：有限预算论文方法基线
 
-2026-10-02。配置为config/paper_baseline_v1.json；设计登记时训练器尚未实现/绑定，历史状态保持不变。当前已实现训练器及登记/独立核验工具，终版264项真实GPU回归、CPU/CUDA及独立核验已通过，执行registry已冻结，完整基线已启动seed0，三个run将顺序训练并独立核验。前置为docs/paper_model_reconstruction.md及组件实际学习/重载验收。
+2026-10-02。配置为config/paper_baseline_v1.json；设计登记时训练器尚未实现/绑定，历史状态保持不变。当前已实现训练器及登记/独立核验工具，终版264项真实GPU回归、CPU/CUDA及独立核验已通过，执行registry已冻结，三个run均已完整1000轮训练和独立核验，结果见docs/paper_baseline_1000_results.md。前置为docs/paper_model_reconstruction.md及组件实际学习/重载验收。
 
 设计身份见results/paper_components/baseline_design_v1.json，绑定配置/组件源码/数据/验收SHA并显式记录training_runner_implemented=false、execution_registry_bound=false。下一单元另创建完整执行登记，不改写这个历史设计状态。
 
@@ -30,7 +30,8 @@
 - [x] 执行登记器及独立推理/CSV核验工具实现、必要回归和独立审查通过。
 - [x] 同数据固定小规模CPU/CUDA训练、十crop独立重载及全部指标验收，形成源码绑定的runner_acceptance。
 - [x] 冻结三个全量执行配置/registry，在所有结果前记录登记时间与SHA。
-- [ ] 按登记完成seed0/1/2全量训练，保留所有轮次与失败状态。
-- [ ] 独立重载全部预测/指标、生成曲线/分组图及结果说明，发布已授权仓库并核对远端。
+- [x] 按登记完成seed0/1/2全量训练，保留所有轮次与失败状态。
+- [x] 独立重载全部预测/指标，生成曲线/分组图及结果说明，独立结果复核通过。
+- [ ] 发布已授权仓库并核对远端。
 
 执行冻结身份：`results/experiments/paper_baseline_v1/registry.json`，SHA256 `791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4`。验收见`results/paper_training/runner_acceptance_v1/acceptance.json`；历史design不改写。

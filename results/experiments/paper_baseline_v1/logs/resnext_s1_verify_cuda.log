@@ -1,0 +1,1 @@
+{"status": "verified", "device": "cuda", "prediction_counts": {"train": 24000, "validation": 3200}, "maximum_metric_error": 0.0}

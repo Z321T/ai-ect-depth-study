@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "status": "descriptive_summary_verified_input_identities",
+  "created_utc": "2026-10-03T02:40:50.074975+00:00",
+  "protocol": "paper_baseline_1000_diagnostic_analysis_v1",
+  "scope": "train/validation only; exploratory; finite 1000-epoch method reconstruction",
+  "heldout_test_evaluated": false,
+  "seeds": [
+    {
+      "seed": 0,
+      "selected_epoch": 800,
+      "train": {
+        "accuracy": 0.8398333333333333,
+        "macro_f1": 0.8394159639371281
+      },
+      "validation": {
+        "accuracy": 0.7025,
+        "macro_f1": 0.703465378259878
+      },
+      "eval_train_minus_validation": {
+        "accuracy": 0.1373333333333333,
+        "macro_f1": 0.13595058567725016
+      },
+      "group_metrics": {
+        "train": {
+          "1": {
+            "accuracy": 0.828,
+            "macro_f1": 0.8264343598351385
+          },
+          "2": {
+            "accuracy": 0.86275,
+            "macro_f1": 0.8617773375769244
+          },
+          "5": {
+            "accuracy": 0.826875,
+            "macro_f1": 0.826585304182047
+          },
+          "6": {
+            "accuracy": 0.826875,
+            "macro_f1": 0.8264419277054742
+          },
+          "7": {
+            "accuracy": 0.845,
+            "macro_f1": 0.8453173200533811
+          },
+          "8": {
+            "accuracy": 0.82,
+            "macro_f1": 0.8199393802349609
+          },
+          "10": {
+            "accuracy": 0.825,
+            "macro_f1": 0.8245986096233813
+          }
+        },
+        "validation": {
+          "3": {
+            "accuracy": 0.7,
+            "macro_f1": 0.7013172930298281
+          },
+          "11": {
+            "accuracy": 0.705,
+            "macro_f1": 0.7054520357318723
+          }
+        }
+      },
+      "zero_validation_recall_classes": [],
+      "trends": {
+        "train_loss_first100": 1.5986006396484376,
+        "train_loss_last100": 0.25094919104576113,
+        "online_train_accuracy_first100": 0.45194375,
+        "online_train_accuracy_last100": 0.9137133333333334,
+        "validation_first10": 0.30859375,
+        "validation_last10": 0.6333125000000001,
+        "validation_last10_range": [
+          0.58625,
+          0.6959375
+        ],
+        "validation_checkpoints": {
+          "10": {
+            "accuracy": 0.2490625,
+            "macro_f1": 0.20196604683179334
+          },
+          "100": {
+            "accuracy": 0.329375,
+            "macro_f1": 0.2809089263239661
+          },
+          "500": {
+            "accuracy": 0.4896875,
+            "macro_f1": 0.47884027370884885
+          },
+          "1000": {
+            "accuracy": 0.638125,
+            "macro_f1": 0.6355893911100965
+          }
+        }
+      },
+      "training_and_evaluation_seconds": 9631.677053541,
+      "cuda_verification_seconds": 9.408366555000612,
+      "epoch_time_total_seconds": 9612.634589578007
+    },
+    {
+      "seed": 1,
+      "selected_epoch": 820,
+      "train": {
+        "accuracy": 0.4705,
+        "macro_f1": 0.4695095670177656
+      },
+      "validation": {
+        "accuracy": 0.819375,
+        "macro_f1": 0.8192268691785826
+      },
+      "eval_train_minus_validation": {
+        "accuracy": -0.348875,
+        "macro_f1": -0.349717302160817
+      },
+      "group_metrics": {
+        "train": {
+          "1": {
+            "accuracy": 0.23625,
+            "macro_f1": 0.2086482402093671
+          },
+          "2": {
+            "accuracy": 0.24625,
+            "macro_f1": 0.21087391403737615
+          },
+          "5": {
+            "accuracy": 0.929375,
+            "macro_f1": 0.9290665855154714
+          },
+          "6": {
+            "accuracy": 0.924375,
+            "macro_f1": 0.9241772188130533
+          },
+          "7": {
+            "accuracy": 0.930625,
+            "macro_f1": 0.9307761423562763
+          },
+          "8": {
+            "accuracy": 0.9275,
+            "macro_f1": 0.9275339392770459
+          },
+          "10": {
+            "accuracy": 0.933125,
+            "macro_f1": 0.9326551030008592
+          }
+        },
+        "validation": {
+          "3": {
+            "accuracy": 0.82125,
+            "macro_f1": 0.8210123907472028
+          },
+          "11": {
+            "accuracy": 0.8175,
+            "macro_f1": 0.8175200985928642
+          }
+        }
+      },
+      "zero_validation_recall_classes": [],
+      "trends": {
+        "train_loss_first100": 1.591928962052663,
+        "train_loss_last100": 0.18547557805001735,
+        "online_train_accuracy_first100": 0.44977541666666665,
+        "online_train_accuracy_last100": 0.9353929166666667,
+        "validation_first10": 0.26984375,
+        "validation_last10": 0.65090625,
+        "validation_last10_range": [
+          0.4671875,
+          0.7790625
+        ],
+        "validation_checkpoints": {
+          "10": {
+            "accuracy": 0.108125,
+            "macro_f1": 0.07107801628721674
+          },
+          "100": {
+            "accuracy": 0.2909375,
+            "macro_f1": 0.26546256029880577
+          },
+          "500": {
+            "accuracy": 0.38125,
+            "macro_f1": 0.36008132824599404
+          },
+          "1000": {
+            "accuracy": 0.7465625,
+            "macro_f1": 0.7463475391512747
+          }
+        }
+      },
+      "training_and_evaluation_seconds": 6851.729767437,
+      "cuda_verification_seconds": 9.183762811000634,
+      "epoch_time_total_seconds": 6833.516447567994
+    },
+    {
+      "seed": 2,
+      "selected_epoch": 770,
+      "train": {
+        "accuracy": 0.54175,
+        "macro_f1": 0.5353839187993126
+      },
+      "validation": {
+        "accuracy": 0.6475,
+        "macro_f1": 0.6481346553767209
+      },
+      "eval_train_minus_validation": {
+        "accuracy": -0.10575000000000001,
+        "macro_f1": -0.1127507365774083
+      },
+      "group_metrics": {
+        "train": {
+          "1": {
+            "accuracy": 0.4585,
+            "macro_f1": 0.44103856348760617
+          },
+          "2": {
+            "accuracy": 0.438125,
+            "macro_f1": 0.419245131022736
+          },
+          "5": {
+            "accuracy": 0.714375,
+            "macro_f1": 0.7154142372130547
+          },
+          "6": {
+            "accuracy": 0.72,
+            "macro_f1": 0.7199154056551053
+          },
+          "7": {
+            "accuracy": 0.725,
+            "macro_f1": 0.7240796321408722
+          },
+          "8": {
+            "accuracy": 0.738125,
+            "macro_f1": 0.7382929398521105
+          },
+          "10": {
+            "accuracy": 0.745625,
+            "macro_f1": 0.7465191257824944
+          }
+        },
+        "validation": {
+          "3": {
+            "accuracy": 0.6475,
+            "macro_f1": 0.6485686540746727
+          },
+          "11": {
+            "accuracy": 0.6475,
+            "macro_f1": 0.6475315421597648
+          }
+        }
+      },
+      "zero_validation_recall_classes": [],
+      "trends": {
+        "train_loss_first100": 1.790575901110967,
+        "train_loss_last100": 0.40223989678700767,
+        "online_train_accuracy_first100": 0.36870458333333334,
+        "online_train_accuracy_last100": 0.8580125,
+        "validation_first10": 0.15640625,
+        "validation_last10": 0.48034375,
+        "validation_last10_range": [
+          0.3221875,
+          0.5975
+        ],
+        "validation_checkpoints": {
+          "10": {
+            "accuracy": 0.0996875,
+            "macro_f1": 0.07240822141228846
+          },
+          "100": {
+            "accuracy": 0.1575,
+            "macro_f1": 0.15331668431219134
+          },
+          "500": {
+            "accuracy": 0.3475,
+            "macro_f1": 0.3484819176585001
+          },
+          "1000": {
+            "accuracy": 0.583125,
+            "macro_f1": 0.5848531137461304
+          }
+        }
+      },
+      "training_and_evaluation_seconds": 6868.905545576999,
+      "cuda_verification_seconds": 9.152633940000669,
+      "epoch_time_total_seconds": 6850.513507384021
+    }
+  ],
+  "aggregate": {
+    "train": {
+      "accuracy": {
+        "mean": 0.617361111111111,
+        "sample_sd": 0.19593253397629087,
+        "min": 0.4705,
+        "max": 0.8398333333333333,
+        "n": 3
+      },
+      "macro_f1": {
+        "mean": 0.6147698165847354,
+        "sample_sd": 0.19731770370614102,
+        "min": 0.4695095670177656,
+        "max": 0.8394159639371281,
+        "n": 3
+      }
+    },
+    "validation": {
+      "accuracy": {
+        "mean": 0.723125,
+        "sample_sd": 0.08777412417677546,
+        "min": 0.6475,
+        "max": 0.819375,
+        "n": 3
+      },
+      "macro_f1": {
+        "mean": 0.7236089676050604,
+        "sample_sd": 0.08730669819484642,
+        "min": 0.6481346553767209,
+        "max": 0.8192268691785826,
+        "n": 3
+      }
+    }
+  },
+  "comparisons": {
+    "svm": {
+      "reference": {
+        "accuracy": 0.6090625,
+        "macro_f1": 0.6086428422039789
+      },
+      "accuracy_difference_percentage_points": 11.406250000000007,
+      "macro_f1_difference": 0.11496612540108153
+    },
+    "cnn_clean": {
+      "reference": {
+        "accuracy": 0.25333333333333335,
+        "macro_f1": 0.2182185979504024
+      },
+      "accuracy_difference_percentage_points": 46.979166666666664,
+      "macro_f1_difference": 0.505390369654658
+    },
+    "resnet_clean": {
+      "reference": {
+        "accuracy": 0.2284375,
+        "macro_f1": 0.20360370967106522
+      },
+      "accuracy_difference_percentage_points": 49.46875000000001,
+      "macro_f1_difference": 0.5200052579339952
+    },
+    "resnet_aug": {
+      "reference": {
+        "accuracy": 0.15177083333333333,
+        "macro_f1": 0.12575768974683815
+      },
+      "accuracy_difference_percentage_points": 57.13541666666667,
+      "macro_f1_difference": 0.5978512778582223
+    }
+  },
+  "verified_predictions": 81600,
+  "maximum_independent_metric_error": 0.0,
+  "chain_elapsed_seconds": 23396.32533,
+  "sum_training_and_evaluation_seconds": 23352.312366555,
+  "input_files_sha256": {
+    "results/experiments/paper_baseline_v1/registry.json": "791e85504ff55f91d829ed94464e81ae53789186a0879aa27c188c7b14cc77c4",
+    "results/experiments/paper_baseline_v1/resnext_s0/report.json": "6d45b44a9611dde018eee3b08c6ca4e35a16e54dad7877d9063755574fc7735e",
+    "results/experiments/paper_baseline_v1/verification/resnext_s0_cuda.json": "c435acac07f9a91c77701ead567a614d42fa6e1f301f74c8fc0eb6cec87a3603",
+    "results/experiments/paper_baseline_v1/resnext_s1/report.json": "4381ba3b20bfc7cbf19a869cb97262db4cafa7573f20a7a12a8668d991e1abe0",
+    "results/experiments/paper_baseline_v1/verification/resnext_s1_cuda.json": "d012aafd8e40d79418c9aa0c388f494d942d5a77c9101d240c63e0d6be6250b5",
+    "results/experiments/paper_baseline_v1/resnext_s2/report.json": "9c8d00b2111ffa7bc8a13bac83b03d9d6b16255eeff6b653bc45df5d2c9f1fd9",
+    "results/experiments/paper_baseline_v1/verification/resnext_s2_cuda.json": "e23fb524f2410884a2629084743c2dac6e8a1188eb8d4399063769f307138265",
+    "results/experiments/formal_v1/training_summary.json": "fe5e816ca2a1b51d89cc2db5938cbb8f8815687d22f3f3484abf505424b4e12f",
+    "results/experiments/paper_baseline_v1/analysis_plan_v1/plan.json": "d55eeb81b6e66c468fcee501f82d293e77b6dff37c4a99746be7e5c143dcf8c1"
+  },
+  "verified_binding_files_count": 73,
+  "analysis_script_sha256": "1f809f9948b73c4fdfe3b0e6d6cec6c12a2ace568885259df428674cb2e30a78",
+  "analysis_script_text": "\"\"\"Read completed paper runs/proofs; verify identities; describe five recorded questions.\"\"\"\nfrom pathlib import Path\nimport json,hashlib,csv,datetime,statistics\nimport numpy as np\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nROOT=Path('/home/lucky/devdir/rgzndl'); BASE=ROOT/'results/experiments/paper_baseline_v1'; OUT=BASE/'analysis_results_v1'\ndef sha(p):\n h=hashlib.sha256()\n with Path(p).open('rb') as f:\n  for c in iter(lambda:f.read(1024*1024),b''):h.update(c)\n return h.hexdigest()\ndef dump(p,v):p.write_text(json.dumps(v,ensure_ascii=False,indent=2,allow_nan=False)+'\\n',newline='\\n')\ndef scalar(m):return {k:m[k] for k in ['accuracy','macro_f1']}\ndef stats(v):return dict(mean=statistics.mean(v),sample_sd=statistics.stdev(v),min=min(v),max=max(v),n=3)\nassert not OUT.exists(); OUT.mkdir();(OUT/'figures').mkdir()\nreg=json.loads((BASE/'registry.json').read_text());status=json.loads((BASE/'execution_status.json').read_text())\nassert status['status']=='all_training_and_cuda_verification_complete'\ninputs={str((BASE/'registry.json').relative_to(ROOT)):sha(BASE/'registry.json')}\nexpected=dict(reg['files_sha256']|reg['code_sha256']);reports=[];proofs=[]\nfor registered in reg['runs']:\n run=ROOT/registered['output_dir'];rp=run/'report.json';vp=BASE/'verification'/f\"{registered['run_id']}_cuda.json\"\n report=json.loads(rp.read_text());proof=json.loads(vp.read_text());reports.append(report);proofs.append(proof)\n assert report['status']=='complete' and proof['status']=='verified'\n assert not (run/'running.marker').exists() and not (run/'failure.json').exists()\n assert report['sample_counts']==dict(train=24000,validation=3200) and len(report['epochs'])==1000\n assert proof['prediction_counts']==report['sample_counts'] and proof['maximum_metric_error']==0\n assert proof['report_sha256']==sha(rp) and proof['execution_registration']['registry_sha256']==sha(BASE/'registry.json')\n assert proof['flags']['requested_predictions_match'] and proof['flags']['requested_group_metrics_match']\n assert proof['flags']['execution_registration_verified'] and proof['flags']['independent_inference'] and not proof['flags']['test_classification_evaluated']\n assert proof['source_sha256']==report['code_sha256']\n inputs[str(rp.relative_to(ROOT))]=sha(rp);inputs[str(vp.relative_to(ROOT))]=sha(vp)\n for name,h in report['files_sha256'].items():expected[str((run/name).relative_to(ROOT))]=h\n for name,h in proof['files_sha256'].items():\n  key=str(Path(name).resolve().relative_to(ROOT)) if Path(name).is_absolute() else name\n  if key in expected:assert expected[key]==h,key\n  expected[key]=h\nfor name,h in expected.items():assert sha(ROOT/name)==h,name\noldpath=ROOT/'results/experiments/formal_v1/training_summary.json';old=json.loads(oldpath.read_text());inputs[str(oldpath.relative_to(ROOT))]=sha(oldpath)\nplanpath=BASE/'analysis_plan_v1/plan.json';inputs[str(planpath.relative_to(ROOT))]=sha(planpath)\nseeds=[];epoch_rows=[];group_rows=[];class_rows=[]\nfor seed,(report,proof) in enumerate(zip(reports,proofs)):\n es=report['epochs'];assert [e['epoch'] for e in es]==list(range(1,1001));vs=[e for e in es if e['validation'] is not None];assert [e['epoch'] for e in vs]==list(range(10,1001,10))\n chosen=max(vs,key=lambda e:(e['validation']['accuracy'],-e['epoch']));assert chosen['epoch']==report['selected_epoch'];assert chosen['validation']==scalar(report['metrics']['validation'])\n first,last=es[:100],es[-100:]; vf,vl=vs[:10],vs[-10:]\n trend=dict(train_loss_first100=statistics.mean(e['train_loss'] for e in first),train_loss_last100=statistics.mean(e['train_loss'] for e in last),online_train_accuracy_first100=statistics.mean(e['online_train_accuracy'] for e in first),online_train_accuracy_last100=statistics.mean(e['online_train_accuracy'] for e in last),validation_first10=statistics.mean(e['validation']['accuracy'] for e in vf),validation_last10=statistics.mean(e['validation']['accuracy'] for e in vl),validation_last10_range=[min(e['validation']['accuracy'] for e in vl),max(e['validation']['accuracy'] for e in vl)],validation_checkpoints={str(e['epoch']):e['validation'] for e in vs if e['epoch'] in [10,100,500,1000]})\n for split,groups in report['group_metrics'].items():\n  for group,m in groups.items():group_rows.append(dict(seed=seed,split=split,group_id=group,**scalar(m)))\n for split in ['train','validation']:\n  for c,m in report['metrics'][split]['per_class'].items():class_rows.append(dict(seed=seed,split=split,class_index=c,**m))\n for e in es:epoch_rows.append(dict(seed=seed,epoch=e['epoch'],loss=e['train_loss'],online_train_accuracy=e['online_train_accuracy'],validation_accuracy=None if e['validation'] is None else e['validation']['accuracy'],validation_macro_f1=None if e['validation'] is None else e['validation']['macro_f1'],epoch_seconds=e['elapsed_seconds']))\n seeds.append(dict(seed=seed,selected_epoch=report['selected_epoch'],train=scalar(report['metrics']['train']),validation=scalar(report['metrics']['validation']),eval_train_minus_validation={k:report['metrics']['train'][k]-report['metrics']['validation'][k] for k in ['accuracy','macro_f1']},group_metrics={split:{g:scalar(m) for g,m in groups.items()} for split,groups in report['group_metrics'].items()},zero_validation_recall_classes=[c for c,m in report['metrics']['validation']['per_class'].items() if m['recall']==0],trends=trend,training_and_evaluation_seconds=report['elapsed_seconds'],cuda_verification_seconds=proof['elapsed_seconds'],epoch_time_total_seconds=sum(e['elapsed_seconds'] for e in es)))\naggregate={split:{k:stats([s[split][k] for s in seeds]) for k in ['accuracy','macro_f1']} for split in ['train','validation']}\nrefs={'svm':scalar(old['baseline']['clean_metrics'])}\nrefs.update({name:{k:v['clean'][k]['mean'] for k in ['accuracy','macro_f1']} for name,v in old['families'].items()})\ncomparisons={name:dict(reference=ref,accuracy_difference_percentage_points=100*(aggregate['validation']['accuracy']['mean']-ref['accuracy']),macro_f1_difference=aggregate['validation']['macro_f1']['mean']-ref['macro_f1']) for name,ref in refs.items()}\nsummary=dict(schema_version=1,status='descriptive_summary_verified_input_identities',created_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),protocol='paper_baseline_1000_diagnostic_analysis_v1',scope='train/validation only; exploratory; finite 1000-epoch method reconstruction',heldout_test_evaluated=False,seeds=seeds,aggregate=aggregate,comparisons=comparisons,verified_predictions=sum(sum(p['prediction_counts'].values()) for p in proofs),maximum_independent_metric_error=max(p['maximum_metric_error'] for p in proofs),chain_elapsed_seconds=(datetime.datetime.fromisoformat(status['completed_utc'])-datetime.datetime.fromisoformat(status['started_utc'])).total_seconds(),sum_training_and_evaluation_seconds=sum(s['training_and_evaluation_seconds'] for s in seeds),input_files_sha256=inputs,verified_binding_files_count=len(expected),analysis_script_sha256=sha(__file__),analysis_script_text=Path(__file__).read_text(),limitations=['Three-seed SD is not a confidence interval or independent-data replication.','Different model/crop/optimizer/training-budget/selection rules: whole-pipeline comparison, not single-component causal effect.','1000 epochs do not include original 5000/7500 LR reductions; no inference about 10000-epoch outcome.','Group IDs do not prove physical source independence; class semantics unverified.'])\nfor name,rows in [('epoch_metrics',epoch_rows),('group_metrics',group_rows),('per_class',class_rows),('seed_metrics',[dict(seed=s['seed'],selected_epoch=s['selected_epoch'],train_accuracy=s['train']['accuracy'],validation_accuracy=s['validation']['accuracy'],validation_macro_f1=s['validation']['macro_f1'],elapsed_seconds=s['training_and_evaluation_seconds']) for s in seeds])]:\n with (OUT/f'{name}.csv').open('w',newline='') as f:\n  w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator='\\n');w.writeheader();w.writerows(rows)\ncolors=['#1565c0','#c45a00','#22845b'];plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':False})\ndef save(fig,name):\n fig.savefig(OUT/'figures'/f'{name}.png',dpi=180,bbox_inches='tight');fig.savefig(OUT/'figures'/f'{name}.svg',bbox_inches='tight');plt.close(fig)\n p=OUT/'figures'/f'{name}.svg';p.write_text('\\n'.join(line.rstrip() for line in p.read_text().splitlines())+'\\n',newline='\\n')\nfig,axs=plt.subplots(2,2,figsize=(12,7.8))\nfor i,r in enumerate(reports):\n es=r['epochs'];vs=[e for e in es if e['validation']];c=colors[i]\n axs[0,0].plot([e['epoch'] for e in es],[e['train_loss'] for e in es],color=c,label=f'Seed {i}')\n axs[0,1].plot([e['epoch'] for e in es],[100*e['online_train_accuracy'] for e in es],color=c)\n axs[1,0].plot([e['epoch'] for e in vs],[100*e['validation']['accuracy'] for e in vs],color=c)\n axs[1,1].plot([e['epoch'] for e in vs],[e['validation']['macro_f1'] for e in vs],color=c)\n axs[1,0].scatter([r['selected_epoch']],[100*r['metrics']['validation']['accuracy']],color=c,edgecolor='black',zorder=5)\naxs[0,0].legend();axs[1,0].axhline(refs['svm']['accuracy']*100,color='black',ls='--',lw=1,label='SVM');axs[1,0].legend()\nfor ax,title in zip(axs.flat,['Train cross-entropy (random crop, train mode)','Online train accuracy (%)','Validation accuracy (%) - selected epochs marked','Validation Macro-F1']):ax.set_title(title);ax.set_xlabel('Epoch');ax.grid(alpha=.16)\naxs[0,1].set_ylim(0,100);axs[1,0].set_ylim(0,100);axs[1,1].set_ylim(0,1)\nfig.suptitle('Finite paper-method reconstruction: all 3 seeds, 1000 epochs');fig.tight_layout(rect=[0,.04,1,.95]);fig.text(.5,.01,'Validation: fixed 10-crop / eval. Online train accuracy uses train mode. No new test evaluation.',ha='center',fontsize=9);save(fig,'learning_curves')\nfig,axs=plt.subplots(1,3,figsize=(13,4))\nfor ax,split,groups in [(axs[0],'train',['1','2','5','6','7','8','10']),(axs[1],'validation',['3','11'])]:\n x=np.arange(len(groups))\n for i,s in enumerate(seeds):ax.bar(x+(i-1)*.23,[100*s['group_metrics'][split][g]['accuracy'] for g in groups],.23,color=colors[i],label=f'Seed {i}')\n ax.set_xticks(x,groups);ax.set_xlabel('Connection group ID');ax.set_ylim(0,100);ax.set_title(f'{split.capitalize()} accuracy by group (%)');ax.legend(fontsize=8)\nx=np.arange(3);axs[2].bar(x-.16,[100*s['train']['accuracy'] for s in seeds],.32,label='Train eval',color='#7992a2');axs[2].bar(x+.16,[100*s['validation']['accuracy'] for s in seeds],.32,label='Validation',color='#1565c0');axs[2].set_xticks(x,['Seed 0','Seed 1','Seed 2']);axs[2].set_ylim(0,100);axs[2].set_title('Selected weights, fixed 10-crop (%)');axs[2].legend(fontsize=8)\nfig.tight_layout(rect=[0,.08,1,1]);fig.text(.5,.015,'All seeds retained. Groups are waveform-connection components; actual source identities are unverified.',ha='center',fontsize=9);save(fig,'group_and_eval_diagnostics')\nfig,axs=plt.subplots(1,3,figsize=(12.6,4.1))\nfor i,(ax,r) in enumerate(zip(axs,reports)):\n cm=np.asarray(r['metrics']['validation']['confusion_matrix']);im=ax.imshow(cm/cm.sum(axis=1,keepdims=True),vmin=0,vmax=1,cmap='Blues');ax.set_title(f'Seed {i}: {100*r[\"metrics\"][\"validation\"][\"accuracy\"]:.2f}%');ax.set_xticks([0,5,10,15,19]);ax.set_yticks([0,5,10,15,19]);ax.set_xlabel('Predicted class_index');ax.set_ylabel('True class_index')\nfig.subplots_adjust(bottom=.18,top=.82,wspace=.28,right=.9);cb=fig.colorbar(im,ax=axs.tolist(),fraction=.025,pad=.02);cb.set_label('Recall fraction');fig.suptitle('Validation confusion matrices - row normalized, all seeds');fig.text(.5,.025,'Class semantics unverified; these indices do not establish depth order. Validation only.',ha='center',fontsize=9);save(fig,'validation_confusion')\nsummary['output_files_sha256']={str(p.relative_to(OUT)):sha(p) for p in OUT.rglob('*') if p.is_file()};dump(OUT/'summary.json',summary)\nprint(json.dumps(dict(aggregate=aggregate['validation'],svm_difference_pp=comparisons['svm']['accuracy_difference_percentage_points'],verified_predictions=summary['verified_predictions'],seconds=[s['training_and_evaluation_seconds'] for s in seeds],chain_seconds=summary['chain_elapsed_seconds']),indent=2))\n",
+  "limitations": [
+    "Three-seed SD is not a confidence interval or independent-data replication.",
+    "Different model/crop/optimizer/training-budget/selection rules: whole-pipeline comparison, not single-component causal effect.",
+    "1000 epochs do not include original 5000/7500 LR reductions; no inference about 10000-epoch outcome.",
+    "Group IDs do not prove physical source independence; class semantics unverified."
+  ],
+  "output_files_sha256": {
+    "epoch_metrics.csv": "74a272577a6a02bafa4b0669cede9a609ed328778fce32469673d84d00374edc",
+    "group_metrics.csv": "576820f990b8bff7e2c7a27521e387e572b82a313f46ebdd1b229979075f5c5f",
+    "seed_metrics.csv": "087946692622b15eb346d9568078670be65abd803e460056282a9d2ac0e9ead0",
+    "per_class.csv": "512985ff50a4e328abdb56a1cff1c85952390b145cd6f1784e1b2c9929f8315a",
+    "figures/validation_confusion.png": "ca74904164e6cf952e4296708c16e0d031f81d6644b692e3fb4d44a7ab4a3577",
+    "figures/group_and_eval_diagnostics.svg": "7d2f6b9617f2cdc52cec9fabb9b420e7b2e27219877e4bfa104fd1c7ce6d9898",
+    "figures/learning_curves.png": "54c22be50b257a151e6a185ac739a70d2dc2a7aa2565f10fe2c49571f42d8936",
+    "figures/validation_confusion.svg": "26a947fe81dd9e6102ff4979a2a836982538d30405d12917d7fe37d36493f303",
+    "figures/group_and_eval_diagnostics.png": "3ec837cc49f1ba6d290af2cf4d5620a2e4d4b721f6319ee2028276953d92e02d",
+    "figures/learning_curves.svg": "ad6ce2ddc50e08f6a0205dea38952b95cb5fea4df3bf6e4df89815dff37ca705"
+  }
+}

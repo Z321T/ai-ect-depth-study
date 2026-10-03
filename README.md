@@ -2,7 +2,7 @@
 
 公开仓库：[Z321T/ai-ect-depth-study](https://github.com/Z321T/ai-ect-depth-study)。
 
-本项目从MDDECT I/Q时序信号预测20个类别，研究模型比较和附加噪声。SVM/CNN/ResNet的formal_v1完整训练与冻结test评价已完成；为建立可靠改进基线，进一步完成训练行为诊断和论文ResNeXt/裁剪组件重建及学习验收。有限预算论文方法训练器/执行登记/独立核验已通过264项真实GPU回归，三个全量配置已冻结，尚无其完整分数。类别语义仍未确认，仅报告class_index指标。
+本项目从MDDECT I/Q时序信号预测20个类别，研究模型比较和附加噪声。SVM/CNN/ResNet的formal_v1完整训练与冻结test评价已完成；为建立可靠改进基线，进一步完成训练行为诊断和论文ResNeXt/裁剪组件重建及学习验收。有限预算论文方法三seed各1000轮完整训练/独立核验完成：validation平均Accuracy72.31%，相对SVM +11.41个百分点，仍存在种子波动和组差异。类别语义仍未确认，仅报告class_index指标。
 
 ## 文档入口
 
@@ -30,6 +30,7 @@
 - [论文组件学习/设备验收](docs/paper_components_acceptance.md)
 - [完整论文方法训练与重载](docs/paper_training.md)
 - [本轮1000轮训练的五项诊断问题](docs/paper_baseline_1000_questions.md)
+- [1000轮完整结果、学习/组别诊断与实测时长](docs/paper_baseline_1000_results.md)
 - [有限预算完整基线设计](docs/plans/2026-10-02-paper-baseline-training.md)
 - [近重复诊断结果](results/similarity/train_validation_v1/report.md)
 

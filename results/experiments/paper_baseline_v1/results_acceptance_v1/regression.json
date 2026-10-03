@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "tests": 264,
+  "skipped": 0,
+  "elapsed_seconds": 51.253,
+  "execution_context": "authorized actual CUDA accessible",
+  "command": ".venv/bin/python -m unittest discover -s tests -v",
+  "code_sha256": {
+    "src/ect/paper_training.py": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+    "src/ect/paper_registration.py": "16ad3f853b8e4a77da0a2e90e718b9068815e1d95f28a7b8cf5b267f96d9cc0f",
+    "src/ect/paper_models.py": "7ec086276b464f008ae007d6e490f99f4af43f8e1568e09f00e67fc7c582c14e",
+    "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+    "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+    "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+    "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+    "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+    "scripts/train_paper_baseline.py": "d32827bcdde7e75ee601cade1002f37a1192ec8d751e6be7aa533f192dbd82d9",
+    "scripts/register_paper_baseline.py": "d1a4d2af3f718989b1c4f9a555c870f7c46462b0853a9a95c6fdf5b71a7f0362",
+    "scripts/verify_paper_run.py": "130b594f3839353841e04cf3a4af84977f8e4de6c2e1598e06e0cec3ab7f5694"
+  },
+  "log_sha256": "d8b75c3281253fe2e9caa28a1771046dfb9da68e04b061b7ee3e2ef931144bca"
+}
