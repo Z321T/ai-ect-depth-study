@@ -46,3 +46,5 @@ formal_v1登记、九项完整训练、noise10–14验证重复及100–104正�
 2026-10-03 E2更新：DC/AC完整250点尺度分离组件、新训练器/独立核验/登记/BN/自动控制器已完成；最终`results/paper_dc_ac/acceptance_v2/acceptance.json`4d86d849...，400项真实GPU回归93.524秒无跳过，CPU/CUDA40/40两轮、BN与两次CPU迁移共480预测逐条核验。v1因四项登记/清理P2未接受，旧源码快照与负记录保留；v2独立复核0遗留。全train拟合不受smoke裁剪影响，变换完整250→float32→身份crop。
 
 E2 registry `results/experiments/paper_dc_ac_v1/registry.json`29cad377...已冻结22源码、24000 train尺度和三个1000轮配置；2026-10-03 16:18:35北京时间已后台启动CUDA控制器PID43219，seed0正常推进。训练期间不修改这22项源码、registry/config/stats/验收证据；也不重启控制器或重复启动同目录。运行入口docs/plans/2026-10-03-dc-ac-execution.md、docs/paper_dc_ac_training.md；当前任务是监测`execution_status.json`和各run `progress.json`，待seed0/1/2训练及核验自动完成后继续三个固定BN干预/核验和四格汇总。主CLI与控制器支持auto/cpu/cuda。早期运行指标不是最终成绩；E3 10000轮对照尚未启动。原13/16源码和旧权重可继续重载，仍不使用已见test挑方案。
+
+后台训练PID只在启动它的允许GPU访问上下文可见；受限沙箱`os.kill(pid,0)`的ProcessLookupError不能作为停止证据。以progress递增/失败记录及同上下文的进程存活核验为准，避免重复启动。E2源代码/启动/验收已发布main提交cb7fe23；最后实际检查seed0第36轮正常，无失败。
