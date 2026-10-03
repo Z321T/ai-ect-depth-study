@@ -18,3 +18,5 @@ data/processed/
 results/evaluation/*/predictions.csv
 results/diagnostics/*/predictions.csv
 results/experiments/paper_bn_recalibration_v1/*/*_predictions.csv
+results/experiments/paper_dc_ac_v1/resnext_s*/*_predictions.csv
+results/experiments/paper_dc_ac_v1/bn/resnext_s*/*_predictions.csv

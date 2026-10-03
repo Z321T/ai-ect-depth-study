@@ -1,0 +1,1 @@
+{"status": "verified", "protocol": "paper_dc_ac_finite_v1", "device": "cuda", "prediction_counts": {"train": 40, "validation": 40}, "maximum_metric_error": 0.0, "maximum_statistics_error": 2.220446049250313e-16}

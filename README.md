@@ -35,7 +35,9 @@
 - [下一阶段受控改进设计](docs/plans/2026-10-03-controlled-followup.md)
 - [BN统计重校准实现与复跑](docs/paper_bn_recalibration.md)
 - [BN重校准完整结果（本次无收益）](docs/paper_bn_recalibration_results.md)
-- [下一单元DC/AC尺度分离训练设计](docs/plans/2026-10-03-dc-ac-training.md)
+- [DC/AC尺度分离训练设计](docs/plans/2026-10-03-dc-ac-training.md)
+- [DC/AC实现、复跑命令与CPU/CUDA切换](docs/paper_dc_ac_training.md)
+- [E2三个1000轮完整实验运行记录（已启动）](docs/plans/2026-10-03-dc-ac-execution.md)
 - [近重复诊断结果](results/similarity/train_validation_v1/report.md)
 
 原始论文、译文和GPT旧计划在本地 `reference/` 保留，不上传代码仓库。数据从 [MDDECT官方发布页](https://www.kaggle.com/datasets/mchikyt3/mddect) 下载，将两个NPY放在 `data/raw/`，文件身份见审计报告。论文参考：[arXiv:2104.02472](https://arxiv.org/abs/2104.02472)。数据官方许可为CC BY 4.0，使用时引用数据发布者和论文。人员分工由用户另行处理。

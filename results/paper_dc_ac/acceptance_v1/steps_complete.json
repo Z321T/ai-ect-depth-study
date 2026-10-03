@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "source_sha256": {
+    "src/ect/paper_training.py": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+    "src/ect/paper_registration.py": "16ad3f853b8e4a77da0a2e90e718b9068815e1d95f28a7b8cf5b267f96d9cc0f",
+    "src/ect/paper_models.py": "7ec086276b464f008ae007d6e490f99f4af43f8e1568e09f00e67fc7c582c14e",
+    "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+    "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+    "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+    "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+    "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+    "scripts/train_paper_baseline.py": "d32827bcdde7e75ee601cade1002f37a1192ec8d751e6be7aa533f192dbd82d9",
+    "scripts/register_paper_baseline.py": "d1a4d2af3f718989b1c4f9a555c870f7c46462b0853a9a95c6fdf5b71a7f0362",
+    "scripts/verify_paper_run.py": "130b594f3839353841e04cf3a4af84977f8e4de6c2e1598e06e0cec3ab7f5694",
+    "src/ect/dc_ac.py": "beb77c0ebb47331013346e99d87f7435e202030d2795c92021616c2948c987fb",
+    "src/ect/paper_dc_ac_training.py": "e9457146e03c7d4e2f70a42d415d185605555f7469e4741c99e4f4c31f947222",
+    "src/ect/paper_dc_ac_registration.py": "19011c8df963fabc3221ba5e14c487775830d1c26a53929e2ec6362c070cdf49",
+    "src/ect/paper_dc_ac_bn.py": "ed46fc661b56b2ac6dd8d3142a5308c2bf2d6e43d8213059759bf3e88e3cda2b",
+    "scripts/train_paper_dc_ac.py": "55cc603a50a410a2e6633177f9cf43a3ce729a65608d8b422e7606ca6fdcc0b2",
+    "scripts/verify_paper_dc_ac.py": "ac55a356d45daed8e82911b4f2089477786763fa5a617c19d8e0c3166adf2fee",
+    "scripts/recalibrate_paper_dc_ac_bn.py": "37e03b690fa92befdfff3def7b412aa52436cbcc8166aa12e1f0e40c26883763",
+    "scripts/run_paper_dc_ac_experiment.py": "2948feb5947f9e6e3487d4e8f998696084f9c615ee1a04d15648311595f38d41",
+    "scripts/register_paper_dc_ac.py": "1b880c63ff5af5f295a8cd37cf176cfc1c205572ac2afe0bf9558c3e847ef6bf"
+  },
+  "runs": [
+    {
+      "device": "cpu",
+      "run_dir": "results/paper_dc_ac/acceptance_v1/cpu",
+      "verification_path": "results/paper_dc_ac/acceptance_v1/cpu_verification.json"
+    },
+    {
+      "device": "cuda",
+      "run_dir": "results/paper_dc_ac/acceptance_v1/cuda",
+      "verification_path": "results/paper_dc_ac/acceptance_v1/cuda_verification.json"
+    }
+  ],
+  "bn_runs": [
+    {
+      "device": "cpu",
+      "run_dir": "results/paper_dc_ac/acceptance_v1/cpu_bn",
+      "verification_path": "results/paper_dc_ac/acceptance_v1/cpu_bn_verification.json"
+    },
+    {
+      "device": "cuda",
+      "run_dir": "results/paper_dc_ac/acceptance_v1/cuda_bn",
+      "verification_path": "results/paper_dc_ac/acceptance_v1/cuda_bn_verification.json"
+    }
+  ],
+  "cross_device_verification_path": "results/paper_dc_ac/acceptance_v1/cuda_cpu_verification.json",
+  "bn_cross_device_verification_path": "results/paper_dc_ac/acceptance_v1/cuda_bn_cpu_verification.json",
+  "elapsed_seconds": 121.00660019600764,
+  "driver_sha256": "6aeffc067bf65cadb28fb083bb49ba1ea09a6db892ce5772456a1c17c726ecae"
+}

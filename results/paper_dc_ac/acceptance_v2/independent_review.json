@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "status": "accepted",
+  "created_utc": "2026-10-03T08:15:58.169590+00:00",
+  "protocol": "paper_dc_ac_finite_v1",
+  "source_sha256": {
+    "src/ect/paper_training.py": "96487e05af2bce1c95a9bd9d71406b3f10cbb240ef239982008f1384e0354263",
+    "src/ect/paper_registration.py": "16ad3f853b8e4a77da0a2e90e718b9068815e1d95f28a7b8cf5b267f96d9cc0f",
+    "src/ect/paper_models.py": "7ec086276b464f008ae007d6e490f99f4af43f8e1568e09f00e67fc7c582c14e",
+    "src/ect/paper_crops.py": "9a6e4aba741f63d6717dc5cb81e3f1ad7f32abc4ab946057d62522a038e91958",
+    "src/ect/devices.py": "68a8fcc280f0a4ce127ddfd1df09bed0bc93e23553c105faf788c3cb2e85c712",
+    "src/ect/baseline.py": "0463033860d6ebe4a910316b5134dc3b835531322bc2301e084eef3ab6341b84",
+    "src/ect/prepare.py": "71d2b97d0a9c49225251bf3ada413c051e78241078b7e9b8a365e05d9a798445",
+    "src/ect/dataset.py": "87bcc381447f30f6842f1cc0eaaab63fa64b9063105042da0c3f9e2dcc1eee08",
+    "src/ect/preprocessing.py": "38e925b9edb26999912063f8b1f20fcc4c39165da16341593a436d48ccaf4c16",
+    "src/ect/integrity.py": "4640749ca2b99a205910e7c4881c512f2a431bebcab5d45723c9d4b98a15f68e",
+    "scripts/train_paper_baseline.py": "d32827bcdde7e75ee601cade1002f37a1192ec8d751e6be7aa533f192dbd82d9",
+    "scripts/register_paper_baseline.py": "d1a4d2af3f718989b1c4f9a555c870f7c46462b0853a9a95c6fdf5b71a7f0362",
+    "scripts/verify_paper_run.py": "130b594f3839353841e04cf3a4af84977f8e4de6c2e1598e06e0cec3ab7f5694",
+    "src/ect/dc_ac.py": "beb77c0ebb47331013346e99d87f7435e202030d2795c92021616c2948c987fb",
+    "src/ect/paper_dc_ac_training.py": "e9457146e03c7d4e2f70a42d415d185605555f7469e4741c99e4f4c31f947222",
+    "src/ect/paper_dc_ac_registration.py": "544e6651e707e46b827a1b0240cc5da360a5550754805398fb93a0aee94e29aa",
+    "src/ect/paper_dc_ac_bn.py": "ed46fc661b56b2ac6dd8d3142a5308c2bf2d6e43d8213059759bf3e88e3cda2b",
+    "scripts/train_paper_dc_ac.py": "55cc603a50a410a2e6633177f9cf43a3ce729a65608d8b422e7606ca6fdcc0b2",
+    "scripts/verify_paper_dc_ac.py": "ac55a356d45daed8e82911b4f2089477786763fa5a617c19d8e0c3166adf2fee",
+    "scripts/recalibrate_paper_dc_ac_bn.py": "37e03b690fa92befdfff3def7b412aa52436cbcc8166aa12e1f0e40c26883763",
+    "scripts/run_paper_dc_ac_experiment.py": "cf9a42ee17ecdb3df3a743ea0fded3f3fa6e6c84bce6a47474f871b7a83bb770",
+    "scripts/register_paper_dc_ac.py": "1b880c63ff5af5f295a8cd37cf176cfc1c205572ac2afe0bf9558c3e847ef6bf"
+  },
+  "source_file_count": 22,
+  "source_hash_method": "Independent hashlib.sha256 of each listed path actual file bytes; no producer source_hashes used for this table. Checked unchanged before/after bounded tests.",
+  "unresolved_findings": [],
+  "findings": [
+    {
+      "id": "P2-data-identity",
+      "severity": "P2",
+      "status": "resolved",
+      "original_finding": "Same-count replacement data could be registered without matching the original baseline.",
+      "correction": "validate_baseline_data compares all nine data-identity keys with the immutable baseline; invoked at registration and full-run recheck.",
+      "source": "src/ect/paper_dc_ac_registration.py",
+      "verification": "Read both call sites and helper; negative regression rejects changed raw input SHA despite unchanged counts."
+    },
+    {
+      "id": "P2-proof-coverage",
+      "severity": "P2",
+      "status": "resolved",
+      "original_finding": "A proof checked-file table containing only report.json was accepted.",
+      "correction": "check_proof_coverage requires actual cache metadata, summary, all run artifacts, source files, cache files, manifests and raw inputs; BN additionally requires origin report/artifacts. validate_proof_contract invokes it before checksum checks.",
+      "source": "src/ect/paper_dc_ac_registration.py",
+      "verification": "Read required-path construction and consumer call site; prior report-only table is now rejected."
+    },
+    {
+      "id": "P2-regression-evidence",
+      "severity": "P2",
+      "status": "resolved",
+      "original_finding": "Regression count and log evidence were optional.",
+      "correction": "validate_regression requires integer count >=396, zero exit/skips, actual CUDA flag, exact unittest arguments, bound evidence, exactly one unittest log, matching Ran count and terminal OK; acceptance invokes it.",
+      "source": "src/ect/paper_dc_ac_registration.py",
+      "verification": "Read complete validation/helper call site; flags-only regression evidence is rejected."
+    },
+    {
+      "id": "P2-controller-lock",
+      "severity": "P2",
+      "status": "resolved",
+      "original_finding": "Source-identity failure after lock acquisition left a stale lock and no failure/status record.",
+      "correction": "run_controller performs source_hashes inside try; exception handler records failed status/failure and finally removes the lock.",
+      "source": "scripts/run_paper_dc_ac_experiment.py",
+      "verification": "Injected source-drift regression passes: failure recorded and lock absent."
+    }
+  ],
+  "reviewed_paths": [
+    "src/ect/paper_dc_ac_training.py",
+    "src/ect/paper_dc_ac_registration.py",
+    "scripts/run_paper_dc_ac_experiment.py",
+    "tests/test_paper_dc_ac_registration.py",
+    "tests/test_paper_dc_ac_controller.py"
+  ],
+  "scope": "Follow-up verification of the four previously reported P2 fixes only. No unrelated verifier review or changes to model/settings.",
+  "acceptance_boundary": "Independent code-review gate only. Does not assert completed v2 GPU regression or actual CPU/CUDA smoke/proof acceptance; parent executes those separately on these sources.",
+  "commands": [
+    {
+      "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python - (inline bounded unittest suite)",
+      "test_ids": [
+        "test_paper_dc_ac_registration.DcAcRegistrationTests.test_proof_chain_cannot_drop_inputs",
+        "test_paper_dc_ac_registration.DcAcRegistrationTests.test_baseline_dataset_identity_cannot_change_with_same_counts",
+        "test_paper_dc_ac_registration.DcAcRegistrationTests.test_full_regression_needs_completed_test_count_and_actual_log",
+        "test_paper_dc_ac_controller.DcAcControllerTests.test_source_guard_failure_cleans_lock_and_records_failure"
+      ],
+      "exit_code": 0,
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "output": "test_proof_chain_cannot_drop_inputs (test_paper_dc_ac_registration.DcAcRegistrationTests.test_proof_chain_cannot_drop_inputs) ... ok\ntest_baseline_dataset_identity_cannot_change_with_same_counts (test_paper_dc_ac_registration.DcAcRegistrationTests.test_baseline_dataset_identity_cannot_change_with_same_counts) ... ok\ntest_full_regression_needs_completed_test_count_and_actual_log (test_paper_dc_ac_registration.DcAcRegistrationTests.test_full_regression_needs_completed_test_count_and_actual_log) ... ok\ntest_source_guard_failure_cleans_lock_and_records_failure (test_paper_dc_ac_controller.DcAcControllerTests.test_source_guard_failure_cleans_lock_and_records_failure) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 1.232s\n\nOK\n"
+    }
+  ],
+  "checks": {
+    "four_reported_p2_fixes_resolved": true,
+    "bounded_regressions_passed": true,
+    "source_22_independently_hashed": true,
+    "source_unchanged_during_review": true
+  },
+  "writes": [
+    "results/paper_dc_ac/acceptance_v2/independent_review.json"
+  ]
+}

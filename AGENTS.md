@@ -42,3 +42,7 @@ formal_v1登记、九项完整训练、noise10–14验证重复及100–104正�
 下一阶段入口docs/plans/2026-10-03-controlled-followup.md、D018：先实现E1固定选中权重、全部train-only BN运行统计重校准与配对核验，再E2保留DC的尺度分离/1000轮同预算消融，E3另立10000轮原预算及候选同预算对照，E4固定噪声/报告。新实验尚未执行，设计不等于执行登记。旧checkpoint没有末轮/optimizer/RNG，不能等价续跑9000轮；原冻结源码/配置/结果不改写，已见test不参与方案选择。人员分工/资源估算不处理。
 
 2026-10-03 E1更新：paper_bn/独立CLI与verify_paper_bn完成，终版309项真实CUDA回归65.438秒无跳过、CPU/CUDA40/40及迁移240预测验收通过，绑定16源码。新registry a01ad2d6...先于三个完整干预，81600预测/BN缓冲独立CUDA回放精确、指标误差0；validation均值72.3125%→59.19792%，三个seed/train均下降，保留原BN。结果docs/paper_bn_recalibration_results.md、D019；新冻结16源码/registry/报告不改写。下一实现单元docs/plans/2026-10-03-dc-ac-training.md，新训练尚未开始。完整BN预测CSV仅gzip发布，解压默认拒绝覆盖、按compression.json核对。源码修正前小验收保留data/processed/paper_bn_acceptance_before_chain_fix，不作终版证据。
+
+2026-10-03 E2更新：DC/AC完整250点尺度分离组件、新训练器/独立核验/登记/BN/自动控制器已完成；最终`results/paper_dc_ac/acceptance_v2/acceptance.json`4d86d849...，400项真实GPU回归93.524秒无跳过，CPU/CUDA40/40两轮、BN与两次CPU迁移共480预测逐条核验。v1因四项登记/清理P2未接受，旧源码快照与负记录保留；v2独立复核0遗留。全train拟合不受smoke裁剪影响，变换完整250→float32→身份crop。
+
+E2 registry `results/experiments/paper_dc_ac_v1/registry.json`29cad377...已冻结22源码、24000 train尺度和三个1000轮配置；2026-10-03 16:18:35北京时间已后台启动CUDA控制器PID43219，seed0正常推进。训练期间不修改这22项源码、registry/config/stats/验收证据；也不重启控制器或重复启动同目录。运行入口docs/plans/2026-10-03-dc-ac-execution.md、docs/paper_dc_ac_training.md；当前任务是监测`execution_status.json`和各run `progress.json`，待seed0/1/2训练及核验自动完成后继续三个固定BN干预/核验和四格汇总。主CLI与控制器支持auto/cpu/cuda。早期运行指标不是最终成绩；E3 10000轮对照尚未启动。原13/16源码和旧权重可继续重载，仍不使用已见test挑方案。

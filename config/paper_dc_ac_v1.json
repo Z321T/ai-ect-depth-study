@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "protocol": "paper_dc_ac_finite_v1",
+  "purpose": "exploratory_train_validation_dc_ac",
+  "model": "PaperResNeXt1D",
+  "blocks_per_stage": 3,
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "device": "auto",
+  "threads": 1,
+  "batch_size": 128,
+  "max_epochs": 1000,
+  "patience": null,
+  "optimizer": "Adam",
+  "learning_rate": 4e-05,
+  "betas": [
+    0.9,
+    0.999
+  ],
+  "optimizer_eps": 1e-08,
+  "weight_decay": 0.0,
+  "learning_rate_milestones_epochs": [
+    5000,
+    7500
+  ],
+  "learning_rate_values": [
+    4e-06,
+    4e-07
+  ],
+  "crop_length": 224,
+  "train_crop_namespace": "training",
+  "validation_crop_namespace": "validation",
+  "validation_crops": 10,
+  "validation_crop_seed": 10,
+  "validation_every_epochs": 10,
+  "selection": [
+    "validation_accuracy",
+    "earlier_epoch"
+  ],
+  "train_per_class": null,
+  "validation_per_class": null,
+  "noise_augmentation": false,
+  "test_classification_enabled": false,
+  "deterministic": true,
+  "tf32": false,
+  "cache_dir": "data/processed/grouped_v1",
+  "notes": "Exploratory matched 1000 epoch input-transform-only comparison; original milestones 5000/7500 unchanged. Full250 DC/AC fit on clean train only before identity crop; no test classification.",
+  "normalization_protocol": "dc_ac_full250_v1"
+}
