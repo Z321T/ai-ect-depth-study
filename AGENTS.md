@@ -38,3 +38,5 @@ formal_v1登记、九项完整训练、noise10–14验证重复及100–104正�
 用户已确认先完成当前1000轮三seed，不立即启动10000。验证问题/固定分析窗口见docs/paper_baseline_1000_questions.md、D017及results/experiments/paper_baseline_v1/analysis_plan_v1/；该分析补充时seed0已90轮、早期validation已见，不称训练前预注册。五项问题待完整训练/独立核验后填写，保留全部seed与较差结果。受限上下文可能看不到实际GPU上下文PID，进程存活核对在相同授权上下文执行，不因沙箱ProcessLookupError重启训练。
 
 2026-10-03更新：paper_baseline_v1三seed均1000epoch及CUDA独立核验完成（81600预测/全部指标误差0），analysis_results_v1/和docs/paper_baseline_1000_results.md记录五项问题、所有seed/组/class及图/时长。平均validation Accuracy72.3125%、样本SD8.7774pp，SVM差+11.40625pp；不当单组件创新或原文严格复现。选中轮800/820/770，seed1训练大组1/2明显较低而其他组较高，原因未定，下一步另立受控协议，不启动新训练。最新全项目264项真实CUDA回归通过51.253秒无跳过；原13源码/登记/config/数据/权重保持不变。
+
+下一阶段入口docs/plans/2026-10-03-controlled-followup.md、D018：先实现E1固定选中权重、全部train-only BN运行统计重校准与配对核验，再E2保留DC的尺度分离/1000轮同预算消融，E3另立10000轮原预算及候选同预算对照，E4固定噪声/报告。新实验尚未执行，设计不等于执行登记。旧checkpoint没有末轮/optimizer/RNG，不能等价续跑9000轮；原冻结源码/配置/结果不改写，已见test不参与方案选择。人员分工/资源估算不处理。
