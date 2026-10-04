@@ -48,3 +48,7 @@ formal_v1登记、九项完整训练、noise10–14验证重复及100–104正�
 E2 registry `results/experiments/paper_dc_ac_v1/registry.json`29cad377...已冻结22源码、24000 train尺度和三个1000轮配置；2026-10-03 16:18:35北京时间已后台启动CUDA控制器PID43219，seed0正常推进。训练期间不修改这22项源码、registry/config/stats/验收证据；也不重启控制器或重复启动同目录。运行入口docs/plans/2026-10-03-dc-ac-execution.md、docs/paper_dc_ac_training.md；当前任务是监测`execution_status.json`和各run `progress.json`，待seed0/1/2训练及核验自动完成后继续三个固定BN干预/核验和四格汇总。主CLI与控制器支持auto/cpu/cuda。早期运行指标不是最终成绩；E3 10000轮对照尚未启动。原13/16源码和旧权重可继续重载，仍不使用已见test挑方案。
 
 后台训练PID只在启动它的允许GPU访问上下文可见；受限沙箱`os.kill(pid,0)`的ProcessLookupError不能作为停止证据。以progress递增/失败记录及同上下文的进程存活核验为准，避免重复启动。E2源代码/启动/验收已发布main提交cb7fe23；最后实际检查seed0第36轮正常，无失败。
+
+2026-10-04 E2完成：12步全部complete/exit0，三个1000轮及三个固定BN干预/六份CUDA核验完成，163200目标预测及指标误差0，BN缓冲误差0；结束2026-10-03约23:53:49北京时间。results_acceptance_v1独立CSV审计326400行/24整体/108组/480类/600曲线/12gzip、冻结文件与六证明通过，最大复算差4.44e-16。22源码/配置/统计/登记/验收仍不改写。
+
+新原BN validation均值72.3125→75.2396%、SD8.7774→2.0744pp、配对+2.9271pp；seed1下降6pp及原最佳单seed更高保留。新BN校准仅+0.0208pp，不作为主优化。结果docs/paper_dc_ac_results.md、D021；当前入口docs/plans/2026-10-04-e2-followup.md，优先E3同10000轮原方法/DC-AC与完整checkpoint新模块/验收，再E4固定噪声。E3尚未登记/启动；旧选中权重缺末轮/optimizer/RNG，不能等价续9000轮。本次只核对结果/维护记录，没有新训练/test分类。上方启动/监测条目是历史状态，不应重启已完成控制器。

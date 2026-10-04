@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "restore_refuses_overwrite": true,
+  "files": {
+    "train_predictions.csv": {
+      "original_sha256": "6c4e2a0c65327ffbde1c8ecc5bed91a57d26263e79d99329cc567cf7d023e7ae",
+      "compressed_sha256": "a523e83fc8f7271b8399042fd76cf2958c45cf5bd17367e31852bc0956575bc5",
+      "compressed_path": "train_predictions.csv.gz"
+    },
+    "validation_predictions.csv": {
+      "original_sha256": "d4f1e83ec055222eab226b573c76ce109fb60d9d3e4ed751f2ca31137b4f2730",
+      "compressed_sha256": "62816c809a150278d8d552a9260a791411777c4c45ebc71afde8a6bca49eb87d",
+      "compressed_path": "validation_predictions.csv.gz"
+    }
+  }
+}

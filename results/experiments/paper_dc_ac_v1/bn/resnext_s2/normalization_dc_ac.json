@@ -1,0 +1,46 @@
+{
+  "statistics": {
+    "schema_version": 1,
+    "protocol": "dc_ac_full250_v1",
+    "fitted_split": "train",
+    "sample_count": 24000,
+    "points_per_channel": 6000000,
+    "epsilon": 1e-12,
+    "mu_d": [
+      1.0615897864667574,
+      1.0580107471322515
+    ],
+    "sigma_d": [
+      0.02004568717981645,
+      0.044625823886498155
+    ],
+    "sigma_a": [
+      0.00036903823539763116,
+      0.0007358153655867851
+    ],
+    "scale_d": [
+      0.02004568717981645,
+      0.044625823886498155
+    ],
+    "scale_a": [
+      0.00036903823539763116,
+      0.0007358153655867851
+    ],
+    "floor_d": [
+      false,
+      false
+    ],
+    "floor_a": [
+      false,
+      false
+    ],
+    "channels": 2,
+    "signal_length": 250
+  },
+  "provenance": {
+    "cache_metadata_sha256": "8c3bace8e81730d1b37bf17cc991cdc63471015d7850a1d74c0e096cf5c6b2ab",
+    "train_signal_sha256": "6f19db1832dc47ed276cc938cffd5dcdfdadfdc30e739ca8248621f07e436edb",
+    "train_manifest_sha256": "9890d665bc5da045a14766efc34c08e079e752551a11c19535ed6b5ef8d07b36",
+    "fit_source_sha256": "beb77c0ebb47331013346e99d87f7435e202030d2795c92021616c2948c987fb"
+  }
+}

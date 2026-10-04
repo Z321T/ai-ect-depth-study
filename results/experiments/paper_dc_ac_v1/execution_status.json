@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "running",
+  "status": "complete",
   "started_utc": "2026-10-03T08:18:35.975889+00:00",
   "pid": 43219,
   "registry_path": "results/experiments/paper_dc_ac_v1/registry.json",
@@ -10,7 +10,247 @@
       "kind": "train",
       "seed": 0,
       "output": "results/experiments/paper_dc_ac_v1/resnext_s0",
-      "status": "running"
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/train_paper_dc_ac.py",
+        "--config",
+        "results/experiments/paper_dc_ac_v1/configs/resnext_s0.json",
+        "--registry",
+        "results/experiments/paper_dc_ac_v1/registry.json",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/resnext_s0",
+        "--device",
+        "cuda",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/train_s0.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "verify",
+      "seed": 0,
+      "output": "results/experiments/paper_dc_ac_v1/verification/resnext_s0_cuda.json",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/verify_paper_dc_ac.py",
+        "--run",
+        "results/experiments/paper_dc_ac_v1/resnext_s0",
+        "--device",
+        "cuda",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/verification/resnext_s0_cuda.json",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/verify_s0.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "train",
+      "seed": 1,
+      "output": "results/experiments/paper_dc_ac_v1/resnext_s1",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/train_paper_dc_ac.py",
+        "--config",
+        "results/experiments/paper_dc_ac_v1/configs/resnext_s1.json",
+        "--registry",
+        "results/experiments/paper_dc_ac_v1/registry.json",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/resnext_s1",
+        "--device",
+        "cuda",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/train_s1.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "verify",
+      "seed": 1,
+      "output": "results/experiments/paper_dc_ac_v1/verification/resnext_s1_cuda.json",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/verify_paper_dc_ac.py",
+        "--run",
+        "results/experiments/paper_dc_ac_v1/resnext_s1",
+        "--device",
+        "cuda",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/verification/resnext_s1_cuda.json",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/verify_s1.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "train",
+      "seed": 2,
+      "output": "results/experiments/paper_dc_ac_v1/resnext_s2",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/train_paper_dc_ac.py",
+        "--config",
+        "results/experiments/paper_dc_ac_v1/configs/resnext_s2.json",
+        "--registry",
+        "results/experiments/paper_dc_ac_v1/registry.json",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/resnext_s2",
+        "--device",
+        "cuda",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/train_s2.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "verify",
+      "seed": 2,
+      "output": "results/experiments/paper_dc_ac_v1/verification/resnext_s2_cuda.json",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/verify_paper_dc_ac.py",
+        "--run",
+        "results/experiments/paper_dc_ac_v1/resnext_s2",
+        "--device",
+        "cuda",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/verification/resnext_s2_cuda.json",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/verify_s2.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "bn",
+      "seed": 0,
+      "output": "results/experiments/paper_dc_ac_v1/bn/resnext_s0",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/recalibrate_paper_dc_ac_bn.py",
+        "--origin",
+        "results/experiments/paper_dc_ac_v1/resnext_s0",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/bn/resnext_s0",
+        "--device",
+        "cuda",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/bn_s0.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "verify_bn",
+      "seed": 0,
+      "output": "results/experiments/paper_dc_ac_v1/verification/resnext_s0_bn_cuda.json",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/verify_paper_dc_ac.py",
+        "--run",
+        "results/experiments/paper_dc_ac_v1/bn/resnext_s0",
+        "--device",
+        "cuda",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/verification/resnext_s0_bn_cuda.json",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/verify_bn_s0.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "bn",
+      "seed": 1,
+      "output": "results/experiments/paper_dc_ac_v1/bn/resnext_s1",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/recalibrate_paper_dc_ac_bn.py",
+        "--origin",
+        "results/experiments/paper_dc_ac_v1/resnext_s1",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/bn/resnext_s1",
+        "--device",
+        "cuda",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/bn_s1.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "verify_bn",
+      "seed": 1,
+      "output": "results/experiments/paper_dc_ac_v1/verification/resnext_s1_bn_cuda.json",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/verify_paper_dc_ac.py",
+        "--run",
+        "results/experiments/paper_dc_ac_v1/bn/resnext_s1",
+        "--device",
+        "cuda",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/verification/resnext_s1_bn_cuda.json",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/verify_bn_s1.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "bn",
+      "seed": 2,
+      "output": "results/experiments/paper_dc_ac_v1/bn/resnext_s2",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/recalibrate_paper_dc_ac_bn.py",
+        "--origin",
+        "results/experiments/paper_dc_ac_v1/resnext_s2",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/bn/resnext_s2",
+        "--device",
+        "cuda",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/bn_s2.log",
+      "exit_code": 0
+    },
+    {
+      "kind": "verify_bn",
+      "seed": 2,
+      "output": "results/experiments/paper_dc_ac_v1/verification/resnext_s2_bn_cuda.json",
+      "status": "complete",
+      "command": [
+        "/home/lucky/devdir/rgzndl/.venv/bin/python",
+        "scripts/verify_paper_dc_ac.py",
+        "--run",
+        "results/experiments/paper_dc_ac_v1/bn/resnext_s2",
+        "--device",
+        "cuda",
+        "--output",
+        "results/experiments/paper_dc_ac_v1/verification/resnext_s2_bn_cuda.json",
+        "--project-root",
+        "/home/lucky/devdir/rgzndl"
+      ],
+      "log_path": "results/experiments/paper_dc_ac_v1/logs/verify_bn_s2.log",
+      "exit_code": 0
     }
   ],
   "source_sha256": {
@@ -36,5 +276,7 @@
     "scripts/recalibrate_paper_dc_ac_bn.py": "37e03b690fa92befdfff3def7b412aa52436cbcc8166aa12e1f0e40c26883763",
     "scripts/run_paper_dc_ac_experiment.py": "cf9a42ee17ecdb3df3a743ea0fded3f3fa6e6c84bce6a47474f871b7a83bb770",
     "scripts/register_paper_dc_ac.py": "1b880c63ff5af5f295a8cd37cf176cfc1c205572ac2afe0bf9558c3e847ef6bf"
-  }
+  },
+  "elapsed_seconds": 27313.85554879901,
+  "summary_path": "results/experiments/paper_dc_ac_v1/analysis_results_v1/summary.json"
 }
